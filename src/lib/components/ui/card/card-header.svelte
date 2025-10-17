@@ -12,7 +12,7 @@
 	bind:this={ref}
 	data-slot="card-header"
 	class={cn(
-		"@container/card-header has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-4 py-3 bg-secondary/80 rounded-t-sm",
+		"@container/card-header has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-4 py-3 bg-border/30 rounded-t-sm",
 		className
 	)}
 	{...restProps}

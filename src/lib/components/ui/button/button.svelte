@@ -11,7 +11,8 @@
 					"bg-destructive shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white",
 				outline:
 					"bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border-transparent",
-				secondary: "bg-secondary/60 text-secondary-foreground shadow-xs hover:bg-secondary hover:bg-secondary shadow-(--shadow)",
+				secondary: "bg-secondary/60 text-secondary-foreground shadow-xs hover:bg-secondary shadow-(--shadow)",
+				card_secondary: "bg-white text-secondary-foreground shadow-(--shadow)",
 				ghost: "hover:bg-accent/60 hover:text-accent-foreground dark:hover:bg-accent/60",
 				ghost_secondary: "hover:bg-secondary hover:text-accent-foreground dark:hover:bg-secondary/60",
 				link: "text-primary underline-offset-4 hover:underline",
