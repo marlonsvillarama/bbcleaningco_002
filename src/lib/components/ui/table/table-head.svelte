@@ -8,14 +8,14 @@
 	} = $props();
 </script>
 
-<div
+<th
 	bind:this={ref}
-	data-slot="card-header"
+	data-slot="table-head"
 	class={cn(
-		"@container/card-header has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-4 py-3 bg-secondary/80 rounded-t-sm",
+		"text-foreground h-10 whitespace-nowrap bg-clip-padding px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
 		className
 	)}
 	{...restProps}
 >
 	{@render children?.()}
-</div>
+</th>

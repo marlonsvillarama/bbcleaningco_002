@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import { Toaster } from '@/components/ui/sonner';
 	
 	let { children } = $props();
 </script>
@@ -8,6 +9,8 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
+
+<Toaster position="bottom-right" closeButton />
 
 <div class="p-4">
 	{@render children?.()}

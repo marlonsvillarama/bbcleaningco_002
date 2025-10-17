@@ -8,14 +8,14 @@
 	} = $props();
 </script>
 
-<div
+<tr
 	bind:this={ref}
-	data-slot="card-header"
+	data-slot="table-row"
 	class={cn(
-		"@container/card-header has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-4 py-3 bg-secondary/80 rounded-t-sm",
+		"hover:[&,&>svelte-css-wrapper]:[&>th,td]:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
 		className
 	)}
 	{...restProps}
 >
 	{@render children?.()}
-</div>
+</tr>

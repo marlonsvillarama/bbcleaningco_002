@@ -9,11 +9,11 @@
 	} = $props();
 </script>
 
-<p
+<ul
 	bind:this={ref}
-	data-slot="card-description"
-	class={cn("text-muted-foreground text-xs font-light", className)}
+	data-slot="pagination-content"
+	class={cn("flex flex-row items-center gap-1", className)}
 	{...restProps}
 >
 	{@render children?.()}
-</p>
+</ul>

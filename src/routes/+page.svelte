@@ -1,17 +1,18 @@
 <script>
-    import { Skull } from '@lucide/svelte';
+    import { ChevronLeftIcon, ChevronRightIcon, Skull } from '@lucide/svelte';
     import * as AlertDialog from '@/components/ui/alert-dialog/index';
     import * as Card from '@/components/ui/card/index';
     import * as Popover from '@/components/ui/popover/index';
     import * as Select from "@/components/ui/select/index";
+    import * as Pagination from '@/components/ui/pagination/index';
     import { buttonVariants } from '@/components/ui/button/button.svelte';
+    import { toast } from 'svelte-sonner';
     import Badge from '@/components/ui/badge/badge.svelte';
     import Button from "@/components/ui/button/button.svelte";
     import Calendar from '@/components/ui/calendar/calendar.svelte';
     import Checkbox from '@/components/ui/checkbox/checkbox.svelte';
     import Input from "@/components/ui/input/input.svelte";
     import Label from "@/components/ui/label/label.svelte";
-    import Paginator from '@/components/global/paginator.svelte';
     import Switch from '@/components/ui/switch/switch.svelte';
 
     let selectedValue = $state('');
@@ -41,13 +42,21 @@
     //         : 'Select fruits...'
     // );
     let triggerContent = $derived(fruits.find(f => f.value === selectedValue)?.label ?? 'Select a fruit...');
+
+    const pageCount = 20;
+    const perPage = 3;
+    const siblingCount = 1;
+
+    const showToast = () => {
+        toast.success("Quotation has been created.")
+    };
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 
 <div class="flex flex-row items-center gap-2 mt-4 mb-4">
-<Button>Submit</Button>
+<Button onclick={showToast}>Submit</Button>
 <Button variant="ghost_secondary">Cancel again</Button>
 <Button variant="ghost">Cancel</Button>
 <Button variant="secondary">Email Quotation</Button>
@@ -135,18 +144,6 @@
                     <Switch />
                 </div>
 
-                <Popover.Root class="justify-left border">
-                    <Popover.Trigger>
-                        <Button variant="secondary" class="w-1/3">Select dates</Button>
-                    </Popover.Trigger>
-                    <Popover.Content class="p-0 border-none">
-                        <Calendar
-                            type="single"
-                            class="rounded-md shadow-sm w-full"
-                            captionLayout="dropdown"
-                        />
-                    </Popover.Content>
-                </Popover.Root>
             </div>
 
             <div class="flex flex-col flex-1 gap-6">
@@ -177,8 +174,38 @@
 
         </Card.Content>
 
-        <Card.Footer padded=false class="bg-accent/50 p-1">
-            <Paginator />
+        <Card.Footer padded=false class="bg-secondary/60 p-1">
+            <Pagination.Root count={fruits.length} {perPage} {siblingCount}>
+                {#snippet children({ pages, currentPage })}
+                    <Pagination.Content>
+                        <Pagination.Item>
+                            <Pagination.PrevButton>
+                                <ChevronLeftIcon class="size-4" />
+                                <span class="hidden sm:block">Previous</span>
+                            </Pagination.PrevButton>
+                        </Pagination.Item>
+                        {#each pages as page (page.key)}
+                            {#if page.type === 'ellipsis'}
+                                <Pagination.Item>
+                                    <Pagination.Ellipsis />
+                                </Pagination.Item>
+                            {:else}
+                                <Pagination.Item>
+                                    <Pagination.Link {page} isActive={currentPage === page.value}>
+                                        {page.value}
+                                    </Pagination.Link>
+                                </Pagination.Item>
+                            {/if}
+                        {/each}
+                        <Pagination.Item>
+                            <Pagination.NextButton>
+                                <span class="hidden sm:block">Next</span>
+                                <ChevronRightIcon class="size-4" />
+                            </Pagination.NextButton>
+                        </Pagination.Item>
+                    </Pagination.Content>
+                {/snippet}
+            </Pagination.Root>
         </Card.Footer>
     </Card.Root>
 </div>
