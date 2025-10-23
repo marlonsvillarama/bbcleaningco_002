@@ -12,7 +12,7 @@
 
 <Toaster position="bottom-right" closeButton />
 
-<div class="p-4">
+<div>
 	{@render children?.()}
 </div>
 

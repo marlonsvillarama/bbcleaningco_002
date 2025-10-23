@@ -37,17 +37,17 @@
 				icon: ListDetailsIcon,
 			},
 			{
-				title: "Analytics",
+				title: "Reports",
 				url: "#",
 				icon: ChartBarIcon,
 			},
 			{
-				title: "Projects",
+				title: "Files",
 				url: "#",
 				icon: FolderIcon,
 			},
 			{
-				title: "Team",
+				title: "Employees",
 				url: "#",
 				icon: UsersIcon,
 			},
