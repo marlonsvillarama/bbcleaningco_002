@@ -2,29 +2,21 @@
 	import {
 		BadgeDollarSign,
 		CalendarDays,
+		ChartNoAxesCombined,
 		CircleGauge,
 		ContactRound,
+		HelpCircle,
 		IdCardLanyard,
 		PersonStanding,
 		Receipt,
+		Settings,
 		User,
 		UsersRound
 	} from "@lucide/svelte";
-	import CameraIcon from "@tabler/icons-svelte/icons/camera";
-	import ChartBarIcon from "@tabler/icons-svelte/icons/chart-bar";
-	import ChartNoAxesIcon from "@lucide/svelte/icons/chart-no-axes-combined";
-	import DashboardIcon from "@tabler/icons-svelte/icons/dashboard";
-	import DatabaseIcon from "@tabler/icons-svelte/icons/database";
-	import FileAiIcon from "@tabler/icons-svelte/icons/file-ai";
-	import FileDescriptionIcon from "@tabler/icons-svelte/icons/file-description";
-	import FileWordIcon from "@tabler/icons-svelte/icons/file-word";
-	import FolderIcon from "@tabler/icons-svelte/icons/folder";
-	import HelpIcon from "@tabler/icons-svelte/icons/help";
 	import InnerShadowTopIcon from "@tabler/icons-svelte/icons/inner-shadow-top";
 	import ListDetailsIcon from "@tabler/icons-svelte/icons/list-details";
 	import ReportIcon from "@tabler/icons-svelte/icons/report";
 	import SearchIcon from "@tabler/icons-svelte/icons/search";
-	import SettingsIcon from "@tabler/icons-svelte/icons/settings";
 	import UsersIcon from "@tabler/icons-svelte/icons/users";
 	import NavDocuments from "./nav-documents.svelte";
 	import NavMain from "./nav-main.svelte";
@@ -61,7 +53,7 @@
 			{
 				title: "Reports",
 				url: "/app/reports",
-				icon: ChartNoAxesIcon,
+				icon: ChartNoAxesCombined,
 			},
 			{
 				title: "Employees",
@@ -74,64 +66,16 @@
 				icon: UsersRound,
 			},
 		],
-		navClouds: [
-			{
-				title: "Capture",
-				icon: CameraIcon,
-				isActive: true,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Proposal",
-				icon: FileDescriptionIcon,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Prompts",
-				icon: FileAiIcon,
-				url: "#",
-				items: [
-					{
-						title: "Active Proposals",
-						url: "#",
-					},
-					{
-						title: "Archived",
-						url: "#",
-					},
-				],
-			},
-		],
 		navSecondary: [
 			{
 				title: "Settings",
 				url: "#",
-				icon: SettingsIcon,
+				icon: Settings,
 			},
 			{
 				title: "Help",
 				url: "#",
-				icon: HelpIcon,
+				icon: HelpCircle,
 			},
 			// {
 			// 	title: "Search",
