@@ -40,6 +40,7 @@
 		"zod": "^3.25.76"
 	},
 	"dependencies": {
+		"@supabase/supabase-js": "^2.76.1",
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",

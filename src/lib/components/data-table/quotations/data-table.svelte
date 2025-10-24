@@ -1,10 +1,5 @@
 <script module>
 	export const columns = [
-		// {
-		// 	id: "drag",
-		// 	header: () => null,
-		// 	cell: () => renderSnippet(DragHandle),
-		// },
 		{
 			id: "select",
 			header: ({ table }) =>
@@ -28,6 +23,7 @@
 			accessorKey: "number",
 			header: "No.",
 			cell: ({ row }) => renderSnippet(DataTableNumber, { row }),
+			/* cell: ({ row }) => renderSnippet(DataTableNumber, { row }), */
 		},
 		{
 			accessorKey: "client",
@@ -41,15 +37,20 @@
 			cell: ({ row }) => renderSnippet(DataTableStatus, { row }),
 		},
 		{
-			accessorKey: "type",
-			header: "Service Date",
-			cell: ({ row }) => renderSnippet(DataTableType, { row }),
+			accessorKey: "billing",
+			header: "Billing",
+			cell: ({ row }) => renderSnippet(DataTableBillingStatus, { row }),
 		},
 		{
+			accessorKey: "serviceDate",
+			header: "Service Date",
+			cell: ({ row }) => renderSnippet(DataTableServiceDate, { date: row.original.svcDate }),
+		},
+		/* {
 			accessorKey: "target",
 			header: "Amount",
 			cell: ({ row }) => renderSnippet(DataTableType, { row }),
-		},
+		}, */
 		/* {
 			accessorKey: "target",
 			header: () =>
@@ -71,9 +72,9 @@
 			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
 		}, */
 		{
-			accessorKey: "reviewer",
-			header: "Agent",
-			cell: ({ row }) => renderComponent(DataTableReviewer, { row }),
+			accessorKey: "team",
+			header: "Team",
+			cell: ({ row }) => renderSnippet(DataTableTeam, { row }),
 		},
 		{
 			id: "actions",
@@ -110,6 +111,12 @@
 	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
 	import LoaderIcon from "@tabler/icons-svelte/icons/loader";
 	import DotsVerticalIcon from "@tabler/icons-svelte/icons/dots-vertical";
+
+	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
+	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
+	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
+	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
+
 	import { toast } from "svelte-sonner";
 	import DataTableCheckbox from "./data-table-checkbox.svelte";
 	import DataTableCellViewer from "./data-table-cell-viewer.svelte";
@@ -118,9 +125,25 @@
 	import { DragDropProvider } from "@dnd-kit-svelte/svelte";
 	import { move } from "@dnd-kit/helpers";
 	import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
+    import { parseDate, DateFormatter } from "@internationalized/date";
 
 	let { data } = $props();
-	let pagination = $state({ pageIndex: 0, pageSize: 10 });
+	data.forEach(d => {
+		// console.log('d', JSON.stringify(d))
+		let dt = d.serviceDate;
+		// console.log('dt', dt);
+		let year = dt.slice(0, 4);
+		let month = dt.slice(4, 6);
+		let date = dt.slice(6);
+
+		d.svcDate = new Intl.DateTimeFormat('en-US', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric'
+		}).format(new Date(year, parseInt(month) - 1, date));
+	});
+
+	let pagination = $state({ pageIndex: 0, pageSize: 20 });
 	let sorting = $state([]);
 	let columnFilters = $state([]);
 	let rowSelection = $state({});
@@ -220,7 +243,6 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<!-- <Tabs.Root value="outline" class="w-full flex-col justify-start gap-6"> -->
 <div class="w-full flex flex-col justify-start gap-2">
 	<div class="flex items-center justify-between px-4 lg:px-6">
 		<!-- <Label for="view-selector" class="sr-only">View</Label>
@@ -276,13 +298,81 @@
 				<!-- {table.getFilteredSelectedRowModel().rows.length} of -->
 				<span>Total Results:</span> <span class="font-semibold">{table.getFilteredRowModel().rows.length}</span>
 			</div>
-			<div class="flex flex-row text-sm gap-4 lg:flex">
+			<div class="flex w-full items-center gap-8 lg:w-fit">
+				<div class="hidden items-center gap-2 lg:flex">
+					<Label for="rows-per-page" class="text-sm font-medium">Rows per page</Label>
+					<Select.Root
+						type="single"
+						bind:value={
+							() => `${table.getState().pagination.pageSize}`,
+							(v) => table.setPageSize(Number(v))
+						}
+					>
+						<Select.Trigger size="sm" class="w-20" id="rows-per-page">
+							{table.getState().pagination.pageSize}
+						</Select.Trigger>
+						<Select.Content side="top">
+							{#each [10, 20, 50] as pageSize (pageSize)}
+								<Select.Item value={pageSize.toString()}>
+									{pageSize}
+								</Select.Item>
+							{/each}
+						</Select.Content>
+					</Select.Root>
+				</div>
+				<div class="flex w-fit items-center justify-center text-sm font-medium">
+					Page {table.getState().pagination.pageIndex + 1} of
+					{table.getPageCount()}
+				</div>
+				<div class="ml-auto flex items-center gap-2 lg:ml-0">
+					<Button
+						variant="outline"
+						class="hidden h-8 w-8 p-0 lg:flex"
+						onclick={() => table.setPageIndex(0)}
+						disabled={!table.getCanPreviousPage()}
+					>
+						<span class="sr-only">Go to first page</span>
+						<ChevronsLeftIcon />
+					</Button>
+					<Button
+						variant="outline"
+						class="size-8"
+						size="icon"
+						onclick={() => table.previousPage()}
+						disabled={!table.getCanPreviousPage()}
+					>
+						<span class="sr-only">Go to previous page</span>
+						<ChevronLeftIcon />
+					</Button>
+					<Button
+						variant="outline"
+						class="size-8"
+						size="icon"
+						onclick={() => table.nextPage()}
+						disabled={!table.getCanNextPage()}
+					>
+						<span class="sr-only">Go to next page</span>
+						<ChevronRightIcon />
+					</Button>
+					<Button
+						variant="outline"
+						class="hidden size-8 lg:flex"
+						size="icon"
+						onclick={() => table.setPageIndex(table.getPageCount() - 1)}
+						disabled={!table.getCanNextPage()}
+					>
+						<span class="sr-only">Go to last page</span>
+						<ChevronsRightIcon />
+					</Button>
+				</div>
+			</div>
+			<!-- <div class="flex flex-row text-sm gap-4 lg:flex">
 				<Input class="w-[200px]"/>
 				<Button variant="default" size="sm">
 					<PlusIcon />
 					<span class="hidden lg:inline">New Quotation</span>
 				</Button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- <Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"> -->
@@ -328,7 +418,9 @@
 				</Table.Root>
 			</DragDropProvider>
 		</div>
-		<div class="flex items-center justify-between px-4">
+
+		<!-- Footer and Pagination -->
+		<div class="flex items-center justify-between">
 			<div class="text-muted-foreground hidden flex-1 text-sm lg:flex">
 				{table.getFilteredSelectedRowModel().rows.length} of
 				{table.getFilteredRowModel().rows.length} row(s) selected.
@@ -347,7 +439,7 @@
 							{table.getState().pagination.pageSize}
 						</Select.Trigger>
 						<Select.Content side="top">
-							{#each [10, 20, 30, 40, 50] as pageSize (pageSize)}
+							{#each [10, 20, 50] as pageSize (pageSize)}
 								<Select.Item value={pageSize.toString()}>
 									{pageSize}
 								</Select.Item>
@@ -457,7 +549,17 @@
 {/snippet}
 
 {#snippet DataTableNumber({ row })}
-	{row.id}
+	<a href='/app/quotations/{row.original.id}'>{row.original.number}</a>
+{/snippet}
+
+{#snippet DataTableTeam({ row })}
+	{row.original.team}
+{/snippet}
+
+{#snippet DataTableServiceDate({ date })}
+	<div class="w-32">
+		{date}
+	</div>
 {/snippet}
 
 {#snippet DataTableType({ row })}
@@ -470,12 +572,27 @@
 
 {#snippet DataTableStatus({ row })}
 	<Badge variant="outline" class="text-muted-foreground px-1.5">
-		{#if row.original.status === "Done"}
+		{#if row.original.status.toLowerCase() === "completed"}
 			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
+		{:else if row.original.status.toLowerCase() === "pending service"}
+			<BrushCleaningIcon class="fill-accent-500 dark:fill-accent-400" />
 		{:else}
-			<LoaderIcon />
+			<SquarePenIcon />
 		{/if}
 		{row.original.status}
+	</Badge>
+{/snippet}
+
+{#snippet DataTableBillingStatus({ row })}
+	<Badge variant="outline" class="text-muted-foreground px-1.5">
+		{#if row.original.billing.toLowerCase() === "fully paid"}
+			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
+		{:else if row.original.billing.toLowerCase() === "pending balance"}
+			<HandCoinsIcon />
+		{:else}
+			<BanknoteXIcon />
+		{/if}
+		{row.original.billing}
 	</Badge>
 {/snippet}
 

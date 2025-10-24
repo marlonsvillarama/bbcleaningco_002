@@ -1,23 +1,29 @@
 <script>
 	import data from "./data.js";
 	import { Button } from "$lib/components/ui/button/index.js";
+	import { Input } from "$lib/components/ui/input/index.js";
+	import PlusIcon from "@tabler/icons-svelte/icons/plus";
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
 	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
+
+	let crumbs = [
+		{
+			text: 'Quotations',
+			url: '/app/quotations'
+		}
+	];
 </script>
 
-<SiteHeader title='Quotations'>
-	<Button
-		href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
-		variant="ghost"
-		size="sm"
-		class="dark:text-foreground hidden sm:flex"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		GitHub
-	</Button>
+<SiteHeader { crumbs }>
+	<div class="flex flex-row text-sm gap-4 lg:flex">
+		<Input class="w-[200px]"/>
+		<Button variant="default" size="sm">
+			<PlusIcon />
+			<span class="hidden lg:inline">New Quotation</span>
+		</Button>
+	</div>
 </SiteHeader>
 <div class="flex flex-1 flex-col">
 	<div class="@container/main flex flex-1 flex-col gap-2">

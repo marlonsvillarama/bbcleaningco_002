@@ -2,8 +2,10 @@
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { Separator } from "$lib/components/ui/separator/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+    import { ChevronRightIcon } from "lucide-svelte";
 
-	let { children, title = 'Page Title' } = $props();
+	let { children, title = 'Page Title', crumbs = [] } = $props();
+	console.log('crumbs', crumbs);
 </script>
 
 <header
@@ -12,7 +14,17 @@
 	<div class="flex w-full items-center gap-1 px-4 py-4 lg:gap-2 lg:px-6">
 		<Sidebar.Trigger class="-ml-1" />
 		<Separator orientation="vertical" class="mx-2 data-[orientation=vertical]:h-4" />
-		<h1 class="text-base font-medium">{title}</h1>
+
+		<div class="flex flex-row gap-4 items-center">
+			{#each crumbs as crumb, index}
+				{#if index < (crumbs.length - 1)}
+					<a href={crumb.url} alt={crumb.text}><h1 class="text-base font-medium">{crumb.text}</h1></a>
+					<ChevronRightIcon />
+				{:else}
+					<span class="font-[500]">{crumb.text}</span>
+				{/if}
+			{/each}
+		</div>
 		<div class="ml-auto flex items-center gap-2">
 			{@render children?.()}
 		</div>

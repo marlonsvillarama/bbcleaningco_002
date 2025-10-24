@@ -47,7 +47,7 @@
 	<Drawer.Trigger>
 		{#snippet child({ props })}
 			<Button variant="link" class="text-foreground w-fit px-0 text-left" {...props}>
-				{item.header}
+				{item.client}
 			</Button>
 		{/snippet}
 	</Drawer.Trigger>
