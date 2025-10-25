@@ -10,6 +10,9 @@
     <Card.Header>
         <Card.Title>Customer Notes</Card.Title>
     </Card.Header>
+    <Card.Content class="p-6 pt-2">
+        <Textarea id="notes" class="resize-none overflow-y-auto h-[120px]" />
+    </Card.Content>
 </Card.Root>
 
 <!-- <Card title="Notes" padded=false>

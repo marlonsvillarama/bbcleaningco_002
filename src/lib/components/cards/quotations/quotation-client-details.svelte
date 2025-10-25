@@ -3,6 +3,7 @@
     import * as Card from "@/components/ui/card/index";
     import * as Field from "@/components/ui/field/index";
     import * as InputGroup from "@/components/ui/input-group/index";
+    import * as Select from "@/components/ui/select/index";
     import FieldSet from "@/components/global/form/fieldset.svelte";
     import FieldsetCheckbox from "@/components/global/form/fieldset-checkbox.svelte";
 
@@ -12,6 +13,15 @@
     import Textarea from "@/components/ui/textarea/textarea.svelte";
 
     let { data } = $props();
+    const clients = [
+        { value: "1", text: "Estrada, Jinggoy" },
+        { value: "2", text: "Go, Bong" },
+        { value: "3", text: "Villanueva, Joel" },
+    ];
+    let selectedClient = $state('');
+    const triggerContent = $derived(
+        clients.find((c) => c.value === selectedClient)?.text ?? "Select a client"
+    );
 </script>
 
 <Card.Root class="w-full">
@@ -19,36 +29,36 @@
         <Card.Title>Client Details</Card.Title>
     </Card.Header>
     <Card.Content>
-        <form class="grid grid-cols-2 gap-8 p-6 pt-2">
-            <div class="flex flex-col gap-6 items-top">
-                <div class="flex flex-row gap-6 items-center">
-                    <Field.Field>
-                        <Field.Label for="firstName">First Name</Field.Label>
-                        <Input id="firstName" class="font-light w-4/5" placeholder="First Name" value={data.first_name} />
-                    </Field.Field>
-                    <Field.Field>
-                        <Field.Label for="lastName">Last Name</Field.Label>
-                        <Input id="lastName" class="font-light w-4/5" placeholder="Last Name" value={data.last_name} />
-                    </Field.Field>
-                </div>
+        <!-- <form class="grid grid-cols-2 gap-8 p-6 pt-2"> -->
+            <!-- <div class="flex flex-col gap-6 items-top">
                 <Field.Field>
-                    <Field.Label for="address">Address</Field.Label>
+                    <Field.Label for="client">Client</Field.Label>
+                    <Select.Root type="single" bind:value={selectedClient}>
+                        <Select.Trigger class="w-full">{triggerContent}</Select.Trigger>
+                        <Select.Content>
+                            {#each clients as client}
+                                <Select.Item value={client.value} label={client.text}>{client.text}</Select.Item>
+                            {/each}
+                        </Select.Content>
+                    </Select.Root>
+                </Field.Field>
+                <Field.Field>
+                    <Field.Label for="serviceDate">Service Date</Field.Label>
+                    <Input id="lastName" class="font-light w-4/5" placeholder="Last Name" value={data.last_name} />
+                </Field.Field>
+                <Field.Field>
+                    <Field.Label for="firstName">Address</Field.Label>
                     <InputGroup.Root>
                         <InputGroup.Textarea disabled id="address" class="font-light" placeholder="Address" value={data.address_1} />
                         <InputGroup.Addon align="block-end">
-                            <!-- Replace with popover for address -->
                             <InputGroup.Button variant="secondary" class="rounded-2">
                                 Edit
                             </InputGroup.Button>
                         </InputGroup.Addon>
                     </InputGroup.Root>
                 </Field.Field>
-                <!-- <Field.Field>
-                    <Field.Label for="firstName">First Name</Field.Label>
-                    <Textarea id="address" class="font-light w-4/5" placeholder="Address" value={data.address_1} />
-                </Field.Field> -->
-            </div>
-            <div class="flex flex-col gap-6 items-top">
+            </div> -->
+            <div class="flex flex-col gap-6 items-top p-6 pt-2">
                 <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
                     <Input id="phone" class="font-light w-32" placeholder="Phone" value={data.phone} />
@@ -69,7 +79,7 @@
                     </Field.Field>
                 </Field.Group>
             </div>
-        </form>
+        <!-- </form> -->
     </Card.Content>
 </Card.Root>
 

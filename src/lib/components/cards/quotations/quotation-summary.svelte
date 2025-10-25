@@ -29,8 +29,8 @@
         <Card.Title>Quotation Summary</Card.Title>
     </Card.Header>
     <Card.Content>
-        <form class="grid grid-cols-2 gap-8 p-6 pt-2">
-            <div class="flex flex-col gap-6 items-top">
+        <!-- <form class="grid grid-cols-2 gap-8 p-6 pt-2"> -->
+            <div class="flex flex-col gap-6 items-top p-6 pt-2">
                 <Field.Field>
                     <Field.Label for="client">Client</Field.Label>
                     <Select.Root type="single" bind:value={selectedClient}>
@@ -59,7 +59,7 @@
                     </InputGroup.Root>
                 </Field.Field>
             </div>
-            <div class="flex flex-col gap-6 items-top">
+            <!-- <div class="flex flex-col gap-6 items-top">
                 <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
                     <Input id="phone" class="font-light w-32" placeholder="Phone" value={data.phone} />
@@ -79,8 +79,8 @@
                         <Field.Label for="isVIP" class="cursor-pointer">VIP Customer</Field.Label>
                     </Field.Field>
                 </Field.Group>
-            </div>
-        </form>
+            </div> -->
+        <!-- </form> -->
     </Card.Content>
 </Card.Root>
 
