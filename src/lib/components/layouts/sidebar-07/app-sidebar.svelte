@@ -7,6 +7,7 @@
 		ContactRound,
 		HelpCircle,
 		IdCardLanyard,
+		Mail,
 		PersonStanding,
 		Receipt,
 		Settings,
@@ -23,6 +24,8 @@
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import Logo from "$lib/images/Last_logo2.svg";
+	
 	const data = {
 		user: {
 			name: "shadcn",
@@ -68,9 +71,14 @@
 		],
 		navSecondary: [
 			{
-				title: "Settings",
+				title: "Admin Settings",
 				url: "#",
 				icon: Settings,
+			},
+			{
+				title: "Messages",
+				url: "#",
+				icon: Mail,
 			},
 			{
 				title: "Help",
@@ -94,6 +102,26 @@
 				url: "/app/clients?new",
 				icon: ContactRound,
 			},
+			{
+				name: "New Quotation 2",
+				url: "/app/quotations?new2",
+				icon: Receipt,
+			},
+			{
+				name: "New Client 2",
+				url: "/app/clients?new2",
+				icon: ContactRound,
+			},
+			{
+				name: "New Quotation 3",
+				url: "/app/quotations?new3",
+				icon: Receipt,
+			},
+			{
+				name: "New Client 3",
+				url: "/app/clients?new3",
+				icon: ContactRound,
+			},
 			// {
 			// 	name: "Word Assistant",
 			// 	url: "#",
@@ -105,9 +133,9 @@
 	let { ...restProps } = $props();
 </script>
 
-<Sidebar.Root collapsible="icon" {...restProps}>
+<Sidebar.Root collapsible="offcanvas" {...restProps}>
 	<Sidebar.Header>
-		<Sidebar.Menu>
+		<!-- <Sidebar.Menu>
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:!p-1.5">
 					{#snippet child({ props })}
@@ -118,7 +146,10 @@
 					{/snippet}
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>
-		</Sidebar.Menu>
+		</Sidebar.Menu> -->
+		<div class="w-full flex justify-center">
+			<img src={Logo} alt="Busy Bee Cleaning Co." class="w-[60%]" />
+		</div>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />

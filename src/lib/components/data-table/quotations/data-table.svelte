@@ -377,7 +377,7 @@
 	</div>
 	<!-- <Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"> -->
 	<div class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6">
-		<div class="overflow-hidden rounded-lg border">
+		<div class="overflow-hidden rounded-lg border-none shadow-md">
 			<DragDropProvider
 				modifiers={[
 					// @ts-expect-error @dnd-kit/abstract types are botched atm
@@ -564,18 +564,18 @@
 
 {#snippet DataTableType({ row })}
 	<div class="w-32">
-		<Badge variant="outline" class="text-muted-foreground px-1.5">
+		<Badge variant="outline" class="px-1.5">
 			{row.original.type}
 		</Badge>
 	</div>
 {/snippet}
 
 {#snippet DataTableStatus({ row })}
-	<Badge variant="outline" class="text-muted-foreground px-1.5">
+	<Badge variant="outline" class="px-1.5">
 		{#if row.original.status.toLowerCase() === "completed"}
 			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
 		{:else if row.original.status.toLowerCase() === "pending service"}
-			<BrushCleaningIcon class="fill-accent-500 dark:fill-accent-400" />
+			<BrushCleaningIcon class="fill-accent dark:fill-accent" />
 		{:else}
 			<SquarePenIcon />
 		{/if}
@@ -584,7 +584,7 @@
 {/snippet}
 
 {#snippet DataTableBillingStatus({ row })}
-	<Badge variant="outline" class="text-muted-foreground px-1.5">
+	<Badge variant="outline" class="px-1.5">
 		{#if row.original.billing.toLowerCase() === "fully paid"}
 			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
 		{:else if row.original.billing.toLowerCase() === "pending balance"}
@@ -625,7 +625,7 @@
 	<Table.Row
 		data-state={row.getIsSelected() && "selected"}
 		data-dragging={isDragging.current}
-		class="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+		class="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80 border-b border-accent/40"
 		{@attach ref}
 	>
 		{#each row.getVisibleCells() as cell (cell.id)}

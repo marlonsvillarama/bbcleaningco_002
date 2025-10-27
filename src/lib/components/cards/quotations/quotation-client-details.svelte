@@ -24,11 +24,11 @@
     );
 </script>
 
-<Card.Root class="w-full">
+<!-- <Card.Root class="w-full">
     <Card.Header>
         <Card.Title>Client Details</Card.Title>
     </Card.Header>
-    <Card.Content>
+    <Card.Content> -->
         <!-- <form class="grid grid-cols-2 gap-8 p-6 pt-2"> -->
             <!-- <div class="flex flex-col gap-6 items-top">
                 <Field.Field>
@@ -58,7 +58,18 @@
                     </InputGroup.Root>
                 </Field.Field>
             </div> -->
-            <div class="flex flex-col gap-6 items-top p-6 pt-2">
+            <div class="flex flex-col gap-6 items-top">
+                <Field.Field>
+                    <Field.Label for="client">Client</Field.Label>
+                    <Select.Root type="single" bind:value={selectedClient}>
+                        <Select.Trigger class="w-full">{triggerContent}</Select.Trigger>
+                        <Select.Content>
+                            {#each clients as client}
+                                <Select.Item value={client.value} label={client.text}>{client.text}</Select.Item>
+                            {/each}
+                        </Select.Content>
+                    </Select.Root>
+                </Field.Field>
                 <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
                     <Input id="phone" class="font-light w-32" placeholder="Phone" value={data.phone} />
@@ -80,8 +91,8 @@
                 </Field.Group>
             </div>
         <!-- </form> -->
-    </Card.Content>
-</Card.Root>
+    <!-- </Card.Content>
+</Card.Root> -->
 
 <!-- <Card title="Primary Details" cls="grid grid-cols-2">
     <div class="flex flex-col gap-8 items-top">

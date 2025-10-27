@@ -1,11 +1,11 @@
 <script>
 	// import data from "./data.js";
-	import Badge from "$lib/components/ui/badge/badge.svelte";
-	import Button from "$lib/components/ui/button/button.svelte";
-	import Input from "$lib/components/ui/input/input.svelte";
+	import { Badge } from "$lib/components/ui/badge/index.js";
+	import { Button } from "$lib/components/ui/button/index.js";
+	import { Input } from "$lib/components/ui/input/index.js";
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
-	import * as Card from "@/components/ui/card/index";
-	import Separator from "@/components/ui/separator/separator.svelte";
+	import PlusIcon from "@tabler/icons-svelte/icons/plus";
+	import { SaveIcon } from "@lucide/svelte";
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
@@ -20,14 +20,6 @@
     import QuotationAuditTrail from "@/components/cards/quotations/quotation-audit-trail.svelte";
     import QuotationNotes from "@/components/cards/quotations/quotation-notes.svelte";
     import QuotationTotals from "@/components/cards/quotations/quotation-totals.svelte";
-
-	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
-	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
-	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
-	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
-	import ReceiptIcon from "@lucide/svelte/icons/receipt";
-	import SaveIcon from "@lucide/svelte/icons/save";
-	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
 
 	import items from './items';
 
@@ -71,56 +63,56 @@
 		</Button>
 	</div>
 </SiteHeader>
-
 <div class="flex flex-1 flex-col pb-8">
 	<div class="@container/main flex flex-1 flex-col gap-2">
-		<div class="flex flex-col gap-4 px-4 py-4 md:gap-6 md:py-6">
+		<div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
 
-			<Card.Root>
-				<Card.Content>
-					<div class="grid grid-col-2">
-						<div class="border-b flex flex-row items-center justify-between px-6 py-4">
-							<div class="flex gap-4">
-								<div id="quotation-id" class="flex flex-row items-center">
-									<ReceiptIcon class="mr-2" />
-									<span class="text-xl font-semibold">2025-0001</span>
-								</div>
-								<div class="flex flex-row items-center gap-2">
-									<Badge variant="outline">
-										<SquarePenIcon />Draft
-									</Badge>
-									<Badge variant="outline">
-										<BanknoteXIcon />Pending Downpayment
-									</Badge>
-								</div>
-							</div>
-							<Button variant="default" size="sm">
-								<SaveIcon />
-								<span class="hidden lg:inline">Save</span>
-							</Button>
-						</div>
-						<div class="grid q-content px-6 py-4 items-start">
-							<div class="q-header grid gap-8">
-								<QuotationSummary class="summary" { data } />
-								<Separator />
-								<QuotationClientDetails class="client" { data } />
-								<QuotationTotals class="totals" { data } />
-							</div>
-						</div>
-					</div>
-				</Card.Content>
-			</Card.Root>
+			<div class="w-full flex flex-row items-start gap-6 px-4 lg:px-6">
+				<QuotationSummary { data } />
+
+				<QuotationClientDetails { data } />
+
+				<QuotationTotals { data } />
+				<!-- <div class="flex flex-col justify-start gap-6 w-1/3">
+
+
+					<QuotationClientDetails { data } />
+				</div> -->
+				<!-- <div class="flex flex-col justify-start gap-6 w-1/3">
+				</div> -->
+				<!-- <div class="flex flex-col justify-start gap-6 w-1/3">
+
+					<QuotationNotes { data } />
+				</div> -->
+			</div>
+
+			<div class="w-full flex flex-col gap-6 px-4 lg:px-6">
+				<QuotationItems { items } />
+
+				<div class="w-full flex flex-col gap-2">
+					<Tabs.Root value="outline" class="w-full flex-col justify-start gap-2">
+						<Tabs.List
+							class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex hidden"
+						>
+							{#each views as view (view.id)}
+								<Tabs.Trigger value={view.id} class="px-8">
+									{view.label}
+								</Tabs.Trigger>
+							{/each}
+						</Tabs.List>
+						<Tabs.Content value="history" class="relative flex flex-col gap-4 overflow-auto">
+							<ClientServiceHistory { data } />
+						</Tabs.Content>
+						<Tabs.Content value="workflow" class="relative flex flex-col gap-4 overflow-auto">
+							<QuotationWorkflow { data } />
+						</Tabs.Content>
+						<Tabs.Content value="audit-trail" class="relative flex flex-col gap-4 overflow-auto">
+							<QuotationAuditTrail { data } />
+						</Tabs.Content>
+					</Tabs.Root>
+				</div>
+			</div>
 
 		</div>
 	</div>
 </div>
-
-<style>
-	.q-content {
-		grid-template-areas:
-			"summary client totals"
-			"items items items"
-			"sublists sublists sublists"
-		;
-	}
-</style>

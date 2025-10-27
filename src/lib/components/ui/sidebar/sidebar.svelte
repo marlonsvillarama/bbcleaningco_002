@@ -20,7 +20,7 @@
 {#if collapsible === "none"}
 	<div
 		class={cn(
-			"bg-sidebar text-sidebar-foreground w-(--sidebar-width) flex h-full flex-col",
+			"bg-accent/50 text-sidebar-foreground w-(--sidebar-width) flex h-full flex-col",
 			className
 		)}
 		bind:this={ref}
@@ -37,7 +37,7 @@
 			data-sidebar="sidebar"
 			data-slot="sidebar"
 			data-mobile="true"
-			class="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
+			class="bg-accent/50 text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
 			style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE};"
 			{side}
 		>
@@ -90,7 +90,7 @@
 			<div
 				data-sidebar="sidebar"
 				data-slot="sidebar-inner"
-				class="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+				class="bg-linear-225 from-accent/10 to-accent/50 group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
 			>
 				{@render children?.()}
 			</div>

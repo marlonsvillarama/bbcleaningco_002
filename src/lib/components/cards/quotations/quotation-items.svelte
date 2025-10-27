@@ -512,14 +512,14 @@
 
 {#snippet DataTableType({ row })}
 	<div class="w-12">
-		<Badge variant="outline" class="text-muted-foreground px-1.5">
+		<Badge variant="outline" class="px-1.5">
 			{row.original.type}
 		</Badge>
 	</div>
 {/snippet}
 
 {#snippet DataTableStatus({ row })}
-	<Badge variant="outline" class="text-muted-foreground px-1.5">
+	<Badge variant="outline" class="px-1.5">
 		{#if row.original.status === "Done"}
 			<CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" />
 		{:else}
@@ -542,9 +542,8 @@
 		<DropdownMenu.Content align="end" class="w-32">
 			<DropdownMenu.Item>Edit</DropdownMenu.Item>
 			<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
-			<DropdownMenu.Item>Favorite</DropdownMenu.Item>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item variant="destructive">Delete</DropdownMenu.Item>
+			<DropdownMenu.Item variant="destructive">Remove</DropdownMenu.Item>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 {/snippet}

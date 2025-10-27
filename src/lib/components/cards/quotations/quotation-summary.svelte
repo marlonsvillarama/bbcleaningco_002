@@ -4,6 +4,7 @@
     import * as Field from "@/components/ui/field/index";
     import * as InputGroup from "@/components/ui/input-group/index";
     import * as Select from "@/components/ui/select/index";
+    import Badge from "@/components/ui/badge/badge.svelte";
     import FieldSet from "@/components/global/form/fieldset.svelte";
     import FieldsetCheckbox from "@/components/global/form/fieldset-checkbox.svelte";
 
@@ -11,6 +12,12 @@
     import Input from "@/components/ui/input/input.svelte";
     import Label from "@/components/ui/label/label.svelte";
     import Textarea from "@/components/ui/textarea/textarea.svelte";
+
+	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
+	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
+	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
+	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
+	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
 
     let { data } = $props();
     const clients = [
@@ -24,13 +31,36 @@
     );
 </script>
 
-<Card.Root class="w-full">
+<!-- <Card.Root class="w-full">
     <Card.Header>
         <Card.Title>Quotation Summary</Card.Title>
     </Card.Header>
-    <Card.Content>
+    <Card.Content> -->
         <!-- <form class="grid grid-cols-2 gap-8 p-6 pt-2"> -->
-            <div class="flex flex-col gap-6 items-top p-6 pt-2">
+    <Field.Group>
+        <Field.Set>
+            <Field.Legend>Service Summary</Field.Legend>
+            <Field.Group class="">
+                <!-- <div class="flex flex-row items-center gap-4">
+                    <Badge variant="outline" class="px-2">
+                        {#if data.id.toString() === '1'}
+                            <SquarePenIcon /> Draft
+                        {:else if data.id.toString() === '2'}
+                            <BrushCleaningIcon class="fill-accent dark:fill-accent" /> Pending Service
+                        {:else}
+                            <CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" /> Completed
+                        {/if}
+                    </Badge>
+                    <Badge variant="outline" class="px-2">
+                        {#if data.id.toString() === '1'}
+                            <BanknoteXIcon /> Pending Downpayment
+                        {:else if data.id.toString() === '2'}
+                            <HandCoinsIcon class="fill-accent dark:fill-accent" /> Pending Balance
+                        {:else}
+                            <CircleCheckFilledIcon class="fill-green-500 dark:fill-green-400" /> Fully Paid
+                        {/if}
+                    </Badge>
+                </div> -->
                 <Field.Field>
                     <Field.Label for="client">Client</Field.Label>
                     <Select.Root type="single" bind:value={selectedClient}>
@@ -44,7 +74,7 @@
                 </Field.Field>
                 <Field.Field>
                     <Field.Label for="serviceDate">Service Date</Field.Label>
-                    <Input id="lastName" class="font-light w-4/5" placeholder="Last Name" value={data.last_name} />
+                    <Input id="lastName" class="font-light w-4/5" placeholder="" value={data.last_name} />
                 </Field.Field>
                 <Field.Field>
                     <Field.Label for="firstName">Address</Field.Label>
@@ -58,7 +88,7 @@
                         </InputGroup.Addon>
                     </InputGroup.Root>
                 </Field.Field>
-            </div>
+            </Field.Group>
             <!-- <div class="flex flex-col gap-6 items-top">
                 <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
@@ -81,8 +111,10 @@
                 </Field.Group>
             </div> -->
         <!-- </form> -->
-    </Card.Content>
-</Card.Root>
+        </Field.Set>
+    </Field.Group>
+    <!-- </Card.Content>
+</Card.Root> -->
 
 <!-- <Card title="Primary Details" cls="grid grid-cols-2">
     <div class="flex flex-col gap-8 items-top">

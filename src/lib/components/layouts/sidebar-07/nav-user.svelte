@@ -7,6 +7,7 @@
 	import BellIcon from "@lucide/svelte/icons/bell";
 	import ChevronsUpDownIcon from "@lucide/svelte/icons/chevrons-up-down";
 	import CreditCardIcon from "@lucide/svelte/icons/credit-card";
+	import SlidersHorizontalIcon from "@lucide/svelte/icons/sliders-horizontal";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 
@@ -21,16 +22,16 @@
 				{#snippet child({ props })}
 					<Sidebar.MenuButton
 						size="lg"
-						class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+						class="data-[state=open]:bg-accent/50 data-[state=open]:text-sidebar-accent-foreground"
 						{...props}
 					>
-						<Avatar.Root class="size-8 rounded-lg">
+						<!-- <Avatar.Root class="size-8 rounded-lg">
 							<Avatar.Image src={user.avatar} alt={user.name} />
 							<Avatar.Fallback class="rounded-lg">CN</Avatar.Fallback>
-						</Avatar.Root>
+						</Avatar.Root> -->
 						<div class="grid flex-1 text-left text-sm leading-tight">
-							<span class="truncate font-medium">{user.name}</span>
-							<span class="truncate text-xs">{user.email}</span>
+							<span class="truncate font-medium">Charles Madrid</span>
+							<span class="truncate text-muted-foreground text-xs">Brand Manager</span>
 						</div>
 						<ChevronsUpDownIcon class="ml-auto size-4" />
 					</Sidebar.MenuButton>
@@ -44,37 +45,37 @@
 			>
 				<DropdownMenu.Label class="p-0 font-normal">
 					<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-						<Avatar.Root class="size-8 rounded-lg">
+						<!-- <Avatar.Root class="size-8 rounded-lg">
 							<Avatar.Image src={user.avatar} alt={user.name} />
 							<Avatar.Fallback class="rounded-lg">CN</Avatar.Fallback>
-						</Avatar.Root>
+						</Avatar.Root> -->
 						<div class="grid flex-1 text-left text-sm leading-tight">
-							<span class="truncate font-medium">{user.name}</span>
-							<span class="truncate text-xs">{user.email}</span>
+							<span class="truncate font-medium">Charles Madrid</span>
+							<span class="truncate text-muted-foreground text-xs">Brand Manager</span>
 						</div>
 					</div>
 				</DropdownMenu.Label>
-				<DropdownMenu.Separator />
+				<!-- <DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
 						<SparklesIcon />
 						Upgrade to Pro
 					</DropdownMenu.Item>
-				</DropdownMenu.Group>
+				</DropdownMenu.Group> -->
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
 					<DropdownMenu.Item>
-						<BadgeCheckIcon />
-						Account
+						<SlidersHorizontalIcon />
+						User Settings
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
 						<CreditCardIcon />
 						Billing
 					</DropdownMenu.Item>
-					<DropdownMenu.Item>
+					<!-- <DropdownMenu.Item>
 						<BellIcon />
 						Notifications
-					</DropdownMenu.Item>
+					</DropdownMenu.Item> -->
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
