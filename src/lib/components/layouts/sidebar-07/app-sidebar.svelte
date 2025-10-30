@@ -68,6 +68,11 @@
 				url: "/app/teams",
 				icon: UsersRound,
 			},
+			{
+				title: "Regions",
+				url: "/app/regions",
+				icon: UsersRound,
+			},
 		],
 		navSecondary: [
 			{
@@ -102,7 +107,7 @@
 				url: "/app/clients?new",
 				icon: ContactRound,
 			},
-			{
+			/* {
 				name: "New Quotation 2",
 				url: "/app/quotations?new2",
 				icon: Receipt,
@@ -121,7 +126,7 @@
 				name: "New Client 3",
 				url: "/app/clients?new3",
 				icon: ContactRound,
-			},
+			}, */
 			// {
 			// 	name: "Word Assistant",
 			// 	url: "#",
