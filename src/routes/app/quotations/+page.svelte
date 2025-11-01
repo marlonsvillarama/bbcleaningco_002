@@ -25,10 +25,11 @@
 		</Button>
 	</div>
 </SiteHeader>
+
 <div class="flex flex-1 flex-col pb-8">
-	<div class="@container/main flex flex-1 flex-col gap-2">
-		<div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+	<div class="@container/main flex flex-1 flex-col gap-4 md:gap-6 py-4 md:py-6 px-4 lg:px-6">
+		<!-- <div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6"> -->
 			<DataTable {data} />
-		</div>
+		<!-- </div> -->
 	</div>
 </div>

@@ -32,49 +32,19 @@
 			enableHiding: false,
 		},
 		{
-			accessorKey: "status",
-			header: "Status",
-			cell: ({ row }) => renderSnippet(DataTableStatus, { row }),
+			accessorKey: "phone",
+			header: "Phone",
+			cell: ({ row }) => renderSnippet(DataTablePhone, { row }),
 		},
 		{
-			accessorKey: "billing",
-			header: "Billing",
-			cell: ({ row }) => renderSnippet(DataTableBillingStatus, { row }),
+			accessorKey: "email",
+			header: "Email",
+			cell: ({ row }) => renderSnippet(DataTableEmail, { row }),
 		},
 		{
-			accessorKey: "serviceDate",
-			header: "Service Date",
-			cell: ({ row }) => renderSnippet(DataTableServiceDate, { date: row.original.svcDate }),
-		},
-		/* {
-			accessorKey: "target",
-			header: "Amount",
-			cell: ({ row }) => renderSnippet(DataTableType, { row }),
-		}, */
-		/* {
-			accessorKey: "target",
-			header: () =>
-				renderSnippet(
-					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Target</div>',
-					}))
-				),
-			cell: ({ row }) => renderSnippet(DataTableTarget, { row }),
-		}, */
-		/* {
-			accessorKey: "limit",
-			header: () =>
-				renderSnippet(
-					createRawSnippet(() => ({
-						render: () => '<div class="w-full text-right">Limit</div>',
-					}))
-				),
-			cell: ({ row }) => renderSnippet(DataTableLimit, { row }),
-		}, */
-		{
-			accessorKey: "team",
-			header: "Team",
-			cell: ({ row }) => renderSnippet(DataTableTeam, { row }),
+			accessorKey: "region",
+			header: "Region",
+			cell: ({ row }) => renderSnippet(DataTableRegion, { row }),
 		},
 		{
 			id: "actions",
@@ -128,7 +98,7 @@
     import { parseDate, DateFormatter } from "@internationalized/date";
 
 	let { data } = $props();
-	data.forEach(d => {
+	/* data.forEach(d => {
 		// console.log('d', JSON.stringify(d))
 		let dt = d.serviceDate;
 		// console.log('dt', dt);
@@ -141,7 +111,7 @@
 			month: 'short',
 			day: 'numeric'
 		}).format(new Date(year, parseInt(month) - 1, date));
-	});
+	}); */
 
 	let pagination = $state({ pageIndex: 0, pageSize: 20 });
 	let sorting = $state([]);
@@ -549,14 +519,28 @@
 {/snippet}
 
 {#snippet DataTableNumber({ row })}
-	<!-- <a href='/app/quotations/{row.original.id}' class="hover:underline">{row.original.number}</a> -->
-	<Button variant="link" class="text-foreground w-fit px-0 text-left" onclick={() => window.location = `/app/quotations/${row.original.id}`}>
+	<Button variant="link" class="text-foreground w-fit px-0 text-left" onclick={() => window.location = `/app/clients/${row.original.id}`}>
 		{row.original.number}
 	</Button>
 {/snippet}
 
-{#snippet DataTableTeam({ row })}
-	{row.original.team}
+{#snippet DataTableEmail({ row })}
+	{row.original.email}
+{/snippet}
+
+{#snippet DataTablePhone({ row })}
+	{row.original.phone.indexOf('09') === 0 && row.original.phone.length === 11 ?
+		`(${row.original.phone.slice(0, 4)}) ${row.original.phone.slice(4, 7)}-${row.original.phone.slice(7)}` :
+		row.original.phone
+	}
+{/snippet}
+
+{#snippet DataTableRegion({ row })}
+	<div class="w-32">
+		<Badge variant="default" class="px-2 py-1">
+			{row.original.region}
+		</Badge>
+	</div>
 {/snippet}
 
 {#snippet DataTableServiceDate({ date })}
@@ -568,7 +552,7 @@
 {#snippet DataTableType({ row })}
 	<div class="w-32">
 		<Badge variant="outline" class="px-1.5">
-			{row.original.type}
+			{row.original.region}
 		</Badge>
 	</div>
 {/snippet}
