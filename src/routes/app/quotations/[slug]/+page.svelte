@@ -24,13 +24,17 @@
 
 	import {
 		ArrowLeft,
+		Facebook,
+		Instagram,
 		Mail,
+		MessageSquareText,
 		Phone,
 		Plus,
 		Printer,
 		Receipt,
 		Save,
-		Tv
+		Tv,
+		User
 	} from "@lucide/svelte";
 	// import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
@@ -137,7 +141,7 @@
 						
 						<div class="grid grid-cols-[320px_1fr] border-b border-gray-200 items-start">
 							<!-- Quotation Sidebar: START -->
-							<div class="grid px-3 pt-4 pb-6 gap-9">
+							<div class="grid px-5 pt-5 pb-9 gap-9">
 								<!-- <div class="rounded-md bg-accent/20 px-3 py-2">
 									<div class="flex items-center justify-between w-full">
 										<span class="text-sm text-foreground font-normal">Total Amount</span>
@@ -145,7 +149,9 @@
 									</div>
 									<span class="text-2xl text-foreground font-bold">2,480.00</span>
 								</div> -->
-								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+
+								<!-- Client Details: START -->
+								<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
 									<!-- <div class="flex items-center justify-between"> -->
 										<span class="text-sm text-foreground font-semibold">Client Details</span>
 										<!-- <a href="." target="_self" class="text-sm font-medium underline text-blue-500 hover:text-blue-700">Change</a> -->
@@ -158,13 +164,13 @@
 										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
 											<Phone size={16}/>
 										<!-- </div> -->
-										<span class="text-xs font-light">{quotation.clients.phone}</span>
+										<span class="text-xs font-normal">{quotation.clients.phone}</span>
 									</div>
 									<div class="flex gap-3 items-center mt-1">
 										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
 											<Mail size={16}/>
 										<!-- </div> -->
-										<span class="text-sm font-light">marlonsvillarama12345@gmail.com</span>
+										<span class="text-sm font-normal">marlonsvillarama12345@gmail.com</span>
 									</div>
 									<div class="flex gap-3 items-center mt-1">
 										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
@@ -178,7 +184,10 @@
 										</Button>
 									</div>
 								</div>
-								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+								<!-- Client Details: END -->
+
+								<!-- Service Address: START -->
+								<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
 									<span class="text-sm text-foreground font-semibold">Service Address</span>
 									<Separator />
 									<p class="text-sm">
@@ -189,34 +198,91 @@
 									<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Change Address</a>
 									<!-- Popover -->
 								</div>
-								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+								<!-- Service Address: END -->
+
+								<!-- Sales Channel: START -->
+								<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
 									<span class="text-sm text-foreground font-semibold">Sales Channel</span>
 									<Separator />
-									<p class="text-sm">
-										123 Bansalangin Street<br/>
-										Brgy. Bungad<br/>
-										Quezon City, NCR
-									</p>
-									<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Change Address</a>
+									<div class="flex gap-3 items-center mt-2">
+										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
+											<User size={16}/>
+										<!-- </div> -->
+										<span class="text-sm font-normal">Charles Madrid</span>
+									</div>
+									<div class="flex gap-3 items-center mt-2">
+										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
+											<Instagram size={16}/>
+										<!-- </div> -->
+										<span class="text-sm font-normal">Instagram</span>
+									</div>
 									<!-- Popover -->
 								</div>
+								<!-- Sales Channel: END -->
 							</div>
 							<!-- Quotation Sidebar: END -->
 
-							<!-- Quotation Content: END -->
-							<div class="grid gap-9 px-5 py-3 border-l border-gray-200 min-h-[650px] items-start">
-								<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
+							<!-- Quotation Content: START -->
+							<div class="grid gap-9 px-5 pt-5 pb-9 border-l border-gray-200 items-start">
+								<!-- Services summary: START -->
+								<div class="grid grid-cols-2 gap-8 items-start">
+									<!-- Totals: START -->
+									<div class="grid rounded-md bg-accent/20 px-3 py-2 gap-3 w-[250px]">
+										<!-- <div class="flex flex-col gap-4 w-full"> -->
+											<div class="flex flex-row items-center justify-between text-sm">
+												<span class="text-sm">Subtotal</span>
+												<span class="font-semibold">1,000.00</span>
+											</div>
+											<div class="flex flex-row items-center justify-between text-sm">
+												<span class="text-sm">VAT (12%)</span>
+												<span class="font-semibold">120.00</span>
+											</div>
+											<div class="flex flex-row items-center justify-between text-sm">
+												<span class="text-sm">Discounts</span>
+												<span class="font-semibold">-300.00</span>
+											</div>
+											<Separator class="bg-accent" />
+											<div class="flex flex-row items-center justify-between text-2xl">
+												<span class="text-sm">TOTAL</span>
+												<span class="font-semibold">820.00</span>
+											</div>
+										<!-- </div> -->
+										<!-- <div class="flex items-center justify-between">
+											<span class="text-sm text-foreground font-normal">Total Amount</span>
+											<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Details</a>
+										</div>
+										<span class="text-2xl text-foreground font-bold">2,480.00</span> -->
+									</div>
+									<!-- Totals: END -->
+
+									<div class="border w-full">right content</div>
+								</div>
+								<!-- Services summary: END -->
+
+								<!-- Services list: START -->
+								<div class="grid grid-cols-2 gap-8 items-start">
+								<!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-2"> -->
 									<div class="flex items-center justify-between w-full pb-2">
-										<span class="text-sm text-foreground font-semibold">Items</span>
-										<Button variant="secondary" class="px-3 py-1 text-xs font-normal"
+										<span class="text-sm text-foreground font-semibold">Services</span>
+										<Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
 											onclick={() => window.alert('implement add item...')}
 										>
-											<Plus size={16} /> Add Item
+											<Plus size={16} /> Add service
 										</Button>
 									</div>
-									<!-- table -->
+									<div class="flex items-center justify-between w-full pb-2">
+										<span class="text-sm text-foreground font-semibold">Things To Bring</span>
+										<Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"
+											onclick={() => window.alert('implement add item...')}
+										>
+											<Plus size={16} /> Add service
+										</Button>
+									</div>
 								</div>
+								<!-- Services list: START -->
 							</div>
+							<!-- Quotation Content: END -->
+
 							<!-- <div class="q-header grid gap-8">
 								<QuotationSummary class="summary" { data } />
 								<Separator />
