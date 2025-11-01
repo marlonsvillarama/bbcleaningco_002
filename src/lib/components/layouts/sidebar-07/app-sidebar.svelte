@@ -24,6 +24,7 @@
 	import NavSecondary from "./nav-secondary.svelte";
 	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import Separator from "@/components/ui/separator/separator.svelte";
 	import Logo from "$lib/images/Last_logo2.svg";
 	
 	const data = {
@@ -44,8 +45,8 @@
 				icon: Receipt,
 			},
 			{
-				title: "Calendar",
-				url: "/app/calendar",
+				title: "Dispatch",
+				url: "/app/dispatch",
 				icon: CalendarDays,
 			},
 			{
@@ -77,17 +78,17 @@
 		navSecondary: [
 			{
 				title: "Admin Settings",
-				url: "#",
+				url: "/app/admin",
 				icon: Settings,
 			},
 			{
 				title: "Messages",
-				url: "#",
+				url: "/messages",
 				icon: Mail,
 			},
 			{
 				title: "Help",
-				url: "#",
+				url: "/help",
 				icon: HelpCircle,
 			},
 			// {
@@ -152,13 +153,15 @@
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>
 		</Sidebar.Menu> -->
-		<div class="w-full flex justify-center">
-			<img src={Logo} alt="Busy Bee Cleaning Co." class="w-[60%]" />
+		<div class="w-full flex justify-center bg-accent">
+			<img src={Logo} alt="Busy Bee Cleaning Co." class="w-[62%]" />
 		</div>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
+		<Separator />
 		<NavDocuments items={data.documents} />
+		<Separator />
 		<NavSecondary items={data.navSecondary} class="mt-auto" />
 	</Sidebar.Content>
 	<Sidebar.Footer>

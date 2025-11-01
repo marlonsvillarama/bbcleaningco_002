@@ -6,12 +6,14 @@
 		base: "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		variants: {
 			variant: {
-				default: " bg-linear-to-b from-accent/10 to-accent/50 text-accent-foreground hover:bg-accent/50 border-accent border-1",
+				/* default: "bg-linear-to-b from-accent/10 to-accent/50 text-accent-foreground hover:bg-accent/50 border-accent border-1", */
+				default: "bg-accent/50 text-accent-foreground hover:bg-accent/70 border-accent shadow-sm",
 				destructive:
-					"bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white",
+					"bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white shadow-sm",
 				outline:
 					"bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border-transparent",
-				secondary: "bg-linear-to-b from-secondary to-foreground/10 text-secondary-foreground hover:bg-secondary",
+				secondary: "bg-secondary/80 text-secondary-foreground hover:bg-secondary shadow-sm",
+				/* secondary: "bg-linear-to-b from-secondary to-foreground/10 text-secondary-foreground hover:bg-secondary", */
 				card_secondary: "bg-white text-secondary-foreground shadow-(--shadow)",
 				ghost: "hover:bg-accent/60 hover:text-accent-foreground dark:hover:bg-accent/60",
 				ghost_secondary: "hover:bg-secondary hover:text-accent-foreground dark:hover:bg-secondary/60",
