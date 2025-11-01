@@ -3,8 +3,9 @@
 	import Badge from "$lib/components/ui/badge/badge.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import * as Card from "@/components/ui/card/index";
+	import * as Select from "$lib/components/ui/select/index.js";
+	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import Separator from "@/components/ui/separator/separator.svelte";
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
@@ -21,14 +22,27 @@
     import QuotationNotes from "@/components/cards/quotations/quotation-notes.svelte";
     import QuotationTotals from "@/components/cards/quotations/quotation-totals.svelte";
 
-	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
+	import {
+		ArrowLeft,
+		Mail,
+		Phone,
+		Plus,
+		Printer,
+		Receipt,
+		Save,
+		Tv
+	} from "@lucide/svelte";
+	// import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
-	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
-	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
-	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
-	import ReceiptIcon from "@lucide/svelte/icons/receipt";
-	import SaveIcon from "@lucide/svelte/icons/save";
-	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
+	// import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
+	// import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
+	// import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
+	// import MailIcon from "@lucide/svelte/icons/mail";
+	// import PhoneIcon from "@lucide/svelte";
+	// import PrinterIcon from "@lucide/svelte/icons/printer";
+	// import ReceiptIcon from "@lucide/svelte/icons/receipt";
+	// import SaveIcon from "@lucide/svelte/icons/save";
+	// import SquarePenIcon from "@lucide/svelte/icons/square-pen";
 
 	import items from './items';
 
@@ -88,10 +102,11 @@
 			<Card.Root class="">
 				<Card.Content>
 					<div class="grid grid-col-2">
-						<div class="border-b flex flex-row items-center justify-between px-4 py-4">
+						<!-- Quotation Header: START -->
+						<div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4">
 							<div class="flex gap-4">
 								<div id="quotation-id" class="flex flex-row items-center">
-									<ReceiptIcon class="mr-2" />
+									<Receipt class="mr-2" />
 									<span class="text-xl font-semibold">Quotation #{quotation.number}</span>
 								</div>
 								<!-- <div class="flex flex-row items-center gap-2">
@@ -104,25 +119,103 @@
 								</div> -->
 							</div>
 							<div class="flex gap-2 items-center">
-								<Button variant="default" size="sm">
-									<SaveIcon />
+								<Button variant="default" size="sm" onclick={() => alert('implement save...')}>
+									<Save />
 									<span class="hidden lg:inline">Save Changes</span>
 								</Button>
+								<Button variant="secondary" size="sm" onclick={() => alert('implement print...')}>
+									<Printer />
+									<span class="hidden lg:inline">Print</span>
+								</Button>
 								<Button variant="secondary" size="sm" onclick={() => window.location = '/app/quotations'}>
-									<ArrowLeftIcon />
+									<ArrowLeft />
 									<span class="hidden lg:inline">Back to list</span>
 								</Button>
 							</div>
 						</div>
-						<div class="grid grid-cols-[1fr_1fr_1fr] border-b-1 border-r-gray-300">
-							<div class="grid gap-4 border-r-1 border-r-gray-300 px-5 py-3">
-								<QuotationTotals class="totals" { data } />
+						<!-- Quotation Header: END -->
+						
+						<div class="grid grid-cols-[320px_1fr] border-b border-gray-200 items-start">
+							<!-- Quotation Sidebar: START -->
+							<div class="grid px-3 pt-4 pb-6 gap-9">
+								<!-- <div class="rounded-md bg-accent/20 px-3 py-2">
+									<div class="flex items-center justify-between w-full">
+										<span class="text-sm text-foreground font-normal">Total Amount</span>
+										<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Details</a>
+									</div>
+									<span class="text-2xl text-foreground font-bold">2,480.00</span>
+								</div> -->
+								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+									<!-- <div class="flex items-center justify-between"> -->
+										<span class="text-sm text-foreground font-semibold">Client Details</span>
+										<!-- <a href="." target="_self" class="text-sm font-medium underline text-blue-500 hover:text-blue-700">Change</a> -->
+									<!-- </div> -->
+									<Separator />
+									<Select.Root>
+										<Select.Trigger class="w-full">{quotation.clients.first_name} {quotation.clients.last_name}</Select.Trigger>
+									</Select.Root>
+									<div class="flex gap-3 items-center mt-2">
+										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
+											<Phone size={16}/>
+										<!-- </div> -->
+										<span class="text-xs font-light">{quotation.clients.phone}</span>
+									</div>
+									<div class="flex gap-3 items-center mt-1">
+										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
+											<Mail size={16}/>
+										<!-- </div> -->
+										<span class="text-sm font-light">marlonsvillarama12345@gmail.com</span>
+									</div>
+									<div class="flex gap-3 items-center mt-1">
+										<!-- <div class="p-2 rounded-full bg-gray-200"> -->
+											<!-- <Mail size={16}/> -->
+											<div class="w-[16px]"></div>
+										<!-- </div> -->
+										<Button variant="secondary" class="px-2 py-1 text-xs rounded-xs"
+											 onclick={() => alert('implement email to client...')}
+										>
+											Email to client
+										</Button>
+									</div>
+								</div>
+								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+									<span class="text-sm text-foreground font-semibold">Service Address</span>
+									<Separator />
+									<p class="text-sm">
+										123 Bansalangin Street<br/>
+										Brgy. Bungad<br/>
+										Quezon City, NCR
+									</p>
+									<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Change Address</a>
+									<!-- Popover -->
+								</div>
+								<div class="bg-white rounded-md border-transparent px-3 font-medium grid gap-2">
+									<span class="text-sm text-foreground font-semibold">Sales Channel</span>
+									<Separator />
+									<p class="text-sm">
+										123 Bansalangin Street<br/>
+										Brgy. Bungad<br/>
+										Quezon City, NCR
+									</p>
+									<a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Change Address</a>
+									<!-- Popover -->
+								</div>
 							</div>
-							<div class="grid gap-4 px-5 py-3">
-								center content
-							</div>
-							<div class="grid gap-4 px-5 py-3">
-								right content
+							<!-- Quotation Sidebar: END -->
+
+							<!-- Quotation Content: END -->
+							<div class="grid gap-9 px-5 py-3 border-l border-gray-200 min-h-[650px] items-start">
+								<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
+									<div class="flex items-center justify-between w-full pb-2">
+										<span class="text-sm text-foreground font-semibold">Items</span>
+										<Button variant="secondary" class="px-3 py-1 text-xs font-normal"
+											onclick={() => window.alert('implement add item...')}
+										>
+											<Plus size={16} /> Add Item
+										</Button>
+									</div>
+									<!-- table -->
+								</div>
 							</div>
 							<!-- <div class="q-header grid gap-8">
 								<QuotationSummary class="summary" { data } />
@@ -131,9 +224,9 @@
 								<QuotationTotals class="totals" { data } />
 							</div> -->
 						</div>
-						<div class="grid grid-cols-[1fr_1fr_1fr] border-b-1 border-r-gray-300">
+						<!-- <div class="grid grid-cols-[1fr_1fr_1fr] border-b-1 border-r-gray-300">
 							details
-						</div>
+						</div> -->
 					</div>
 				</Card.Content>
 			</Card.Root>
