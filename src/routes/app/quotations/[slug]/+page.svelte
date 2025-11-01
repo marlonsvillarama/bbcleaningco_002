@@ -21,6 +21,7 @@
     import QuotationNotes from "@/components/cards/quotations/quotation-notes.svelte";
     import QuotationTotals from "@/components/cards/quotations/quotation-totals.svelte";
 
+	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
 	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
 	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
@@ -33,7 +34,10 @@
 
 	const PREFIX = '/app/quotations/';
     let { data } = $props();
-	let crumbs = [
+	console.log('page data', data);
+	let { quotation, statusList } = data;
+	console.log('page quotation', quotation);
+	/* let crumbs = [
 		{
 			text: 'Quotations',
 			url: PREFIX
@@ -42,7 +46,7 @@
 			text: data.id ? `2025-0001` : 'New Quotation',
 			url: `${PREFIX}${data.id || 'new'}`
 		}
-	];
+	]; */
 
 	let views = [
 		{
@@ -63,41 +67,52 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<SiteHeader { crumbs }>
+<!-- <SiteHeader { crumbs }>
 	<div class="flex flex-row text-sm gap-4 lg:flex">
 		<Button variant="default" size="sm">
 			<SaveIcon />
 			<span class="hidden lg:inline">Save Quotation</span>
 		</Button>
 	</div>
-</SiteHeader>
+</SiteHeader> -->
 
-<div class="flex flex-1 flex-col pb-8">
+<!-- <div class="flex flex-1 flex-col">
 	<div class="@container/main flex flex-1 flex-col gap-2">
-		<div class="flex flex-col gap-4 px-4 py-4 md:gap-6 md:py-6">
+		<div class="flex flex-col gap-4 px-4 py-4 md:gap-6 md:py-6"> -->
+			<!-- <div
+				class="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-white *:data-[slot=card]:shadow-md flex items-center justify-between gap-4"
+			>
+				<h1 class="text-gray-700 text-xl font-semibold">Quotation #{quotation.number}</h1>
+			</div> -->
 
 			<Card.Root>
 				<Card.Content>
 					<div class="grid grid-col-2">
-						<div class="border-b flex flex-row items-center justify-between px-6 py-4">
+						<div class="border-b flex flex-row items-center justify-between px-4 py-4">
 							<div class="flex gap-4">
 								<div id="quotation-id" class="flex flex-row items-center">
 									<ReceiptIcon class="mr-2" />
-									<span class="text-xl font-semibold">2025-0001</span>
+									<span class="text-xl font-semibold">Quotation #{quotation.number}</span>
 								</div>
-								<div class="flex flex-row items-center gap-2">
+								<!-- <div class="flex flex-row items-center gap-2">
 									<Badge variant="outline">
 										<SquarePenIcon />Draft
 									</Badge>
 									<Badge variant="outline">
 										<BanknoteXIcon />Pending Downpayment
 									</Badge>
-								</div>
+								</div> -->
 							</div>
-							<Button variant="default" size="sm">
-								<SaveIcon />
-								<span class="hidden lg:inline">Save</span>
-							</Button>
+							<div class="flex gap-2 items-center">
+								<Button variant="default" size="sm">
+									<SaveIcon />
+									<span class="hidden lg:inline">Save Changes</span>
+								</Button>
+								<Button variant="secondary" size="sm" onclick={() => window.location = '/app/quotations'}>
+									<ArrowLeftIcon />
+									<span class="hidden lg:inline">Back to list</span>
+								</Button>
+							</div>
 						</div>
 						<div class="grid q-content px-6 py-4 items-start">
 							<div class="q-header grid gap-8">
@@ -111,9 +126,9 @@
 				</Card.Content>
 			</Card.Root>
 
-		</div>
+		<!-- </div>
 	</div>
-</div>
+</div> -->
 
 <style>
 	.q-content {

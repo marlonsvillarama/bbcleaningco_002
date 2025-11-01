@@ -10,15 +10,31 @@ export async function load({ params, url }) {
 	
 	let urlParams = url.searchParams.has('json');
 	console.log('+load urlParams', urlParams);
-	let { data } = await supabase.from("clients").select(`
+
+	let quotationResponse = await supabase.from("quotations").select(`
 		*,
-		client_status (id, name)
+		clients (
+			id,
+			first_name,
+			last_name,
+			phone,
+			email,
+			notes
+		),
+		global_list_values (id, name)
 	`)
 	.eq('id', slug);
-	let obj = data.length > 0 ? data[0] : {};
+	console.log('quotationResponse', quotationResponse);
+	// let obj = statusResponse.data.length > 0 ? data[0] : {};
 	// obj.edit = url.searchParams.has('edit');
-	return obj;
 
+	let statusResponse = await supabase.from("client_status").select('id, name');
+	let obj = {
+		quotation: quotationResponse.data[0],
+		statusList: statusResponse.data
+	};
+	console.log('*** quotation server obj', obj);
+	return obj;
 	// if (params.slug === 'hello-world') {
 	// 	return {
 	// 		title: 'Hello world!',
