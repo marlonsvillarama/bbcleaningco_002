@@ -20,15 +20,14 @@ export async function load({ params, url }) {
 			phone,
 			email,
 			notes
-		),
-		global_list_values (id, name)
+		)
 	`)
 	.eq('id', slug);
 	console.log('quotationResponse', quotationResponse);
 	// let obj = statusResponse.data.length > 0 ? data[0] : {};
 	// obj.edit = url.searchParams.has('edit');
 
-	let statusResponse = await supabase.from("client_status").select('id, name');
+	let statusResponse = await supabase.from("global_list_values").select('id, name');
 	let obj = {
 		quotation: quotationResponse.data[0],
 		statusList: statusResponse.data
