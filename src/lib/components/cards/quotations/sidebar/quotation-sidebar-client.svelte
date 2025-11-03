@@ -35,11 +35,11 @@
 
     <div class="flex gap-3 items-center mt-1">
         <!-- Only used for alignment of button -->
-        <div class="w-[16px]"></div>
+        <!-- <div class="w-[16px]"></div> -->
         <Button variant="secondary" class="px-2 py-1 text-xs rounded-xs"
-                onclick={() => alert('implement email to client...')}
+                onclick={() => alert('implement email quotation...')}
         >
-            Email to client
+            Email quotation
         </Button>
     </div>
 </div>

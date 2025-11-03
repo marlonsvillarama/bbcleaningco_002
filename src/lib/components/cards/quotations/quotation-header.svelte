@@ -3,6 +3,8 @@
 
     import {
         ArrowLeft,
+        HandCoins,
+        PenBox,
         Printer,
 		Receipt,
 		Save
@@ -17,6 +19,15 @@
         <div id="quotation-id" class="flex flex-row items-center">
             <Receipt class="mr-2" />
             <span class="text-xl font-semibold">Quotation #{quotation.number}</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-gray-50">
+                <PenBox size={16} /> {quotation.status_text}
+            </div>
+
+            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-gray-50">
+                <HandCoins size={16} /> {quotation.payment_status_text}
+            </div>
         </div>
     </div>
 

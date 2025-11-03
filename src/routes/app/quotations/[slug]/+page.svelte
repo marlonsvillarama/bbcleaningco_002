@@ -73,7 +73,7 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<Card.Root class="">
+<Card.Root class="m-2 mb-4">
 	<Card.Content>
 		<div class="grid grid-col-2">
 			<QuotationHeader { data } />
