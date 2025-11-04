@@ -1,4 +1,6 @@
 <script>
+	import ClientHeader from "@/components/cards/clients/client-header.svelte";
+
 	// import data from "./data.js";
 	import Badge from "$lib/components/ui/badge/badge.svelte";
 	import Button from "$lib/components/ui/button/button.svelte";
@@ -63,22 +65,37 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<SiteHeader { crumbs }>
+<Card.Root class="m-2 mb-4">
+	<Card.Content>
+		<div class="grid grid-col-2">
+			<ClientHeader { data } />
+			
+			<div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start">
+				<!-- <QuotationSidebar { data } /> -->
+
+				<!-- <QuotationContent { data } /> -->
+				Client content
+			</div>
+		</div>
+	</Card.Content>
+</Card.Root>
+
+<!-- <SiteHeader { crumbs }>
 	<div class="flex flex-row text-sm gap-4 lg:flex">
 		<Button variant="default" size="sm">
 			<SaveIcon />
 			<span class="hidden lg:inline">Save Changes</span>
 		</Button>
 	</div>
-</SiteHeader>
+</SiteHeader> -->
 
-<div class="flex flex-1 flex-col pb-8">
-	<div class="@container/main flex flex-1 flex-col gap-4 md:gap-6 py-4 md:py-6 px-4 lg:px-6">
+<!-- <div class="flex flex-1 flex-col pb-8"> -->
+	<!-- <div class="@container/main flex flex-1 flex-col gap-4 md:gap-6 py-4 md:py-6 px-4 lg:px-6"> -->
 	<!-- <div class="@container/main flex flex-1 flex-col gap-4 py-4 md:gap-6 md:py-6"> -->
 	<!-- <div class="@container/main flex flex-1 flex-col gap-2"> -->
 		<!-- <div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6"> -->
 
-			<Card.Root>
+			<!-- <Card.Root>
 				<Card.Content>
 					<div class="grid grid-col-2">
 						<div class="border-b flex flex-row items-center justify-between px-6 py-4">
@@ -86,7 +103,7 @@
 								<div id="quotation-id" class="flex flex-row items-center">
 									<ReceiptIcon class="mr-2" />
 									<span class="text-xl font-semibold">CL-1001 - Jinggoy Estrada</span>
-								</div>
+								</div> -->
 								<!-- <div class="flex flex-row items-center gap-2">
 									<Badge variant="outline">
 										<SquarePenIcon />Draft
@@ -95,29 +112,29 @@
 										<BanknoteXIcon />Pending Downpayment
 									</Badge>
 								</div> -->
-							</div>
+							<!-- </div>
 							<Button variant="default" size="sm">
 								<SaveIcon />
 								<span class="hidden lg:inline">Save</span>
 							</Button>
 						</div>
 						<div class="grid q-content px-6 py-4 items-start">
-							<div class="q-header grid gap-8">
+							<div class="q-header grid gap-8"> -->
 								<!-- <QuotationSummary class="summary" { data } /> -->
 								<!-- <Separator /> -->
 								<!-- <QuotationClientDetails class="client" { data } /> -->
 								<!-- <QuotationTotals class="totals" { data } /> -->
-							</div>
+							<!-- </div>
 						</div>
 					</div>
 				</Card.Content>
-			</Card.Root>
+			</Card.Root> -->
 
 		<!-- </div> -->
-	</div>
-</div>
+	<!-- </div> -->
+<!-- </div> -->
 
-<style>
+<!-- <style>
 	.q-content {
 		grid-template-areas:
 			"summary client totals"
@@ -125,4 +142,4 @@
 			"sublists sublists sublists"
 		;
 	}
-</style>
+</style> -->

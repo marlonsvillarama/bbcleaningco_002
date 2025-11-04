@@ -16,6 +16,7 @@ export async function load({ params, url }) {
     `)
     .eq('id', slug);
     let obj = data.length > 0 ? data[0] : {};
+    console.log('server obj', obj);
     // obj.edit = url.searchParams.has('edit');
     return obj;
 

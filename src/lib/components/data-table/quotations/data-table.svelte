@@ -114,6 +114,7 @@
 
 	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
 	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
+	import EyeIcon from "@lucide/svelte/icons/eye";
 	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
 	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
 
@@ -550,9 +551,13 @@
 
 {#snippet DataTableNumber({ row })}
 	<!-- <a href='/app/quotations/{row.original.id}' class="hover:underline">{row.original.number}</a> -->
-	<Button variant="link" class="text-foreground w-fit px-0 text-left" onclick={() => window.location = `/app/quotations/${row.original.id}`}>
-		{row.original.number}
-	</Button>
+	 <!-- <div class="flex gap-3 items-center"> -->
+		<!-- <EyeIcon size={16} /> -->
+		<Button variant="link" class="text-foreground w-fit px-0 text-left"
+			onclick={() => window.location = `/app/quotations/${row.original.id}`}>
+			{row.original.number}
+		</Button>
+	 <!-- </div> -->
 {/snippet}
 
 {#snippet DataTableTeam({ row })}

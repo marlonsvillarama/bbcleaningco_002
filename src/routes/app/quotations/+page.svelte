@@ -4,9 +4,9 @@
 	import { Input } from "$lib/components/ui/input/index.js";
 	import PlusIcon from "@tabler/icons-svelte/icons/plus";
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
+	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
-	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
 
 	let crumbs = [
 		{

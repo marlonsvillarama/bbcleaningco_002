@@ -519,7 +519,8 @@
 {/snippet}
 
 {#snippet DataTableNumber({ row })}
-	<Button variant="link" class="text-foreground w-fit px-0 text-left" onclick={() => window.location = `/app/clients/${row.original.id}`}>
+	<Button variant="link" class="text-foreground w-fit px-0 text-left"
+		onclick={() => window.location = `/app/clients/${row.original.id}`}>
 		{row.original.number}
 	</Button>
 {/snippet}
