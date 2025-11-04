@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="flex gap-2 items-center">
+    <div class="flex gap-4 items-center">
         <Button variant="default" size="sm" onclick={() => alert('implement save...')}>
             <Save />
             <span class="hidden lg:inline">Save Changes</span>

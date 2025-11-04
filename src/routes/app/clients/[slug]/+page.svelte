@@ -1,14 +1,17 @@
 <script>
+	import ClientContent from "@/components/cards/clients/content/client-content.svelte";
 	import ClientHeader from "@/components/cards/clients/client-header.svelte";
+	import ClientSidebar from "@/components/cards/clients/sidebar/client-sidebar.svelte";
 
 	// import data from "./data.js";
-	import Badge from "$lib/components/ui/badge/badge.svelte";
-	import Button from "$lib/components/ui/button/button.svelte";
-	import Input from "$lib/components/ui/input/input.svelte";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import Badge from "@/components/ui/badge/badge.svelte";
+	import Button from "@/components/ui/button/button.svelte";
+	import Input from "@/components/ui/input/input.svelte";
 	import * as Card from "@/components/ui/card/index";
+	import * as Field from "@/components/ui/field/index.js";
+	import * as Tabs from "@/components/ui/tabs/index.js";
 	import Separator from "@/components/ui/separator/separator.svelte";
-	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
+	// import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
 	// import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
@@ -69,12 +72,11 @@
 	<Card.Content>
 		<div class="grid grid-col-2">
 			<ClientHeader { data } />
-			
-			<div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start">
-				<!-- <QuotationSidebar { data } /> -->
 
-				<!-- <QuotationContent { data } /> -->
-				Client content
+			<div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start">
+				<ClientSidebar { data } />
+
+				<ClientContent { data } />
 			</div>
 		</div>
 	</Card.Content>
