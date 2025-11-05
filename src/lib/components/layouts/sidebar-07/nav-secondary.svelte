@@ -13,7 +13,7 @@
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton tooltipContent={item.title}>
 						{#snippet child({ props })}
-							<a href={item.url} {...props}>
+							<a href={item.url} {...props} target={item.target || '_self'}>
 								<item.icon />
 								<span>{item.title}</span>
 							</a>

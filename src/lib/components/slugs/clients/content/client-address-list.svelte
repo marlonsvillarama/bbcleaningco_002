@@ -10,11 +10,11 @@
 
 <div class="grid gap-1">
     <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2">
-        <span class="text-sm text-foreground font-semibold">Quotations</span>
+        <span class="text-sm text-foreground font-semibold">Address Book</span>
         <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
-            onclick={() => window.alert('implement add quotation...')}
+            onclick={() => window.alert('implement add client address...')}
         >
-            <Plus size={16} /> Add quotation
+            <Plus size={16} /> Add client address
         </Button>
     </div>
 
@@ -46,7 +46,7 @@
             </div>
             <div class="px-2 flex items-center gap-4">
                 <!-- <Button variant="link" class="text-muted-foreground w-fit px-0 text-left underline hover:text-foreground">Set as default</Button> -->
-                <span class="font-bold">Default</span>
+                <span class="font-bold">Default address</span>
                 <Button variant="icon" size="sm" class="border-transparent border-1 hover:border-gray-200 hover:bg-gray-50 hover:shadow-sm"><CircleX /></Button>
             </div>
         </div>

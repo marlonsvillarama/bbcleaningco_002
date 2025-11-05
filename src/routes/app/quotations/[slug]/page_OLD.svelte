@@ -12,14 +12,14 @@
 	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
     import RecordForm from "@/components/forms/quotations/record-form.svelte";
     // import QuotationClientDetails from "@/components/cards/clients/quotation-client-details.svelte";
-    import QuotationSummary from "@/components/cards/quotations/quotation-summary.svelte";
-	import QuotationClientDetails from "@/components/cards/quotations/quotation-client-details.svelte";
-	import QuotationItems from "@/components/cards/quotations/quotation-items.svelte";
-	import ClientServiceHistory from "@/components/cards/clients/client-service-history.svelte";
-    import QuotationWorkflow from "@/components/cards/quotations/quotation-workflow.svelte";
-    import QuotationAuditTrail from "@/components/cards/quotations/quotation-audit-trail.svelte";
-    import QuotationNotes from "@/components/cards/quotations/quotation-notes.svelte";
-    import QuotationTotals from "@/components/cards/quotations/quotation-totals.svelte";
+    import QuotationSummary from "@/components/slugs/quotations/quotation-summary.svelte";
+	import QuotationClientDetails from "@/components/slugs/quotations/quotation-client-details.svelte";
+	import QuotationItems from "@/components/slugs/quotations/quotation-items.svelte";
+	import ClientServiceHistory from "@/components/slugs/clients/client-service-history.svelte";
+    import QuotationWorkflow from "@/components/slugs/quotations/quotation-workflow.svelte";
+    import QuotationAuditTrail from "@/components/slugs/quotations/quotation-audit-trail.svelte";
+    import QuotationNotes from "@/components/slugs/quotations/quotation-notes.svelte";
+    // import QuotationTotals from "@/components/cards/quotations/quotation-totals.svelte";
 
 	import items from './items';
 

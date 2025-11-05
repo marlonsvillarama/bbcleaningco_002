@@ -10,16 +10,16 @@
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
 
-	import QuotationHeader from "@/components/cards/quotations/quotation-header.svelte";
-    import QuotationSidebar from "@/components/cards/quotations/sidebar/quotation-sidebar.svelte";
-	import QuotationContent from "@/components/cards/quotations/content/quotation-content.svelte";
+	import QuotationHeader from "@/components/slugs/quotations/quotation-header.svelte";
+    import QuotationSidebar from "@/components/slugs/quotations/sidebar/quotation-sidebar.svelte";
+	import QuotationContent from "@/components/slugs/quotations/content/quotation-content.svelte";
 
-	import QuotationItems from "@/components/cards/quotations/quotation-items.svelte";
-	import ClientServiceHistory from "@/components/cards/clients/client-service-history.svelte";
-    import QuotationWorkflow from "@/components/cards/quotations/quotation-workflow.svelte";
-    import QuotationAuditTrail from "@/components/cards/quotations/quotation-audit-trail.svelte";
-    import QuotationNotes from "@/components/cards/quotations/quotation-notes.svelte";
-    import QuotationTotals from "@/components/cards/quotations/content/quotation-totals.svelte";
+	import QuotationItems from "@/components/slugs/quotations/quotation-items.svelte";
+	import ClientServiceHistory from "@/components/slugs/clients/client-service-history.svelte";
+    import QuotationWorkflow from "@/components/slugs/quotations/quotation-workflow.svelte";
+    import QuotationAuditTrail from "@/components/slugs/quotations/quotation-audit-trail.svelte";
+    import QuotationNotes from "@/components/slugs/quotations/quotation-notes.svelte";
+    import QuotationTotals from "@/components/slugs/quotations/content/quotation-totals.svelte";
 
 	import {
 		ArrowLeft,

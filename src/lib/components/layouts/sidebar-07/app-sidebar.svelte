@@ -83,12 +83,13 @@
 			},
 			{
 				title: "Messages",
-				url: "/messages",
+				url: "/app/messages",
 				icon: Mail,
 			},
 			{
 				title: "Help",
-				url: "/help",
+				url: "/app/help",
+				target: "_blank",
 				icon: HelpCircle,
 			},
 			// {

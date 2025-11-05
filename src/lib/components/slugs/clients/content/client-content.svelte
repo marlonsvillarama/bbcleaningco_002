@@ -8,6 +8,7 @@
     // import QuotationTotals from "./quotation-totals.svelte";
 
     import ClientAddressList from "./client-address-list.svelte";
+    import ClientAuditTrail from "./client-audit-trail.svelte";
     import ClientPrimaryDetails from "./client-primary-details.svelte";
     import ClientQuotations from "./client-quotations.svelte";
 
@@ -45,6 +46,8 @@
     <ClientAddressList { data } />
 
     <ClientQuotations { data } />
+
+    <ClientAuditTrail { data } />
         <!-- <QuotationAuditTrail { data } /> -->
         <!-- <QuotationThingsToBring { data } /> -->
     <!-- </div> -->

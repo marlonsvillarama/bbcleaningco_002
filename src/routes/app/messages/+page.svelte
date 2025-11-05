@@ -5,7 +5,7 @@
 <div
     class="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-white *:data-[slot=card]:shadow-md flex items-center justify-between gap-4"
 >
-    <h1 class="text-gray-700 text-xl font-semibold">Dispatch</h1>
+    <h1 class="text-gray-700 text-xl font-semibold">Messages</h1>
     <!-- <Button variant="default" size="sm">
         <PlusIcon />
         <span class="hidden lg:inline">New Quotation</span>

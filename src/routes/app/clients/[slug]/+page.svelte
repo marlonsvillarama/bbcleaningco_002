@@ -1,7 +1,7 @@
 <script>
-	import ClientContent from "@/components/cards/clients/content/client-content.svelte";
-	import ClientHeader from "@/components/cards/clients/client-header.svelte";
-	import ClientSidebar from "@/components/cards/clients/sidebar/client-sidebar.svelte";
+	import ClientContent from "@/components/slugs/clients/content/client-content.svelte";
+	import ClientHeader from "@/components/slugs/clients/client-header.svelte";
+	import ClientSidebar from "@/components/slugs/clients/sidebar/client-sidebar.svelte";
 
 	// import data from "./data.js";
 	import Badge from "@/components/ui/badge/badge.svelte";
