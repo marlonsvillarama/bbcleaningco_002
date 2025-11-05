@@ -18,6 +18,7 @@
         </Button>
     </div>
 
+    <!-- TODO: Add column for address contact details -->
     <div class="grid gap-1 text-sm">
         <div class="flex items-center justify-between border-b-1 border-gray-100 py-1">
             <div class="px-2 flex items-center gap-4">

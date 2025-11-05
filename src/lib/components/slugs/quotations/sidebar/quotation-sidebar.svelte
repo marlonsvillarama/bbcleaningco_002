@@ -18,7 +18,7 @@
     let { data } = $props();
 </script>
 
-<div class="grid px-6 pt-6 pb-12 gap-12 min-h-[500px] items-start">
+<div class="grid px-3 pt-3 pb-12 gap-12 min-h-[500px] items-start bg-accent/30">
     <!-- <div class="flex flex-col flex-1 gap-9"> -->
     <QuotationSidebarClient { data } />
 

@@ -8,6 +8,7 @@
     // import QuotationTotals from "./quotation-totals.svelte";
 
     import ClientAddressList from "./client-address-list.svelte";
+    import ClientAlternateDetails from "./client-alternate-details.svelte";
     import ClientAuditTrail from "./client-audit-trail.svelte";
     import ClientPrimaryDetails from "./client-primary-details.svelte";
     import ClientQuotations from "./client-quotations.svelte";
@@ -32,6 +33,7 @@
         <!-- <QuotationPaymentHistory { data } /> -->
     </div>
 
+    <!-- <ClientAlternateDetails { data } /> -->
     <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
         <!-- <QuotationServiceList { data } /> -->
         <!-- <QuotationThingsToBring { data } /> -->

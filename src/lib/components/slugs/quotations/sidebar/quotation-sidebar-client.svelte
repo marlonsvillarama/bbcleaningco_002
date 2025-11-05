@@ -14,11 +14,12 @@
     let { quotation } = data;
 </script>
 
-<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
-    <span class="text-sm text-foreground font-semibold">Client Details</span>
+<div class="bg-white rounded-md border-transparent font-medium grid gap-0 shadow-sm">
+    <span class="text-sm text-foreground font-semibold px-4 py-2">Client Details</span>
 
     <Separator />
 
+    <div class="px-4 pt-4 pb-5 grid gap-2">
     <Select.Root>
         <Select.Trigger class="w-full">{quotation.clients.first_name} {quotation.clients.last_name}</Select.Trigger>
     </Select.Root>
@@ -41,5 +42,6 @@
         >
             Email quotation
         </Button>
+    </div>
     </div>
 </div>

@@ -27,7 +27,7 @@
 
 <div class="grid gap-4">
     <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2">
-        <span class="text-sm text-foreground font-semibold">Personal Details</span>
+        <span class="text-sm text-foreground font-semibold">Alternate Contact</span>
         <!-- <Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"></Button> -->
     </div>
 

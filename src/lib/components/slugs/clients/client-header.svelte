@@ -22,9 +22,18 @@
             <Contact class="mr-2" />
             <span class="text-xl font-semibold">{data.last_name}, {data.first_name}</span>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-accent/50 font-semibold">
+                Hibernating
+            </div>
+            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-accent/50 font-semibold">
+                VIP
+            </div>
             <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-red-500 text-white font-semibold">
                 Overdue Balance
+            </div>
+            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-red-500 text-white font-semibold">
+                Banned 
             </div>
         </div>
     </div>
