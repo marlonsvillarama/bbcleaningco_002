@@ -7,11 +7,11 @@
 </script>
 
 <div class="bg-white rounded-md border-transparent font-medium grid gap-2">
-    <span class="text-sm text-foreground font-semibold">Service Address</span>
+    <!-- <span class="text-sm text-foreground font-semibold">Service Address</span> -->
 
-    <Separator />
+    <!-- <Separator /> -->
 
-    <div class="grid gap-1 text-sm">
+    <div class="grid gap-1 text-sm font-normal">
         <span>123 Bansalangin Street</span>
         <span>Brgy. Bungad</span>
         <span>Quezon City, NCR</span>

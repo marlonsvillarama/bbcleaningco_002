@@ -1,7 +1,7 @@
 <script>
-	import * as Select from "@/components/ui/select/index.js";
     import Button from "@/components/ui/button/button.svelte";
 	import Separator from "@/components/ui/separator/separator.svelte";
+	import * as Select from "@/components/ui/select/index.js";
 
 	import {
 		ArrowLeft,
@@ -14,12 +14,14 @@
     let { quotation } = data;
 </script>
 
-<div class="bg-white rounded-md border-transparent font-medium grid gap-0 shadow-sm">
-    <span class="text-sm text-foreground font-semibold px-4 py-2">Client Details</span>
+<!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-0 shadow-sm"> -->
+<div class="bg-white rounded-md border-none font-medium grid gap-2">
+    <!-- <span class="text-sm text-foreground font-semibold">Client Details</span> -->
 
-    <Separator />
+    <!-- <Separator /> -->
 
-    <div class="px-4 pt-4 pb-5 grid gap-2">
+    <!-- <div class="px-4 pt-4 pb-5 grid gap-2"> -->
+    <div class="pt-1 grid gap-2">
     <Select.Root>
         <Select.Trigger class="w-full">{quotation.clients.first_name} {quotation.clients.last_name}</Select.Trigger>
     </Select.Root>

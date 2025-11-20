@@ -9,6 +9,6 @@
 	} = $props();
 </script>
 
-<div bind:this={ref} data-slot="card-content" class={cn("", className)} {...restProps}>
+<div bind:this={ref} data-slot="card-content" class={cn("px-5 pt-4 pb-6", className)} {...restProps}>
 	{@render children?.()}
 </div>

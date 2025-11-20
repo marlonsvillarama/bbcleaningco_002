@@ -1,5 +1,7 @@
 <script>
     import Button from "@/components/ui/button/button.svelte";
+    import Separator from "@/components/ui/separator/separator.svelte";
+    import * as Card from "@/components/ui/card/index";
 
     import {
         CircleX,
@@ -7,13 +9,27 @@
     } from "@lucide/svelte";
 </script>
 
-<div class="grid gap-1">
+<Card.Root>
+    <Card.Header class="flex items-center justify-between">
+        <Card.Title class="py-1">Things To Bring</Card.Title>
+        <!-- <Card.Action>
+            <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
+                onclick={() => alert('implement add service...')}
+            >
+            <span>Add service</span>
+            </Button>
+        </Card.Action> -->
+    </Card.Header>
+    <Separator />
+    <Card.Content>
+
+<!-- <div class="grid gap-1">
     <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2">
         <span class="text-sm text-foreground font-semibold">Things To Bring</span>
         <Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"></Button>
-    </div>
+    </div> -->
 
-    <div class="grid gap-1 text-sm">
+    <div class="grid text-sm px-3">
         <div class="flex items-center justify-between border-b-1 border-gray-100 py-1">
             <span class="px-2 text-clip text-top font-extralight">Domex (1L bottle)</span>
             <div class="flex items-center gap-3">
@@ -43,4 +59,7 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
+
+    </Card.Content>
+</Card.Root>

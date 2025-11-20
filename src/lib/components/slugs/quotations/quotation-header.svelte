@@ -14,7 +14,8 @@
     let { quotation } = data;
 </script>
 
-<div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4">
+<!-- <div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4"> -->
+<div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4 bg-white rounded-sm shadow-sm">
     <div class="flex gap-4">
         <div id="quotation-id" class="flex flex-row items-center">
             <Receipt class="mr-2" />

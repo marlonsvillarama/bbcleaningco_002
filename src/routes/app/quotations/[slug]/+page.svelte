@@ -73,16 +73,17 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<Card.Root class="m-2 mb-4">
-	<Card.Content>
-		<div class="grid grid-col-2">
+<!-- <Card.Root class="m-2 mb-4">
+	<Card.Content> -->
+		<div class="grid gap-5">
 			<QuotationHeader { data } />
 			
-			<div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start">
+			<!-- <div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start"> -->
+			<div class="grid gap-5 border-gray-200 items-start">
 				<QuotationSidebar { data } />
 
 				<QuotationContent { data } />
 			</div>
 		</div>
-	</Card.Content>
-</Card.Root>
+	<!-- </Card.Content>
+</Card.Root> -->

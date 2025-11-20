@@ -10,6 +10,15 @@ Busy Bee Cleaning Co
     - Davao
 
 
+Clients
+- Add tag for "New" or "Returning"
+- Export of contact details (CSV/Excel/PDF)
+- Add "Contacts" sublist
+
+
+Quotations
+- Can be VAT-exempt
+
 
 
 FUTURE EXPANSION

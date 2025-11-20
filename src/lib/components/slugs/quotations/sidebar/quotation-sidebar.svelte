@@ -4,9 +4,10 @@
     import QuotationSidebarClient from "./quotation-sidebar-client.svelte";
     import QuotationSidebarDate from "./quotation-sidebar-date.svelte";
 
-	import * as Select from "$lib/components/ui/select/index.js";
     import Button from "@/components/ui/button/button.svelte";
 	import Separator from "@/components/ui/separator/separator.svelte";
+	import * as Card from "$lib/components/ui/card/index.js";
+	import * as Select from "$lib/components/ui/select/index.js";
 
 	import {
 		ArrowLeft,
@@ -18,14 +19,38 @@
     let { data } = $props();
 </script>
 
-<div class="grid px-3 pt-3 pb-12 gap-12 min-h-[500px] items-start bg-accent/30">
-    <!-- <div class="flex flex-col flex-1 gap-9"> -->
+<!-- <div class="grid px-3 pt-3 pb-12 gap-12 min-h-[500px] items-start bg-accent/30"> -->
+
+<Card.Root class="">
+    <Card.Title class="grid grid-cols-3 gap-12 items-center px-4 py-3">
+        <span>Client Details</span>
+        <span>Service Date</span>
+        <span>Service Address</span>
+    </Card.Title>
+    <Separator />
+    <Card.Content class="grid grid-cols-3 gap-12 items-start">
     <QuotationSidebarClient { data } />
 
-    <QuotationSidebarDate { data } />
+    <!-- <div class="grid gap-8 border-none"> -->
+        <QuotationSidebarDate { data } />
 
-    <QuotationSidebarAddress { data } />
-
-    <QuotationSidebarChannel { data } />
+        <!-- <QuotationSidebarAddress { data } /> -->
     <!-- </div> -->
-</div>
+
+        <QuotationSidebarAddress { data } />
+    </Card.Content>
+</Card.Root>
+<!-- <div class="grid grid-cols-3 px-6 pt-5 pb-7 gap-12 items-start border-none bg-white rounded-md shadow-md"> -->
+    <!-- <div class="flex flex-col flex-1 gap-9"> -->
+    <!-- <QuotationSidebarClient { data } /> -->
+
+    <!-- <div class="grid gap-8 border-none"> -->
+        <!-- <QuotationSidebarDate { data } /> -->
+
+        <!-- <QuotationSidebarAddress { data } /> -->
+    <!-- </div> -->
+
+        <!-- <QuotationSidebarAddress { data } /> -->
+    <!-- <QuotationSidebarChannel { data } /> -->
+    <!-- </div> -->
+<!-- </div> -->
