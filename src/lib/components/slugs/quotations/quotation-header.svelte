@@ -15,18 +15,18 @@
 </script>
 
 <!-- <div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4"> -->
-<div class="border-b border-gray-200 flex flex-row items-center justify-between px-4 py-4 bg-white rounded-sm shadow-sm">
+<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2 bg-white rounded-xs">
     <div class="flex gap-4">
         <div id="quotation-id" class="flex flex-row items-center">
-            <Receipt class="mr-2" />
+            <!-- <Receipt size={20} class="mr-2" /> -->
             <span class="text-xl font-semibold">Quotation #{quotation.number}</span>
         </div>
         <div class="flex items-center gap-4">
-            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-gray-50">
+            <div class="px-3 py-2 rounded-sm text-xs flex gap-2 items-center bg-gray-100 border-1 border-gray-200">
                 <PenBox size={16} /> {quotation.status_text}
             </div>
 
-            <div class="px-3 py-1 rounded-md text-sm flex gap-2 items-center bg-gray-50">
+            <div class="px-3 py-2 rounded-sm text-xs flex gap-2 items-center bg-gray-100 border-1 border-gray-200">
                 <HandCoins size={16} /> {quotation.payment_status_text}
             </div>
         </div>

@@ -77,15 +77,15 @@
 		],
 		navSecondary: [
 			{
-				title: "Admin Settings",
+				title: "Settings",
 				url: "/app/admin",
 				icon: Settings,
 			},
-			{
-				title: "Messages",
-				url: "/app/messages",
-				icon: Mail,
-			},
+			// {
+			// 	title: "Messages",
+			// 	url: "/app/messages",
+			// 	icon: Mail,
+			// },
 			{
 				title: "Help",
 				url: "/app/help",

@@ -75,7 +75,7 @@
 
 <!-- <Card.Root class="m-2 mb-4">
 	<Card.Content> -->
-		<div class="grid gap-5">
+		<div class="grid gap-5 px-4">
 			<QuotationHeader { data } />
 			
 			<!-- <div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start"> -->

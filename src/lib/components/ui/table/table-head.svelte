@@ -8,11 +8,12 @@
 	} = $props();
 </script>
 
+		<!-- "text-foreground h-10 whitespace-nowrap bg-linear-to-b from-accent/20 to-accent/40 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0", -->
 <th
 	bind:this={ref}
 	data-slot="table-head"
 	class={cn(
-		"text-foreground h-10 whitespace-nowrap bg-linear-to-b from-accent/20 to-accent/40 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
+		"text-foreground h-10 whitespace-nowrap bg-accent/30 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
 		className
 	)}
 	{...restProps}

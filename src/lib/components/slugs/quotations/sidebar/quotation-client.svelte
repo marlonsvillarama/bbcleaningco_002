@@ -16,9 +16,9 @@
 
 <!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-0 shadow-sm"> -->
 <div class="bg-white rounded-md border-none font-medium grid gap-2">
-    <!-- <span class="text-sm text-foreground font-semibold">Client Details</span> -->
+    <span class="text-sm text-foreground font-semibold">Client Details</span>
 
-    <!-- <Separator /> -->
+    <Separator />
 
     <!-- <div class="px-4 pt-4 pb-5 grid gap-2"> -->
     <div class="pt-1 grid gap-2">
@@ -28,7 +28,7 @@
 
     <div class="flex gap-3 items-center mt-2">
         <Phone size={16}/>
-        <span class="text-xs font-normal">{quotation.clients.phone}</span>
+        <span class="text-sm font-normal">{quotation.clients.phone}</span>
     </div>
 
     <div class="flex gap-3 items-center mt-1">
@@ -39,7 +39,7 @@
     <div class="flex gap-3 items-center mt-1">
         <!-- Only used for alignment of button -->
         <!-- <div class="w-[16px]"></div> -->
-        <Button variant="secondary" class="px-2 py-1 text-xs rounded-xs"
+        <Button class="px-2 py-1 text-xs rounded-xs"
                 onclick={() => alert('implement email quotation...')}
         >
             Email quotation

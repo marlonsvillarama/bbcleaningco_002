@@ -6,7 +6,7 @@
     import QuotationStatus from "./quotation-status.svelte";
     import QuotationThingsToBring from "./quotation-things-to-bring.svelte";
     import QuotationTotals from "./quotation-totals.svelte";
-    import QuotationSidebarChannel from "../sidebar/quotation-sidebar-channel.svelte";
+    import QuotationSidebarChannel from "../sidebar/quotation-channel.svelte";
 
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";

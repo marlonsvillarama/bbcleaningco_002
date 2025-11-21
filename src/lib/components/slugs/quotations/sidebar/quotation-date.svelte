@@ -22,9 +22,9 @@
 
 <!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-2"> -->
 <div class="bg-white rounded-md border-transparent font-medium grid gap-2">
-    <!-- <span class="text-sm text-foreground font-semibold">Service Date</span> -->
+    <span class="text-sm text-foreground font-semibold">Service Date</span>
 
-    <!-- <Separator class="mb-1" /> -->
+    <Separator class="mb-1" />
 
     <!-- <div class="pt-4 grid gap-2"> -->
     <Popover.Root>
