@@ -21,8 +21,8 @@
 </script>
 
 <div class="grid gap-1">
-    <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-1">
-        <span class="text-sm text-foreground font-semibold">Dispatch Details</span>
+    <!-- <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-1"> -->
+        <!-- <span class="text-sm text-foreground font-semibold">Dispatch Details</span> -->
         <!-- <Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"></Button> -->
         <div class="flex gap-2 items-center">
             <Select.Root type="single" bind:value={selectedTeam}>
@@ -33,15 +33,16 @@
                     {/each}
                 </Select.Content>
             </Select.Root>
-            <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
+            <Button variant="secondary" class="px-3 py-[3px] text-sm font-normal"
                 onclick={() => window.alert('implement add member...')}
             >
                 <Plus size={16} /> Add member
             </Button>
         </div>
-    </div>
+    <!-- </div> -->
 
-    <div class="grid gap-1 text-sm">
+    <!-- <div class="grid gap-1 text-sm"> -->
+    <div class="grid text-sm border-1 border rounded-sm">
         <div class="flex items-center justify-between border-b-1 border-gray-100 py-1">
             <span class="px-2 text-clip text-top font-extralight">Curlee Discaya</span>
             <div class="flex items-center gap-3">

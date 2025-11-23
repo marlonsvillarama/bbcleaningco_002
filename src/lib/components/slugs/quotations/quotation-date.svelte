@@ -21,24 +21,23 @@
 </script>
 
 <!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-2"> -->
-<div class="bg-white rounded-md border-transparent font-medium grid gap-2">
-    <span class="text-sm text-foreground font-semibold">Service Date</span>
+<div class="bg-white rounded-md border-transparent font-medium flex gap-3 items-center">
+    <span class="text-lg text-foreground font-semibold">Service Date</span>
 
-    <Separator class="mb-1" />
+    <!-- <Separator class="mb-1" /> -->
 
     <!-- <div class="pt-4 grid gap-2"> -->
     <Popover.Root>
         <Popover.Trigger
             class={cn(
                 buttonVariants({
-                    variant: "secondary",
-                    class: "w-full text-left"
+                    class: "text-left min-w-[240px] bg-white border py-4"
                 }),
-                !value && "text-muted-foreground"
+                !value && "text-foreground"
             )}
         >
             <CalendarIcon />
-            {value ? df.format(value.toDate(getLocalTimeZone())) : 'Pick a date'}
+            {value ? df.format(value.toDate(getLocalTimeZone())) : 'Pick a service date'}
         </Popover.Trigger>
         <Popover.Content bind:ref={contentRef} class="w-auto p-0">
             <Calendar bind:value type="single" />

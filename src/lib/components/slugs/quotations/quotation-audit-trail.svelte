@@ -1,55 +1,49 @@
 <script>
-    // import Card from "../global/card.svelte";
-    // import Sublist from "../global/sublist.svelte";
+    import Button from "@/components/ui/button/button.svelte";
+    import Separator from "@/components/ui/separator/separator.svelte";
     import * as Card from "@/components/ui/card/index";
-    import Sublist from "@/components/global/sublist.svelte";
-
-    let data = {
-        columns: [
-            { id: 'date', label: 'Date', width: 40 },
-            { id: 'time', label: 'Time', width: 24 },
-            { id: 'type', label: 'Type', width: 24 },
-            { id: 'field', label: 'Field' },
-            { id: 'old_value', label: 'Old', width: 20 },
-            { id: 'new_value', label: 'New', width: 20 }
-        ],
-        rows: [
-            {
-                dt: new Date(),
-                type: 'Create',
-                field: 'First Name',
-                old_value: '',
-                new_value: 'Jinggoy'
-            },
-        ]
-    };
-    data.rows = data.rows.map(d => {
-        return {
-            ...d,
-            date: d.dt.toLocaleDateString('en-US', {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            }),
-            time: d.dt.toLocaleTimeString('en-US', {
-                hour: "numeric",
-                minute: "numeric"
-            })
-        };
-    });
-    console.log('sublist columns', data.columns);
-    console.log('sublist rows', data.rows);
 </script>
 
-<Card.Root class="w-full">
-    <Card.Header>
-        <Card.Title>Audit Trail</Card.Title>
-    </Card.Header>
-    <Card.Content>
-        <Sublist viewable=false {data} />
-    </Card.Content>
-</Card.Root>
+<div class="grid gap-1">
+<!-- <Card.Root> -->
+    <!-- <Card.Header class="flex items-center justify-between">
+        <Card.Title>Audit Trailsss</Card.Title>
+        <Card.Action>
+            <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
+                onclick={() => alert('implement pay balance...')}
+            >
+            <span>Pay balance</span>
+                <-- <DollarSign size={16} /> Pay balance --
+            </Button>
+        </Card.Action>
+    </Card.Header> -->
+    <!-- <Separator /> -->
+    <!-- <Card.Content> -->
+<!-- <div class="grid gap-1">
+    <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2 mb-2">
+        <span class="text-sm text-foreground font-semibold">Audit Trail</span>
+        <Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"></Button>
+    </div> -->
 
-<!-- <Card title="Audit Trail" padded=false>
-    <Sublist {data} viewable=false />
-</Card> -->
+    <!-- <div class="grid text-sm px-3"> -->
+    <div class="grid text-sm border-1 border rounded-sm">
+        <div class="flex items-center border-b-1 border-gray-100 py-3 px-2 font-light">
+            <span class="px-2 w-[250px]">September 22, 2025</span>
+            <span class="min-w-[300px]">Charles Madrid</span>
+            <span class="">Quotation created</span>
+        </div>
+        <div class="flex items-center border-b-1 border-gray-100 py-3 px-2 font-light">
+            <span class="px-2 w-[250px]">September 22, 2025</span>
+            <span class="min-w-[300px]">Charles Madrid</span>
+            <span class="">Quotation created</span>
+        </div>
+        <div class="flex items-center border-b-1 border-gray-100 py-3 px-2 font-light">
+            <span class="px-2 w-[250px]">September 22, 2025</span>
+            <span class="min-w-[300px]">Charles Madrid</span>
+            <span class="">Quotation created</span>
+        </div>
+    </div>
+</div>
+
+    <!-- </Card.Content> -->
+<!-- </Card.Root> -->

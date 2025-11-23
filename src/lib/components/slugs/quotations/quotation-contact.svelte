@@ -15,8 +15,8 @@
 </script>
 
 <!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-0 shadow-sm"> -->
-<div class="bg-white rounded-md border-none font-medium grid gap-2">
-    <span class="text-sm text-foreground font-semibold">Client Details</span>
+<div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
+    <span class="text-sm text-foreground font-semibold">Contact Details</span>
 
     <Separator />
 
@@ -36,14 +36,14 @@
         <span class="text-sm font-normal">marlonsvillarama12345@gmail.com</span>
     </div>
 
-    <div class="flex gap-3 items-center mt-1">
+    <!-- <div class="flex gap-3 items-center mt-1"> -->
         <!-- Only used for alignment of button -->
         <!-- <div class="w-[16px]"></div> -->
-        <Button class="px-2 py-1 text-xs rounded-xs"
+        <!-- <Button class="px-2 py-1 text-xs rounded-xs"
                 onclick={() => alert('implement email quotation...')}
         >
             Email quotation
-        </Button>
-    </div>
+        </Button> -->
+    <!-- </div> -->
     </div>
 </div>

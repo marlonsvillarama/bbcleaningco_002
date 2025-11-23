@@ -1,12 +1,15 @@
 <script>
     import QuotationAuditTrail from "./quotation-audit-trail.svelte";
+    import QuotationContact from "./quotation-contact.svelte";
+    import QuotationDate from "./quotation-date.svelte";
     import QuotationDispatchDetails from "./quotation-dispatch-details.svelte";
+    import QuotationNotes from "./quotation-notes.svelte";
     import QuotationPaymentHistory from "./quotation-payment-history.svelte";
     import QuotationServiceList from "./quotation-service-list.svelte";
     import QuotationStatus from "./quotation-status.svelte";
     import QuotationThingsToBring from "./quotation-things-to-bring.svelte";
     import QuotationTotals from "./quotation-totals.svelte";
-    import QuotationSidebarChannel from "../sidebar/quotation-channel.svelte";
+    import QuotationSidebarChannel from "./quotation-channel.svelte";
 
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";
@@ -27,11 +30,11 @@
 			label: "Services",
 			badge: 0,
 		},
-		{
-			id: "dispatch",
-			label: "Dispatch",
-			badge: 3,
-		},
+		// {
+		// 	id: "dispatch",
+		// 	label: "Dispatch",
+		// 	badge: 3,
+		// },
 		{
 			id: "payments",
 			label: "Payments",
@@ -51,18 +54,41 @@
 <!-- Implement tabs -->
 
 <!-- <div class="grid gap-12 px-6 pt-6 pb-12 border-l border-gray-200 min-h-[500px]"> -->
-<div class="grid grid-cols-[320px_1fr] pb-8 gap-5 items-start">
+<!-- <div class="grid grid-cols-[320px_1fr] pb-8 gap-5 items-start"> -->
     <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-sm shadow-sm"> -->
     <!-- <div class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-md"> -->
-    <div class="grid gap-5 items-start">
+    <!-- <div class="grid gap-5 items-start">
         <QuotationTotals { data } />
         <QuotationSidebarChannel { data } />
-    </div>
+    </div> -->
     
     <!-- <Card.Root>
         <Card.Header></Card.Header>
         <Card.Content></Card.Content>
     </Card.Root> -->
+
+<div class="grid gap-12 items-start">
+
+    <div class="flex items-center justify-between">
+        <QuotationDate { data } />
+
+        <QuotationStatus { data } />
+    </div>
+
+    <div class="flex gap-10 items-start">
+        <div class="grid gap-10 w-[60%]">
+            <!-- <div class="flex gap-10">
+                <span class="text-sm">Service Date</span>
+            </div> -->
+
+            <QuotationContact { data } />
+        </div>
+
+        <div class="w-[40%]">
+            <QuotationNotes { data } />
+        </div>
+    </div>
+    
     <Tabs.Root value="items" class="w-full flex-col justify-start gap-4">
     	<div class="flex items-center justify-between">
             <Tabs.List
@@ -79,15 +105,15 @@
             </Tabs.List>
         </div>
     	<!-- <Tabs.Content value="items" class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
-        <Tabs.Content value="items" class="grid items-start gap-4">
+        <Tabs.Content value="items" class="grid items-start gap-6">
             <!-- <div class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
                 <QuotationServiceList { data } />
                 <QuotationThingsToBring { data } />
             <!-- </div> -->
         </Tabs.Content>
-        <Tabs.Content value="dispatch" class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm">
+        <Tabs.Content value="dispatch" class="grid gap-6 items-start">
             <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm"> -->
-                <QuotationStatus { data } />
+                <!-- <QuotationNotes { data } /> -->
                 <QuotationDispatchDetails { data } />
             <!-- </div> -->
         </Tabs.Content>
@@ -122,5 +148,5 @@
         <QuotationServiceList { data } />
         <QuotationThingsToBring { data } />
     </div> -->
-    <!-- </div> -->
 </div>
+<!-- </div> -->

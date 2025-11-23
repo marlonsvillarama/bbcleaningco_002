@@ -11,15 +11,15 @@
 	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
 
 	import QuotationHeader from "@/components/slugs/quotations/quotation-header.svelte";
-    import QuotationSidebar from "@/components/slugs/quotations/sidebar/quotation-sidebar.svelte";
-	import QuotationContent from "@/components/slugs/quotations/content/quotation-content.svelte";
+    import QuotationSidebar from "@/components/slugs/quotations/quotation-sidebar.svelte";
+	import QuotationContent from "@/components/slugs/quotations/quotation-content.svelte";
 
 	import QuotationItems from "@/components/slugs/quotations/quotation-items.svelte";
 	import ClientServiceHistory from "@/components/slugs/clients/client-service-history.svelte";
     import QuotationWorkflow from "@/components/slugs/quotations/quotation-workflow.svelte";
     import QuotationAuditTrail from "@/components/slugs/quotations/quotation-audit-trail.svelte";
     import QuotationNotes from "@/components/slugs/quotations/quotation-notes.svelte";
-    import QuotationTotals from "@/components/slugs/quotations/content/quotation-totals.svelte";
+    import QuotationTotals from "@/components/slugs/quotations/quotation-totals.svelte";
 
 	import {
 		ArrowLeft,
@@ -75,11 +75,16 @@
 
 <!-- <Card.Root class="m-2 mb-4">
 	<Card.Content> -->
-		<div class="grid gap-5 px-4">
+		<div class="grid gap-6 px-4">
 			<QuotationHeader { data } />
 			
 			<!-- <div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start"> -->
-			<div class="grid gap-5 border-gray-200 items-start">
+			<!-- <div class="grid gap-5 border-gray-200 items-start">
+				<QuotationSidebar { data } />
+
+				<QuotationContent { data } />
+			</div> -->
+			<div class="grid grid-cols-[320px_1fr] pb-8 gap-10 items-start">
 				<QuotationSidebar { data } />
 
 				<QuotationContent { data } />

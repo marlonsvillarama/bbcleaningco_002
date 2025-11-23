@@ -378,7 +378,7 @@
 	</div>
 	<!-- <Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"> -->
 	<div class="relative flex flex-col gap-4 overflow-auto">
-		<div class="overflow-hidden rounded-sm border-1 border-gray-200 shadow-none">
+		<div class="overflow-hidden rounded-sm border-1 border-accent/20 shadow-none">
 			<DragDropProvider
 				modifiers={[
 					// @ts-expect-error @dnd-kit/abstract types are botched atm

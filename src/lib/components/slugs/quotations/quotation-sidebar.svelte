@@ -3,6 +3,7 @@
     import QuotationChannel from "./quotation-channel.svelte";
     import QuotationClient from "./quotation-client.svelte";
     import QuotationDate from "./quotation-date.svelte";
+    import QuotationTotals from "./quotation-totals.svelte";
 
     import Button from "@/components/ui/button/button.svelte";
 	import Separator from "@/components/ui/separator/separator.svelte";
@@ -30,17 +31,24 @@
     </Card.Title> -->
     <!-- <Separator /> -->
     <!-- <Card.Content class="grid grid-cols-3 gap-12 items-start"> -->
-<div class="grid grid-cols-3 gap-12 items-start">
+<!-- <div class="grid grid-cols-3 gap-12 items-start"> -->
+<div class="grid gap-12 items-start">
 
     <QuotationClient { data } />
 
-    <QuotationContact { data } />
+    <QuotationTotals { data } />
 
-    <div class="grid gap-8 border-none">
+    <QuotationChannel { data } />
+
+    <!-- <QuotationAddress { data } /> -->
+
+    <!-- <QuotationContact { data } /> -->
+
+    <!-- <div class="grid gap-8 border-none">
         <QuotationDate { data } />
 
         <QuotationAddress { data } />
-    </div>
+    </div> -->
 
     <!-- <QuotationSidebarAddress { data } /> -->
 </div>

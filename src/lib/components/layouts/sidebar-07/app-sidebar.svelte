@@ -160,9 +160,9 @@
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
-		<Separator />
+		<!-- <Separator /> -->
 		<NavDocuments items={data.documents} />
-		<Separator />
+		<!-- <Separator /> -->
 		<NavSecondary items={data.navSecondary} class="mt-auto" />
 	</Sidebar.Content>
 	<Sidebar.Footer>
