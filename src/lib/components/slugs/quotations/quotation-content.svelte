@@ -69,14 +69,14 @@
 
 <div class="grid gap-12 items-start">
 
-    <div class="flex items-center justify-between">
-        <QuotationDate { data } />
+        <!-- <div class="flex items-center justify-between">
+            <QuotationDate { data } /> -->
 
         <QuotationStatus { data } />
-    </div>
+    <!-- </div> -->
 
     <div class="flex gap-10 items-start">
-        <div class="grid gap-10 w-[60%]">
+        <div class="grid gap-10 w-1/2">
             <!-- <div class="flex gap-10">
                 <span class="text-sm">Service Date</span>
             </div> -->
@@ -84,7 +84,7 @@
             <QuotationContact { data } />
         </div>
 
-        <div class="w-[40%]">
+        <div class="w-1/2">
             <QuotationNotes { data } />
         </div>
     </div>

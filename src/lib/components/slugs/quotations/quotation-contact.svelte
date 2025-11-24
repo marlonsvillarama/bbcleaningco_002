@@ -28,12 +28,12 @@
 
     <div class="flex gap-3 items-center mt-2">
         <Phone size={16}/>
-        <span class="text-sm font-normal">{quotation.clients.phone}</span>
+        <span class="text-sm font-light">{quotation.clients.phone}</span>
     </div>
 
     <div class="flex gap-3 items-center mt-1">
         <Mail size={16}/>
-        <span class="text-sm font-normal">marlonsvillarama12345@gmail.com</span>
+        <span class="text-sm font-light">marlonsvillarama12345@gmail.com</span>
     </div>
 
     <!-- <div class="flex gap-3 items-center mt-1"> -->

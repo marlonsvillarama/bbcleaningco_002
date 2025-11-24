@@ -18,7 +18,8 @@
             <Button variant="secondary" class="px-3 py-[2px] text-sm font-normal"
                 onclick={() => alert('implement add service...')}
             >
-            <span>Add service</span>
+                <Plus size={16} />
+                <span>Add service</span>
                 <!-- <DollarSign size={16} /> Pay balance -->
             </Button>
         </div>

@@ -5,19 +5,22 @@
     import * as InputGroup from "@/components/ui/input-group/index";
     import * as Select from "@/components/ui/select/index";
     import Badge from "@/components/ui/badge/badge.svelte";
+    import Checkbox from "@/components/ui/checkbox/checkbox.svelte";
     import FieldSet from "@/components/global/form/fieldset.svelte";
     import FieldsetCheckbox from "@/components/global/form/fieldset-checkbox.svelte";
-
-    import Checkbox from "@/components/ui/checkbox/checkbox.svelte";
     import Input from "@/components/ui/input/input.svelte";
     import Label from "@/components/ui/label/label.svelte";
     import Textarea from "@/components/ui/textarea/textarea.svelte";
 
-	import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
-	import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
-	import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
-	import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
-	import SquarePenIcon from "@lucide/svelte/icons/square-pen";
+    import QuotationAddress from "./quotation-address.svelte";
+    import QuotationClientDetails from "./quotation-client-details.svelte";
+    import QuotationDate from "./quotation-date.svelte";
+
+	// import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
+	// import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
+	// import CircleCheckFilledIcon from "@tabler/icons-svelte/icons/circle-check-filled";
+	// import HandCoinsIcon from "@lucide/svelte/icons/hand-coins";
+	// import SquarePenIcon from "@lucide/svelte/icons/square-pen";
 
     let { data } = $props();
     const clients = [
@@ -31,16 +34,24 @@
     );
 </script>
 
+<div class="grid gap-4">
+    <QuotationClientDetails { data } />
+
+    <QuotationDate { data } />
+    
+    <QuotationAddress { data } />
+</div>
+
 <!-- <Card.Root class="w-full">
     <Card.Header>
         <Card.Title>Quotation Summary</Card.Title>
     </Card.Header>
     <Card.Content> -->
         <!-- <form class="grid grid-cols-2 gap-8 p-6 pt-2"> -->
-    <Field.Group>
+    <!-- <Field.Group>
         <Field.Set>
             <Field.Legend>Service Summary</Field.Legend>
-            <Field.Group class="">
+            <Field.Group class=""> -->
                 <!-- <div class="flex flex-row items-center gap-4">
                     <Badge variant="outline" class="px-2">
                         {#if data.id.toString() === '1'}
@@ -61,7 +72,7 @@
                         {/if}
                     </Badge>
                 </div> -->
-                <Field.Field>
+                <!-- <Field.Field>
                     <Field.Label for="client">Client</Field.Label>
                     <Select.Root type="single" bind:value={selectedClient}>
                         <Select.Trigger class="w-full">{triggerContent}</Select.Trigger>
@@ -71,24 +82,24 @@
                             {/each}
                         </Select.Content>
                     </Select.Root>
-                </Field.Field>
-                <Field.Field>
+                </Field.Field> -->
+                <!-- <Field.Field>
                     <Field.Label for="serviceDate">Service Date</Field.Label>
                     <Input id="lastName" class="font-light w-4/5" placeholder="" value={data.last_name} />
-                </Field.Field>
-                <Field.Field>
+                </Field.Field> -->
+                <!-- <Field.Field>
                     <Field.Label for="firstName">Address</Field.Label>
                     <InputGroup.Root>
                         <InputGroup.Textarea disabled id="address" class="font-light" placeholder="Address" value={data.address_1} />
                         <InputGroup.Addon align="block-end">
-                            <!-- Replace with popover for address -->
+                            <-- Replace with popover for address --
                             <InputGroup.Button variant="secondary" class="rounded-2">
                                 Edit
                             </InputGroup.Button>
                         </InputGroup.Addon>
                     </InputGroup.Root>
-                </Field.Field>
-            </Field.Group>
+                </Field.Field> -->
+            <!-- </Field.Group> -->
             <!-- <div class="flex flex-col gap-6 items-top">
                 <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
@@ -111,8 +122,8 @@
                 </Field.Group>
             </div> -->
         <!-- </form> -->
-        </Field.Set>
-    </Field.Group>
+        <!-- </Field.Set>
+    </Field.Group> -->
     <!-- </Card.Content>
 </Card.Root> -->
 

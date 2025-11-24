@@ -4,7 +4,7 @@
     import * as Card from "@/components/ui/card/index";
 </script>
 
-<div class="grid gap-1">
+<!-- <div class="grid gap-1"> -->
 <!-- <Card.Root> -->
     <!-- <Card.Header class="flex items-center justify-between">
         <Card.Title>Audit Trailsss</Card.Title>
@@ -43,7 +43,7 @@
             <span class="">Quotation created</span>
         </div>
     </div>
-</div>
+<!-- </div> -->
 
     <!-- </Card.Content> -->
 <!-- </Card.Root> -->

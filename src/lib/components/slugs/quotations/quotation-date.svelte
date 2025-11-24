@@ -21,8 +21,8 @@
 </script>
 
 <!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-2"> -->
-<div class="bg-white rounded-md border-transparent font-medium flex gap-3 items-center">
-    <span class="text-lg text-foreground font-semibold">Service Date</span>
+<div class="grid grid-cols-[85px_1fr] items-center w-full">
+    <span class="text-sm text-foreground font-semibold">When</span>
 
     <!-- <Separator class="mb-1" /> -->
 
@@ -31,12 +31,12 @@
         <Popover.Trigger
             class={cn(
                 buttonVariants({
-                    class: "text-left min-w-[240px] bg-white border py-4"
+                    class: "text-left font-light bg-white border py-3"
                 }),
                 !value && "text-foreground"
             )}
         >
-            <CalendarIcon />
+            <!-- <CalendarIcon /> -->
             {value ? df.format(value.toDate(getLocalTimeZone())) : 'Pick a service date'}
         </Popover.Trigger>
         <Popover.Content bind:ref={contentRef} class="w-auto p-0">

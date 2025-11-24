@@ -1,8 +1,9 @@
 <script>
-    import QuotationAddress from "./quotation-address.svelte";
+    // import QuotationAddress from "./quotation-address.svelte";
     import QuotationChannel from "./quotation-channel.svelte";
-    import QuotationClient from "./quotation-client.svelte";
-    import QuotationDate from "./quotation-date.svelte";
+    import QuotationSummary from "./quotation-summary.svelte";
+    // import QuotationClient from "./quotation-client.svelte";
+    // import QuotationDate from "./quotation-date.svelte";
     import QuotationTotals from "./quotation-totals.svelte";
 
     import Button from "@/components/ui/button/button.svelte";
@@ -34,7 +35,14 @@
 <!-- <div class="grid grid-cols-3 gap-12 items-start"> -->
 <div class="grid gap-12 items-start">
 
-    <QuotationClient { data } />
+    <!-- <QuotationClient { data } /> -->
+    
+    <!-- <div class="grid gap-4">
+        <QuotationDate { data } />
+        
+        <QuotationAddress { data } />
+    </div> -->
+    <QuotationSummary { data } />
 
     <QuotationTotals { data } />
 

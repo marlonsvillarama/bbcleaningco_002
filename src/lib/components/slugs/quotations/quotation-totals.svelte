@@ -38,37 +38,37 @@
     <!-- <div class="grid px-3 py-2 gap-3 w-[320px]"> -->
     <div class="grid gap-2">
         <div class="flex flex-row items-center justify-between text-sm px-3 py-1">
-            <span class="text-sm font-light">Subtotal</span>
-            <span class="">1,000.00</span>
+            <span class="">Subtotal</span>
+            <span class="font-light">1,000.00</span>
         </div>
 
         <div class="flex flex-row items-center justify-between text-sm px-3 py-1">
-            <span class="text-sm font-light">VAT (12%)</span>
-            <span class="">120.00</span>
+            <span class="">VAT (12%)</span>
+            <span class="font-light">120.00</span>
         </div>
 
         <div class="flex flex-row items-center justify-between text-sm px-3 py-1">
-            <span class="text-sm font-light">Discounts</span>
-            <span class="">-300.00</span>
+            <span class="">Discounts</span>
+            <span class="font-light">-300.00</span>
         </div>
 
         <Separator class="bg-accent" />
 
         <div class="flex flex-row items-center justify-between text-sm px-3 py-1">
-            <span class="text-sm">TOTAL</span>
-            <span class="font-semibold">820.00</span>
+            <span class="text-s">TOTAL</span>
+            <span class="font-light">820.00</span>
         </div>
 
         <div class="flex flex-row items-center justify-between text-sm px-3 py-1">
-            <span class="text-sm font-light">Downpayment</span>
-            <span class="font-semibold">-620.00</span>
+            <span class="">Downpayment</span>
+            <span class="font-light">-620.00</span>
         </div>
     </div>
 
-    <div class="px-3 py-1 rounded-xs bg-accent/20 border-l-2 border-accent">
+    <div class="rounded-xs bg-accent/20 border-l-2 border-accent text-sm px-3 py-2">
         <div class="flex flex-row items-center justify-between">
-            <span class="text-sm">Balance</span>
-            <span class="text-lg font-semibold">200.00</span>
+            <span class="">Balance</span>
+            <span class="font-semibold">200.00</span>
         </div>
     </div>
     <!-- </Card.Content> -->

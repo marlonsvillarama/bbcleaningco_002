@@ -20,7 +20,7 @@
     <!-- <div class="flex gap-4"> -->
         <div id="quotation-id" class="flex flex-row items-center">
             <!-- <Receipt size={20} class="mr-2" /> -->
-            <span class="text-xl font-semibold">Quotation #{quotation.number}</span>
+            <span class="text-[1.35rem] text-foreground-dark font-semibold">Quotation #{quotation.number}</span>
         </div>
         <!-- <div class="flex items-center gap-4">
             <div class="px-3 py-2 rounded-sm text-xs flex gap-2 items-center bg-gray-100 border-1 border-gray-200">

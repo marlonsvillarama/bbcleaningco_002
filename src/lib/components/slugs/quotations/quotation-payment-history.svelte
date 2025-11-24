@@ -4,54 +4,67 @@
     import * as Card from "@/components/ui/card/index";
 
     import {
-        DollarSign
+        DollarSign,
+        SquareArrowOutUpRight
     } from "@lucide/svelte";
 </script>
 
 
-<Card.Root>
-    <Card.Header class="flex items-center justify-between">
+<!-- <Card.Root> -->
+    <!-- <Card.Header class="flex items-center justify-between">
         <Card.Title>Payments</Card.Title>
         <Card.Action>
             <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
                 onclick={() => alert('implement pay balance...')}
             >
             <span>Pay balance</span>
-                <!-- <DollarSign size={16} /> Pay balance -->
+                <-- <DollarSign size={16} /> Pay balance --
             </Button>
         </Card.Action>
     </Card.Header>
     <Separator />
-    <Card.Content>
+    <Card.Content> -->
 <!-- <div class="grid gap-2">
     <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2">
         <span class="text-sm text-foreground font-semibold">Payment History</span>
     </div> -->
 
-        <div class="grid text-sm px-3">
-            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 font-light">
+        <!-- <div class="grid text-sm px-3"> -->
+        <div class="grid text-sm border-1 border rounded-sm">
+            <!-- <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 px-2 font-light"> -->
+            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 px-2 font-light">
                 <div class="flex items-center">
                     <span class="px-2 w-[250px]">September 22, 2025</span>
-                    <span class="px-2 font-bold">PMT-1001</span>
+                    <!-- <div class="flex items-center gap-1"> -->
+                    <a href="/" class="text-blue-500 font-semibold hover:underline flex items-center gap-1">
+                        PMT-1001 <SquareArrowOutUpRight size={16} />
+                    </a>
+                    <!-- </div> -->
                 </div>
                 <span class="px-2 text-right font-bold">200.00</span>
             </div>
-            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 font-light">
+            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 px-2 font-light">
                 <div class="flex items-center">
                     <span class="px-2 w-[250px]">September 26, 2025</span>
-                    <span class="px-2 font-bold">PMT-1002</span>
+                    <!-- <span class="px-2 font-bold">PMT-1002</span> -->
+                    <a href="/" class="text-blue-500 font-semibold hover:underline flex items-center gap-1">
+                        PMT-1002 <SquareArrowOutUpRight size={16} />
+                    </a>
                 </div>
                 <span class="px-2 text-right font-bold">350.00</span>
             </div>
-            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 font-light">
+            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 px-2 font-light">
                 <div class="flex items-center">
                     <span class="px-2 w-[250px]">September 29, 2025</span>
-                    <span class="px-2 font-bold">PMT-1003</span>
+                    <!-- <span class="px-2 font-bold">PMT-1003</span> -->
+                    <a href="/" class="text-blue-500 font-semibold hover:underline flex items-center gap-1">
+                        PMT-1003 <SquareArrowOutUpRight size={16} />
+                    </a>
                 </div>
                 <span class="px-2 text-right font-bold">70.00</span>
             </div>
         </div>
 <!-- </div> -->
 
-    </Card.Content>
-</Card.Root>
+    <!-- </Card.Content>
+</Card.Root> -->

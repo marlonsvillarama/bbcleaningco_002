@@ -58,9 +58,12 @@
                     </InputGroup.Root>
                 </Field.Field>
             </div> -->
-            <div class="flex flex-col gap-6 items-top">
-                <Field.Field>
-                    <Field.Label for="client">Client</Field.Label>
+            <!-- <div class="flex flex-col gap-6 items-top"> -->
+                <!-- <Field.Field>
+                    <Field.Label for="client">Client</Field.Label> -->
+<div class="grid grid-cols-[85px_1fr] items-center w-full">
+    <span class="text-sm text-foreground font-semibold">Client</span>
+
                     <Select.Root type="single" bind:value={selectedClient}>
                         <Select.Trigger class="w-full">{triggerContent}</Select.Trigger>
                         <Select.Content>
@@ -69,17 +72,18 @@
                             {/each}
                         </Select.Content>
                     </Select.Root>
-                </Field.Field>
-                <Field.Field>
+</div>
+                <!-- </Field.Field> -->
+                <!-- <Field.Field>
                     <Field.Label for="phone">Phone</Field.Label>
                     <Input id="phone" class="font-light w-32" placeholder="Phone" value={data.phone} />
                 </Field.Field>
                 <Field.Field>
                     <Field.Label for="email">Email</Field.Label>
                     <Input id="email" class="font-light w-4/5" placeholder="customer@email.com" value={data.email} />
-                </Field.Field>
+                </Field.Field> -->
                 
-                <Field.Group class="flex flex-col gap-3">
+                <!-- <Field.Group class="flex flex-col gap-3">
                     <Field.Field orientation="horizontal">
                         <Checkbox id="isActive" checked="true" />
                         <Field.Label for="isActive" class="cursor-pointer">Active</Field.Label>
@@ -88,8 +92,8 @@
                         <Checkbox id="isVIP" checked="true" />
                         <Field.Label for="isVIP" class="cursor-pointer">VIP Customer</Field.Label>
                     </Field.Field>
-                </Field.Group>
-            </div>
+                </Field.Group> -->
+            <!-- </div> -->
         <!-- </form> -->
     <!-- </Card.Content>
 </Card.Root> -->
