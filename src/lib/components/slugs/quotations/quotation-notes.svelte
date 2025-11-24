@@ -7,7 +7,7 @@
 </script>
 
 <div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
-    <span class="text-sm text-foreground font-semibold">Notes</span>
+    <span class="text-sm text-foreground font-semibold">Quotation Notes</span>
 
     <!-- <Separator /> -->
     

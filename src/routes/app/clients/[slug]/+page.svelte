@@ -1,7 +1,7 @@
 <script>
-	import ClientContent from "@/components/slugs/clients/content/client-content.svelte";
+	import ClientContent from "@/components/slugs/clients/client-content.svelte";
 	import ClientHeader from "@/components/slugs/clients/client-header.svelte";
-	import ClientSidebar from "@/components/slugs/clients/sidebar/client-sidebar.svelte";
+	import ClientSidebar from "@/components/slugs/clients/client-sidebar.svelte";
 
 	// import data from "./data.js";
 	import Badge from "@/components/ui/badge/badge.svelte";
@@ -68,19 +68,22 @@
 	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
 </script>
 
-<Card.Root class="m-2 mb-4">
+<!-- <Card.Root class="m-2 mb-4">
 	<Card.Content>
-		<div class="grid grid-col-2">
+		<div class="grid grid-col-2"> -->
+		<div class="grid gap-8 px-4">
 			<ClientHeader { data } />
 
-			<div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start">
-				<ClientSidebar { data } />
+			<div class="grid grid-cols-[1fr_320px] pb-8 gap-12 items-start">
+			<!-- <div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start"> -->
 
 				<ClientContent { data } />
+				
+				<ClientSidebar { data } />
 			</div>
 		</div>
-	</Card.Content>
-</Card.Root>
+	<!-- </Card.Content>
+</Card.Root> -->
 
 <!-- <SiteHeader { crumbs }>
 	<div class="flex flex-row text-sm gap-4 lg:flex">

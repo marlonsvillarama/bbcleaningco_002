@@ -51,7 +51,7 @@
                 <Button variant="icon" size="sm" class="border-transparent border-1 hover:border-gray-200 hover:bg-gray-50 hover:shadow-sm"><CircleX /></Button>
             </div>
         </div>
-        <div class="flex items-center justify-between border-b-1 border-gray-100 py-1 px-2">
+        <div class="flex items-center justify-between py-1 px-2">
             <span class="px-2 text-clip text-top font-extralight">Sponge</span>
             <div class="flex items-center gap-3">
                 <span class="text-right min-w-[70px] align-top font-bold">1 box</span>

@@ -10,6 +10,7 @@
     import FieldsetCheckbox from "@/components/global/form/fieldset-checkbox.svelte";
     import Input from "@/components/ui/input/input.svelte";
     import Label from "@/components/ui/label/label.svelte";
+    import Separator from "@/components/ui/separator/separator.svelte";
     import Textarea from "@/components/ui/textarea/textarea.svelte";
 
     import QuotationAddress from "./quotation-address.svelte";
@@ -34,12 +35,19 @@
     );
 </script>
 
-<div class="grid gap-4">
+<div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
+<!-- <div class="grid gap-4"> -->
+    <span class="text-sm text-foreground font-semibold">Summary</span>
+
+    <Separator />
+
+    <div class="pt-1 grid gap-4 text-sm">
     <QuotationClientDetails { data } />
 
     <QuotationDate { data } />
     
     <QuotationAddress { data } />
+    </div>
 </div>
 
 <!-- <Card.Root class="w-full">

@@ -31,7 +31,7 @@
         <Popover.Trigger
             class={cn(
                 buttonVariants({
-                    class: "text-left font-light bg-white border py-3"
+                    class: "text-sm font-normal bg-white border py-3"
                 }),
                 !value && "text-foreground"
             )}

@@ -75,7 +75,7 @@
 
 <!-- <Card.Root class="m-2 mb-4">
 	<Card.Content> -->
-		<div class="grid gap-6 px-4">
+		<div class="grid gap-8 px-4">
 			<QuotationHeader { data } />
 			
 			<!-- <div class="grid grid-cols-[320px_1fr] border-none border-gray-200 items-start"> -->
@@ -84,10 +84,10 @@
 
 				<QuotationContent { data } />
 			</div> -->
-			<div class="grid grid-cols-[320px_1fr] pb-8 gap-10 items-start">
-				<QuotationSidebar { data } />
-
+			<div class="grid grid-cols-[1fr_320px] pb-8 gap-12 items-start">
 				<QuotationContent { data } />
+
+				<QuotationSidebar { data } />
 			</div>
 		</div>
 	<!-- </Card.Content>

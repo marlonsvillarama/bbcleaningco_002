@@ -53,7 +53,7 @@
                 </div>
                 <span class="px-2 text-right font-bold">350.00</span>
             </div>
-            <div class="flex items-center justify-between border-b-1 border-gray-100 py-3 px-2 font-light">
+            <div class="flex items-center justify-between py-3 px-2 font-light">
                 <div class="flex items-center">
                     <span class="px-2 w-[250px]">September 29, 2025</span>
                     <!-- <span class="px-2 font-bold">PMT-1003</span> -->

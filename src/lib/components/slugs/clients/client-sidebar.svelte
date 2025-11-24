@@ -1,6 +1,6 @@
 <script>
     import ClientFinancials from "./client-financials.svelte";
-    import ClientSidebarChannel from "./client-sidebar-channel.svelte";
+    import ClientSidebarChannel from "./client-channel.svelte";
     // import QuotationSidebarAddress from "./quotation-sidebar-address.svelte";
     // import QuotationSidebarChannel from "./quotation-sidebar-channel.svelte";
     // import QuotationSidebarClient from "./quotation-sidebar-client.svelte";
@@ -20,7 +20,8 @@
     let { data } = $props();
 </script>
 
-<div class="grid px-6 pt-6 pb-12 gap-12 items-start">
+<!-- <div class="grid px-6 pt-6 pb-12 gap-12 items-start"> -->
+<div class="grid gap-12 items-start">
     <!-- <div class="flex flex-col flex-1 gap-9"> -->
     <!-- <QuotationSidebarClient { data } /> -->
 

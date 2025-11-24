@@ -7,6 +7,7 @@
 		ContactRound,
 		HelpCircle,
 		IdCardLanyard,
+		List,
 		Mail,
 		PersonStanding,
 		Receipt,
@@ -70,9 +71,9 @@
 				icon: UsersRound,
 			},
 			{
-				title: "Regions",
-				url: "/app/regions",
-				icon: UsersRound,
+				title: "Lists",
+				url: "/app/lists",
+				icon: List,
 			},
 		],
 		navSecondary: [

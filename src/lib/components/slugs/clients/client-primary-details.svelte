@@ -5,6 +5,7 @@
     import Checkbox from "@/components/ui/checkbox/checkbox.svelte";
     import Input from "@/components/ui/input/input.svelte";
     import Label from "@/components/ui/label/label.svelte";
+    import Separator from "@/components/ui/separator/separator.svelte";
     import Switch from "@/components/ui/switch/switch.svelte";
     import Textarea from "@/components/ui/textarea/textarea.svelte";
 
@@ -25,14 +26,17 @@
     );
 </script>
 
-<div class="grid gap-4">
-    <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2">
+<div class="grid gap-2">
+    <!-- <div class="flex items-center justify-between w-full border-b-2 border-gray-200 pb-2"> -->
+    <!-- <span class="text-sm text-foreground font-semibold">Contact Details</span> -->
         <span class="text-sm text-foreground font-semibold">Personal Details</span>
         <!-- <Button variant="outline" disabled={true} class="text-white px-3 py-[2px] text-xs font-normal"></Button> -->
-    </div>
+    <!-- </div> -->
 
-    <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start">
-        <div class="grid gap-6 px-2 text-sm">
+    <Separator />
+
+    <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start pt-4">
+        <div class="grid gap-6 text-sm">
             <Field.Field class="w-[250px]">
                 <Field.Label for="first_name">First Name</Field.Label>
                 <Input id="first_name" />
@@ -67,7 +71,7 @@
             </div>
         </div>
 
-        <div class="grid gap-6 px-2 text-sm">
+        <div class="grid gap-6 text-sm">
             <Field.Field class="w-[250px]">
                 <Field.Label>Client Since</Field.Label>
                 <Input disabled={true} value="August 19, 2025" />

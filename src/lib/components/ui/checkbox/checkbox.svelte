@@ -13,11 +13,12 @@
 	} = $props();
 </script>
 
+		<!-- "border-input bg-white dark:bg-input/30 data-[state=checked]:bg-accent data-[state=checked]:text-primary dark:data-[state=checked]:bg-primary data-[state=checked]:border-accent focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-xs border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 p-2.5 cursor-pointer", -->
 <CheckboxPrimitive.Root
 	bind:ref
 	data-slot="checkbox"
 	class={cn(
-		"border-input bg-white dark:bg-input/30 data-[state=checked]:bg-accent data-[state=checked]:text-primary dark:data-[state=checked]:bg-primary data-[state=checked]:border-accent focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-xs border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 p-2.5 cursor-pointer",
+		"border-foreground/30 bg-white dark:bg-input/30 data-[state=checked]:bg-accent data-[state=checked]:text-primary dark:data-[state=checked]:bg-primary data-[state=checked]:border-accent focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs peer flex size-4 shrink-0 items-center justify-center rounded-xs border outline-none transition-shadow focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 p-2.5 cursor-pointer",
 		className
 	)}
 	bind:checked

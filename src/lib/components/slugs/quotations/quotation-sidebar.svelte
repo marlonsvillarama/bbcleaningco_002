@@ -42,7 +42,7 @@
         
         <QuotationAddress { data } />
     </div> -->
-    <QuotationSummary { data } />
+    <!-- <QuotationSummary { data } /> -->
 
     <QuotationTotals { data } />
 

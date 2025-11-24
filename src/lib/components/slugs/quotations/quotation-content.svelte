@@ -1,12 +1,16 @@
 <script>
-    import QuotationAuditTrail from "./quotation-audit-trail.svelte";
+    import AuditTrail from "@/components/global/audit-trail.svelte";
+    import QuotationActions from "./quotation-actions.svelte";
+    // import QuotationAuditTrail from "./quotation-audit-trail.svelte";
+    import QuotationClientFlags from "./quotation-client-flags.svelte";
     import QuotationContact from "./quotation-contact.svelte";
     import QuotationDate from "./quotation-date.svelte";
     import QuotationDispatchDetails from "./quotation-dispatch-details.svelte";
     import QuotationNotes from "./quotation-notes.svelte";
     import QuotationPaymentHistory from "./quotation-payment-history.svelte";
     import QuotationServiceList from "./quotation-service-list.svelte";
-    import QuotationStatus from "./quotation-status.svelte";
+    import QuotationSummary from "./quotation-summary.svelte";
+    // import QuotationStatus from "./quotation-status.svelte";
     import QuotationThingsToBring from "./quotation-things-to-bring.svelte";
     import QuotationTotals from "./quotation-totals.svelte";
     import QuotationSidebarChannel from "./quotation-channel.svelte";
@@ -23,6 +27,27 @@
 	} from "@lucide/svelte";
 
     let { data } = $props();
+
+    let audit = [
+        {
+            id: '1',
+            date: '20250922',
+            user: 'Charles Madrid',
+            note: 'Quotation created.'
+        },
+        {
+            id: '2',
+            date: '20250923',
+            user: 'Charles Madriddd',
+            note: 'Quotation updated.'
+        },
+        {
+            id: '3',
+            date: '20250925',
+            user: 'Charles Madridz',
+            note: 'Quotation updated again.'
+        },
+    ];
 
     let views = [
 		{
@@ -67,86 +92,95 @@
         <Card.Content></Card.Content>
     </Card.Root> -->
 
-<div class="grid gap-12 items-start">
+<!-- <div class="grid gap-6 items-start"> -->
+    <!-- <div class="flex justify-between"> -->
+        <!-- <QuotationActions { data } /> -->
+    <!-- </div> -->
+
+    <div class="grid gap-12 items-start">
 
         <!-- <div class="flex items-center justify-between">
             <QuotationDate { data } /> -->
 
-        <QuotationStatus { data } />
-    <!-- </div> -->
+        <!-- </div> -->
 
-    <div class="flex gap-10 items-start">
-        <div class="grid gap-10 w-1/2">
-            <!-- <div class="flex gap-10">
-                <span class="text-sm">Service Date</span>
-            </div> -->
+        <div class="flex gap-12 items-start">
+            <div class="grid gap-12 w-1/2">
+                <!-- <div class="flex gap-10">
+                    <span class="text-sm">Service Date</span>
+                </div> -->
+                <QuotationSummary { data } />
+                
+                <QuotationContact { data } />
+            </div>
 
-            <QuotationContact { data } />
+            <div class="grid gap-12 w-1/2">
+                <QuotationNotes { data } />
+
+                <QuotationClientFlags { data } />
+            </div>
         </div>
+        
+        <Tabs.Root value="items" class="w-full flex-col justify-start gap-4">
+            <div class="flex items-center justify-between">
+                <Tabs.List
+                    class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-4"
+                >
+                    {#each views as view (view.id)}
+                        <Tabs.Trigger value={view.id}>
+                            {view.label}
+                            <!-- {#if view.badge > 0}
+                                <Badge variant="secondary">{view.badge}</Badge>
+                            {/if} -->
+                        </Tabs.Trigger>
+                    {/each}
+                </Tabs.List>
+            </div>
+            <!-- <Tabs.Content value="items" class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
+            <Tabs.Content value="items" class="grid items-start gap-6">
+                <!-- <div class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
+                    <QuotationServiceList { data } />
+                    <QuotationThingsToBring { data } />
+                <!-- </div> -->
+            </Tabs.Content>
+            <Tabs.Content value="dispatch" class="grid gap-6 items-start">
+                <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm"> -->
+                    <!-- <QuotationNotes { data } /> -->
+                    <QuotationDispatchDetails { data } />
+                <!-- </div> -->
+            </Tabs.Content>
+            <Tabs.Content value="payments" class="grid items-start">
+                <QuotationPaymentHistory { data } />
+            </Tabs.Content>
+            <!-- <Tabs.Content value="audit-trail" class="flex flex-col px-4 lg:px-6"> -->
+            <Tabs.Content value="audit-trail" class="grid items-start">
+                <AuditTrail items={audit} />
+                <!-- <QuotationAuditTrail { data } /> -->
+            </Tabs.Content>
+        </Tabs.Root>
 
-        <div class="w-1/2">
-            <QuotationNotes { data } />
-        </div>
+        <!-- <div class="grid gap-4"> -->
+        <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
+        <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm">
+            <QuotationServiceList { data } />
+            <QuotationThingsToBring { data } />
+        </div> -->
+
+        <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
+        <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm">
+            <QuotationStatus { data } />
+            <QuotationDispatchDetails { data } />
+        </div> -->
+
+        <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
+            <!-- <QuotationAuditTrail { data } /> -->
+            <!-- <QuotationThingsToBring { data } /> -->
+        <!-- </div> -->
+
+        <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start">
+            <QuotationServiceList { data } />
+            <QuotationThingsToBring { data } />
+        </div> -->
     </div>
-    
-    <Tabs.Root value="items" class="w-full flex-col justify-start gap-4">
-    	<div class="flex items-center justify-between">
-            <Tabs.List
-                class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-4"
-            >
-                {#each views as view (view.id)}
-                    <Tabs.Trigger value={view.id}>
-                        {view.label}
-                        <!-- {#if view.badge > 0}
-                            <Badge variant="secondary">{view.badge}</Badge>
-                        {/if} -->
-                    </Tabs.Trigger>
-                {/each}
-            </Tabs.List>
-        </div>
-    	<!-- <Tabs.Content value="items" class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
-        <Tabs.Content value="items" class="grid items-start gap-6">
-            <!-- <div class="grid px-8 pt-6 pb-8 gap-12 items-start bg-white rounded-md shadow-sm"> -->
-                <QuotationServiceList { data } />
-                <QuotationThingsToBring { data } />
-            <!-- </div> -->
-        </Tabs.Content>
-        <Tabs.Content value="dispatch" class="grid gap-6 items-start">
-            <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm"> -->
-                <!-- <QuotationNotes { data } /> -->
-                <QuotationDispatchDetails { data } />
-            <!-- </div> -->
-        </Tabs.Content>
-        <Tabs.Content value="payments" class="grid items-start">
-            <QuotationPaymentHistory { data } />
-        </Tabs.Content>
-    	<!-- <Tabs.Content value="audit-trail" class="flex flex-col px-4 lg:px-6"> -->
-        <Tabs.Content value="audit-trail" class="grid items-start">
-            <QuotationAuditTrail { data } />
-        </Tabs.Content>
-    </Tabs.Root>
-
-    <!-- <div class="grid gap-4"> -->
-    <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
-    <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm">
-        <QuotationServiceList { data } />
-        <QuotationThingsToBring { data } />
-    </div> -->
-
-    <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
-    <!-- <div class="grid grid-rows-2 px-8 pt-6 pb-8 gap-12 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start bg-white rounded-md shadow-sm">
-        <QuotationStatus { data } />
-        <QuotationDispatchDetails { data } />
-    </div> -->
-
-    <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start"> -->
-        <!-- <QuotationAuditTrail { data } /> -->
-        <!-- <QuotationThingsToBring { data } /> -->
-    <!-- </div> -->
-
-    <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start">
-        <QuotationServiceList { data } />
-        <QuotationThingsToBring { data } />
-    </div> -->
-</div>
+<!-- </div> -->
 <!-- </div> -->
