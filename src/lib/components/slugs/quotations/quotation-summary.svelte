@@ -16,6 +16,7 @@
     import QuotationAddress from "./quotation-address.svelte";
     import QuotationClientDetails from "./quotation-client-details.svelte";
     import QuotationDate from "./quotation-date.svelte";
+    import QuotationJobOrder from "./quotation-job-order.svelte";
 
 	// import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
 	// import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
@@ -42,11 +43,13 @@
     <Separator />
 
     <div class="pt-1 grid gap-4 text-sm">
-    <QuotationClientDetails { data } />
+        <QuotationClientDetails { data } />
 
-    <QuotationDate { data } />
-    
-    <QuotationAddress { data } />
+        <QuotationDate { data } />
+        
+        <QuotationAddress { data } />
+
+        <QuotationJobOrder { data } />
     </div>
 </div>
 

@@ -20,38 +20,22 @@
     let contentRef = $state(null);
 </script>
 
-<!-- <div class="bg-white rounded-md border-transparent font-medium grid gap-2"> -->
-<div class="grid grid-cols-[85px_1fr] items-center w-full">
+<div class="grid grid-cols-[120px_auto] items-center">
     <span class="text-sm text-foreground font-semibold">When</span>
 
-    <!-- <Separator class="mb-1" /> -->
-
-    <!-- <div class="pt-4 grid gap-2"> -->
-    <Popover.Root>
+    <Popover.Root class="">
         <Popover.Trigger
             class={cn(
                 buttonVariants({
-                    class: "text-sm font-normal bg-white border py-3"
+                    class: "text-sm font-normal bg-white border py-3 w-[200px]"
                 }),
                 !value && "text-foreground"
             )}
         >
-            <!-- <CalendarIcon /> -->
             {value ? df.format(value.toDate(getLocalTimeZone())) : 'Pick a service date'}
         </Popover.Trigger>
         <Popover.Content bind:ref={contentRef} class="w-auto p-0">
             <Calendar bind:value type="single" />
         </Popover.Content>
     </Popover.Root>
-
-    <!-- Popover -->
-    <!-- <div class="flex gap-3 items-center mt-1">
-        -- Only used for alignment of button --
-        <Button variant="secondary" class="px-2 py-1 text-xs rounded-xs"
-                onclick={() => alert('implement change address...')}
-        >
-            Change address
-        </Button>
-    </div> -->
-    <!-- <a href="." target="_self" class="text-xs font-normal underline text-blue-500 hover:text-blue-700">Change Address</a> -->
 </div>

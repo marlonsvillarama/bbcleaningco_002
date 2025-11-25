@@ -17,32 +17,14 @@
 	];
 </script>
 
-<!-- <SiteHeader { crumbs }>
-	<div class="flex flex-row text-sm gap-4 lg:flex">
-		<Input class="w-[200px]"/>
-		<Button variant="default" size="sm">
+<div class="grid gap-4 px-4">
+	<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
+		<h1 class="text-gray-700 text-xl font-semibold">Clients</h1>
+		<Button variant="default" size="sm" onclick={() => window.location = `/app/clients/new`}>
 			<PlusIcon />
 			<span class="hidden lg:inline">New Client</span>
 		</Button>
 	</div>
-</SiteHeader> -->
 
-<div
-	class="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-white *:data-[slot=card]:shadow-md flex items-center justify-between gap-4"
->
-	<h1 class="text-gray-700 text-xl font-semibold">Clients</h1>
-	<Button variant="default" size="sm" onclick={() => window.location = `/app/clients/new`}>
-		<PlusIcon />
-		<span class="hidden lg:inline">New Client</span>
-	</Button>
+	<DataTable {data} />
 </div>
-
-<DataTable {data} />
-
-<!-- <div class="flex flex-1 flex-col pb-8"> -->
-	<!-- <div class="@container/main flex flex-1 flex-col gap-4 md:gap-6 py-4 md:py-6 px-4 lg:px-6"> -->
-		<!-- <div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6"> -->
-			<!-- <DataTable {data} /> -->
-		<!-- </div> -->
-	<!-- </div> -->
-<!-- </div> -->

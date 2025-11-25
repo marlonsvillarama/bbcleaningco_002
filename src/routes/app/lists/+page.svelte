@@ -7,7 +7,6 @@
 		{
 			id: "regions",
 			label: "Regions",
-			badge: 0,
 		},
 		// {
 		// 	id: "dispatch",
@@ -16,8 +15,7 @@
 		// },
 		{
 			id: "vehicles",
-			label: "Vehicles",
-			badge: 1,
+			label: "Vehicles"
 		},
 		{
 			id: "audit-trail",
@@ -46,9 +44,6 @@
                 {#each views as view (view.id)}
                     <Tabs.Trigger value={view.id}>
                         {view.label}
-                        <!-- {#if view.badge > 0}
-                            <Badge variant="secondary">{view.badge}</Badge>
-                        {/if} -->
                     </Tabs.Trigger>
                 {/each}
             </Tabs.List>

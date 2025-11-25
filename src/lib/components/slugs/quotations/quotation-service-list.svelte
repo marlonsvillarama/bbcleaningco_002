@@ -14,15 +14,15 @@
     <Card.Header class="flex items-center justify-between">
         <Card.Title>Services</Card.Title>
         <Card.Action> -->
-        <div class="flex">
-            <Button variant="secondary" class="px-3 py-[2px] text-sm font-normal"
-                onclick={() => alert('implement add service...')}
-            >
-                <Plus size={16} />
-                <span>Add service</span>
-                <!-- <DollarSign size={16} /> Pay balance -->
-            </Button>
-        </div>
+    <div class="flex">
+        <Button variant="secondary" class="px-3 py-[2px] text-xs font-normal"
+            onclick={() => alert('implement add service...')}
+        >
+            <Plus size={16} />
+            <span>Add service</span>
+            <!-- <DollarSign size={16} /> Pay balance -->
+        </Button>
+    </div>
         <!-- </Card.Action>
     </Card.Header>
     <Separator />

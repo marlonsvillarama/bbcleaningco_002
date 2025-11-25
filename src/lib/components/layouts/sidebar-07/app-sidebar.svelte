@@ -1,6 +1,7 @@
 <script>
 	import {
 		BadgeDollarSign,
+		BrushCleaning,
 		CalendarDays,
 		ChartNoAxesCombined,
 		CircleGauge,
@@ -44,6 +45,11 @@
 				title: "Quotations",
 				url: "/app/quotations",
 				icon: Receipt,
+			},
+			{
+				title: "Job Orders",
+				url: "/app/orders",
+				icon: BrushCleaning,
 			},
 			{
 				title: "Dispatch",
