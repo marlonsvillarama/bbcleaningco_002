@@ -19,8 +19,7 @@
 		},
 		{
 			id: "audit-trail",
-			label: "Audit Trail",
-			badge: 2,
+			label: "Audit Trail"
 		},
     ];
 
@@ -36,7 +35,7 @@
         <div class="text-xs text-muted-foreground">Manage all global lists here.</div>
     </div>
         
-    <Tabs.Root value="items" class="w-full flex-col justify-start gap-4 px-4">
+    <!-- <Tabs.Root value="items" class="w-full flex-col justify-start gap-4 px-4">
         <div class="flex items-center justify-between">
             <Tabs.List
                 class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-4"
@@ -51,5 +50,5 @@
         <Tabs.Content value="audit-trail" class="grid items-start">
             Audit Trail
         </Tabs.Content>
-    </Tabs.Root>
+    </Tabs.Root> -->
 </div>

@@ -22,11 +22,14 @@
 
 <!-- <SiteHeader title='Dashboard' /> -->
 <div class="flex flex-1 flex-col">
+	<!-- <div class="flex flex-col gap-4 px-4 py-4 py-4 md:gap-6"> -->
 	<div class="@container/main flex flex-1 flex-col gap-2">
-		<div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+		<!-- <div class="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
 			<div
 				class="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-white *:data-[slot=card]:shadow-md flex items-center justify-between gap-4 px-4 lg:px-6"
-			>
+			> -->
+		<div class="grid gap-4 px-4">
+			<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
 				<h1 class="text-gray-700 text-xl font-semibold">Dashboard</h1>
 				<div class="flex gap-2 items-center">
 					<h1 class="text-fgray-900 font-medium">Region:</h1>
@@ -41,9 +44,9 @@
 				</div>
 			</div>
 			<SectionCards />
-			<div class="px-4 lg:px-6">
+			<!-- <div class="px-4 lg:px-6"> -->
 				<ChartAreaInteractive />
-			</div>
+			<!-- </div> -->
 			<DataTable {data} />
 		</div>
 	</div>

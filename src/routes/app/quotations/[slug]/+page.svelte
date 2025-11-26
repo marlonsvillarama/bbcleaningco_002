@@ -1,15 +1,4 @@
 <script>
-	// import data from "./data.js";
-	import Badge from "$lib/components/ui/badge/badge.svelte";
-	import Button from "$lib/components/ui/button/button.svelte";
-	import Input from "$lib/components/ui/input/input.svelte";
-	import * as Card from "@/components/ui/card/index";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
-	import Separator from "@/components/ui/separator/separator.svelte";
-	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
-	import DataTable from "$lib/components/data-table/quotations/data-table.svelte";
-
 	import QuotationHeader from "@/components/slugs/quotations/quotation-header.svelte";
     import QuotationSidebar from "@/components/slugs/quotations/quotation-sidebar.svelte";
 	import QuotationContent from "@/components/slugs/quotations/quotation-content.svelte";
@@ -47,12 +36,12 @@
     let { data } = $props();
 	console.log('page data', data);
 
-	let { quotation, statusList } = data;
-	console.log('page quotation', quotation);
+	let { record, statusList } = data;
+	console.log('page quotation', record);
 
-	quotation.status_text = statusList.find(d => d.id === quotation.status)?.name || '';
-	quotation.payment_status_text = statusList.find(d => d.id === quotation.payment_status)?.name || '';
-	console.log('*** page quotation ***', quotation);
+	record.status_text = statusList.find(d => d.id === record.status)?.name || '';
+	record.payment_status_text = statusList.find(d => d.id === record.payment_status)?.name || '';
+	console.log('*** page quotation ***', record);
 
 	let views = [
 		{

@@ -1,22 +1,24 @@
 <script>
     import AuditTrail from "@/components/global/audit-trail.svelte";
-    import QuotationActions from "./quotation-actions.svelte";
+    // import QuotationActions from "./quotation-actions.svelte";
     // import QuotationAuditTrail from "./quotation-audit-trail.svelte";
     // import QuotationClientFlags from "./client-flags.svelte";
     import ClientFlags from "../clients/client-flags.svelte";
     import ClientNotes from "../clients/client-notes.svelte";
-    import QuotationContact from "./quotation-contact.svelte";
-    import QuotationDate from "./quotation-date.svelte";
-    import QuotationDispatchDetails from "./quotation-dispatch-details.svelte";
-    import QuotationLinks from "./quotation-job-order.svelte";
-    import QuotationNotes from "./quotation-notes.svelte";
-    import QuotationPaymentHistory from "./quotation-payment-history.svelte";
-    import QuotationServiceList from "./quotation-service-list.svelte";
-    import QuotationSummary from "./quotation-summary.svelte";
+    import OrderNotes from "./order-notes.svelte";
+    import OrderSummary from "./order-summary.svelte";
+    import QuotationContact from "../quotations/quotation-contact.svelte";
+    import QuotationDate from "../quotations/quotation-date.svelte";
+    import QuotationDispatchDetails from "../quotations/quotation-dispatch-details.svelte";
+    import QuotationLinks from "../quotations/quotation-job-order.svelte";
+    import QuotationNotes from "../quotations/quotation-notes.svelte";
+    import QuotationPaymentHistory from "../quotations/quotation-payment-history.svelte";
+    import QuotationServiceList from "../quotations/quotation-service-list.svelte";
+    // import QuotationSummary from "../quotations/quotation-summary.svelte";
     // import QuotationStatus from "./quotation-status.svelte";
-    import QuotationThingsToBring from "./quotation-things-to-bring.svelte";
-    import QuotationTotals from "./quotation-totals.svelte";
-    import QuotationSidebarChannel from "./quotation-channel.svelte";
+    import QuotationThingsToBring from "../quotations/quotation-things-to-bring.svelte";
+    import QuotationTotals from "../quotations/quotation-totals.svelte";
+    import QuotationSidebarChannel from "../quotations/quotation-channel.svelte";
 
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";
@@ -82,7 +84,7 @@
 <div class="grid gap-12 items-start">
     <div class="flex gap-12 items-start">
         <div class="grid gap-12 w-1/2">
-            <QuotationSummary { data } />
+            <OrderSummary { data } />
             
             <QuotationContact { data } />
         </div>
@@ -92,7 +94,9 @@
 
             <ClientNotes { data } disabled={true} />
 
-            <QuotationNotes { data } />
+            <QuotationNotes { data } disabled={true} />
+
+            <OrderNotes { data } />
         </div>
     </div>
         

@@ -28,7 +28,7 @@
 		<Card.Title>Quotation Totals</Card.Title>
 	</Card.Header> -->
 
-<div class="bg-white rounded-md border-none font-medium grid gap-3">
+<div class="bg-white rounded-md border-none font-medium grid gap-2">
     <span class="text-sm text-foreground font-semibold">Totals</span>
 
     <Separator />

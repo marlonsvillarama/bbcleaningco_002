@@ -3,14 +3,11 @@
     import Separator from "@/components/ui/separator/separator.svelte";
     import Textarea from "$lib/components/ui/textarea/textarea.svelte";
 
-    let {
-        data,
-        disabled = false
-    } = $props();
+    let { data } = $props();
 </script>
 
 <div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
-    <span class="text-sm text-foreground font-semibold">Client Notes</span>
+    <span class="text-sm text-foreground font-semibold">Order Notes</span>
 
     <!-- <Separator /> -->
     
@@ -22,12 +19,7 @@
 
     <!-- <Field.Field class=""> -->
         <!-- <Field.Label for="notes">Customer Notes</Field.Label> -->
-    {#if disabled === true}
-        <Separator />
-        <p class="text-sm font-light">Heavy TikTok influencer; will film during service</p>
-    {:else}
         <Textarea id="notes" class="resize-none overflow-auto h-[150px]"></Textarea>
-    {/if}
     <!-- </Field.Field> -->
 </div>
 

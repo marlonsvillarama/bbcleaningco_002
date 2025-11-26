@@ -3,7 +3,10 @@
     import Separator from "@/components/ui/separator/separator.svelte";
     import Textarea from "$lib/components/ui/textarea/textarea.svelte";
 
-    let { data } = $props();
+    let {
+        data,
+        disabled = false
+    } = $props();
 </script>
 
 <div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
@@ -19,7 +22,12 @@
 
     <!-- <Field.Field class=""> -->
         <!-- <Field.Label for="notes">Customer Notes</Field.Label> -->
+    {#if disabled === true}
+        <Separator />
+        <p class="text-sm font-light">There is a dog in the premises; advised client to remove the dog prior to service</p>
+    {:else}
         <Textarea id="notes" class="resize-none overflow-auto h-[150px]"></Textarea>
+    {/if}
     <!-- </Field.Field> -->
 </div>
 

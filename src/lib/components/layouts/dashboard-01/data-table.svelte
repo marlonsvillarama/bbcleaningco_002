@@ -211,7 +211,8 @@
 </script>
 
 <Tabs.Root value="outline" class="w-full flex-col justify-start gap-6">
-	<div class="flex items-center justify-between px-4 lg:px-6">
+	<!-- <div class="flex items-center justify-between px-4 lg:px-6"> -->
+	<div class="flex items-center justify-between">
 		<Label for="view-selector" class="sr-only">View</Label>
 		<Select.Root type="single" bind:value={view}>
 			<Select.Trigger class="@4xl/main:hidden flex w-fit" size="sm" id="view-selector">
@@ -267,7 +268,8 @@
 			</Button>
 		</div>
 	</div>
-	<Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6">
+	<!-- <Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"> -->
+	<Tabs.Content value="outline" class="relative flex flex-col gap-4 overflow-auto">
 		<div class="overflow-hidden rounded-lg border">
 			<DragDropProvider
 				modifiers={[

@@ -554,7 +554,7 @@
 	 <!-- <div class="flex gap-3 items-center"> -->
 		<!-- <EyeIcon size={16} /> -->
 		<Button variant="link" class="text-foreground w-fit px-0 text-left"
-			onclick={() => window.location = `/app/quotations/${row.original.id}`}>
+			onclick={() => window.location = `/app/orders/${row.original.id}`}>
 			{row.original.number}
 		</Button>
 	 <!-- </div> -->

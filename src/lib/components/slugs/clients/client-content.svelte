@@ -2,6 +2,8 @@
     import AuditTrail from "@/components/global/audit-trail.svelte";
     import ClientAddressList from "./client-address-list.svelte";
     import ClientFiles from "./client-files.svelte";
+    import ClientFlags from "./client-flags.svelte";
+    import ClientNotes from "./client-notes.svelte";
     import ClientPrimaryDetails from "./client-primary-details.svelte";
     import ClientQuotations from "./client-quotations.svelte";
 
@@ -64,7 +66,17 @@
 </script>
 
 <div class="grid gap-12 items-start">
-    <ClientPrimaryDetails { data } />
+    <div class="flex gap-12 items-start">
+        <div class="grid gap-12 w-1/2">
+            <ClientPrimaryDetails { data } />
+        </div>
+
+        <div class="grid gap-12 w-1/2">
+            <ClientFlags { data } />
+
+            <ClientNotes { data } />
+        </div>
+    </div>
 
     <Tabs.Root value="address" class="w-full flex-col justify-start gap-4">
 

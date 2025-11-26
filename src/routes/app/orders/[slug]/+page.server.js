@@ -8,11 +8,15 @@ export async function load({ params, url }) {
 
 	if (slug.toLowerCase() === 'new') { return {}; }
 	
-	let urlParams = url.searchParams.has('json');
-	console.log('+load urlParams', urlParams);
+	let hasJSON = url.searchParams.has('json');
+	console.log('+load hasJSON', hasJSON);
 
-	let quotationResponse = await supabase.from("quotations").select(`
+	let orderResponse = await supabase.from("orders").select(`
 		*,
+		quotations (
+			id,
+			number
+		),
 		clients (
 			id,
 			first_name,
@@ -23,14 +27,15 @@ export async function load({ params, url }) {
 		)
 	`)
 	.eq('id', slug);
-	console.log('quotationResponse', quotationResponse);
+	console.log('orderResponse', orderResponse);
+	
 	// let obj = statusResponse.data.length > 0 ? data[0] : {};
 	// obj.edit = url.searchParams.has('edit');
 
-	let statusResponse = await supabase.from("global_list_values").select('id, name');
+	// let statusResponse = await supabase.from("global_list_values").select('id, name');
 	let obj = {
-		record: quotationResponse.data[0],
-		statusList: statusResponse.data
+		record: orderResponse.data[0],
+		// statusList: statusResponse.data
 	};
 	console.log('*** quotation server obj', obj);
 	return obj;

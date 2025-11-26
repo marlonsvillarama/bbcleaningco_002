@@ -28,12 +28,12 @@
     );
 </script>
 
-<div class="grid gap-2">
-    <span class="text-sm text-foreground font-semibold">Personal Details</span>
+<div class="grid gap-2 w-full">
+    <span class="text-sm text-foreground font-semibold">Primary Details</span>
 
     <Separator />
 
-    <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start pt-1">
+    <!-- <div class="grid grid-rows-2 gap-6 xl:grid-rows-none xl:grid-cols-2 xl:gap-12 items-start pt-1"> -->
         <div class="grid gap-3 text-sm">
             <FieldsetInput id="first_name" label="First Name" value="" placeholder="Juan" />
 
@@ -50,7 +50,7 @@
             <FieldsetReadonly id="client_since" label="Client Since" value="19 August, 2025" />
         </div>
 
-        <div class="grid grid-cols-2 gap-2 text-sm">
+        <!-- <div class="grid grid-cols-2 gap-2 text-sm">
             <Field.Field class="px-2 py-2 rounded-sm hover:bg-accent/10" orientation="horizontal">
                 <Switch id="is_active" />
                 <Field.Label class="cursor-pointer" for="is_active">Active</Field.Label>
@@ -75,6 +75,6 @@
                 <Switch id="banned" />
                 <Field.Label class="cursor-pointer" for="banned">Banned</Field.Label>
             </Field.Field>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 </div>

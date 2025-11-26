@@ -13,11 +13,13 @@
     import Separator from "@/components/ui/separator/separator.svelte";
     import Textarea from "@/components/ui/textarea/textarea.svelte";
 
-    import QuotationAddress from "./quotation-address.svelte";
-    import QuotationClientDetails from "./quotation-client-details.svelte";
-    import QuotationDate from "./quotation-date.svelte";
-    import QuotationJobOrder from "./quotation-job-order.svelte";
-    import QuotationVAT from "./quotation-vat.svelte";
+    import OrderFloorArea from "./order-floor-area.svelte";
+    import OrderQuotation from "./order-quotation.svelte";
+    import QuotationAddress from "../quotations/quotation-address.svelte";
+    import QuotationClientDetails from "../quotations/quotation-client-details.svelte";
+    import QuotationDate from "../quotations/quotation-date.svelte";
+    // import QuotationJobOrder from "./quotation-job-order.svelte";
+    import QuotationVAT from "../quotations/quotation-vat.svelte";
 
 	// import BanknoteXIcon from "@lucide/svelte/icons/banknote-x";
 	// import BrushCleaningIcon from "@lucide/svelte/icons/brush-cleaning";
@@ -50,9 +52,11 @@
         
         <QuotationAddress { data } />
 
-        <QuotationVAT { data } checked={true} disabled={true} />
+        <OrderFloorArea { data } />
 
-        <QuotationJobOrder { data } />
+        <OrderQuotation { data } />
+
+        <!-- <QuotationVAT { data } checked={true} disabled={true} /> -->
     </div>
 </div>
 
