@@ -4,12 +4,12 @@ import { error } from '@sveltejs/kit';
 /** @type {import('./$types').PageLoad} */
 export async function load({ params, url }) {
     let slug = params.slug;
-    console.log('+load slug', slug);
+    // console.log('+load slug', slug);
 
 	if (slug.toLowerCase() === 'new') { return {}; }
 	
 	let urlParams = url.searchParams.has('json');
-	console.log('+load urlParams', urlParams);
+	// console.log('+load urlParams', urlParams);
 
 	let quotationResponse = await supabase.from("quotations").select(`
 		*,
@@ -23,7 +23,7 @@ export async function load({ params, url }) {
 		)
 	`)
 	.eq('id', slug);
-	console.log('quotationResponse', quotationResponse);
+	// console.log('quotationResponse', quotationResponse);
 	// let obj = statusResponse.data.length > 0 ? data[0] : {};
 	// obj.edit = url.searchParams.has('edit');
 
@@ -32,7 +32,7 @@ export async function load({ params, url }) {
 		record: quotationResponse.data[0],
 		statusList: statusResponse.data
 	};
-	console.log('*** quotation server obj', obj);
+	// console.log('*** quotation server obj', obj);
 	return obj;
 	// if (params.slug === 'hello-world') {
 	// 	return {

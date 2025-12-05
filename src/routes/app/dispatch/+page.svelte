@@ -1,5 +1,5 @@
 <script>
-
+	import DispatchCalendar from "@/components/dispatch/dispatch-calendar.svelte";
 </script>
 
 <div class="grid gap-4 px-4">
@@ -10,4 +10,5 @@
 	</div>
 
 	<!-- Dispatch Calendar -->
+	<DispatchCalendar />
 </div>

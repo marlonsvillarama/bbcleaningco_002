@@ -34,14 +34,14 @@
 
 	const PREFIX = '/app/quotations/';
     let { data } = $props();
-	console.log('page data', data);
+	// console.log('page data', data);
 
 	let { record, statusList } = data;
-	console.log('page quotation', record);
+	// console.log('page quotation', record);
 
 	record.status_text = statusList.find(d => d.id === record.status)?.name || '';
 	record.payment_status_text = statusList.find(d => d.id === record.payment_status)?.name || '';
-	console.log('*** page quotation ***', record);
+	// console.log('*** page quotation ***', record);
 
 	let views = [
 		{

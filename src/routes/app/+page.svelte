@@ -1,10 +1,19 @@
 <script>
+	import { getContext } from "svelte";
 	import data from "./data.js";
+	import Button from "@/components/ui/button/button.svelte";
+	import * as ButtonGroup from "@/components/ui/button-group/index.js"
     import * as Select from "@/components/ui/select/index";
 	import SiteHeader from "$lib/components/layouts/dashboard-01/site-header.svelte";
 	import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
 	import DataTable from "$lib/components/layouts/dashboard-01/data-table.svelte";
+	import TaskList from "@/components/global/task-list.svelte";
+
+	import {
+		ChartNoAxesCombined,
+		List
+	} from "@lucide/svelte";
 
 	let regions = [
 		{ value: '1', text: 'NCR' },
@@ -18,6 +27,11 @@
 	const triggerRegion = $derived(
 		regions.find((v) => selectedRegion === v.value)?.text ?? "--"
 	);
+
+	const USER_CONTEXT = getContext('USER_CONTEXT');
+	const USER_ROLE = getContext('USER_ROLE');
+	let dashView = $state(USER_ROLE.dash_view || 'dash');
+	console.log('+PAGE USER_ROLE =>', USER_ROLE);
 </script>
 
 <!-- <SiteHeader title='Dashboard' /> -->
@@ -28,11 +42,24 @@
 			<div
 				class="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-white *:data-[slot=card]:shadow-md flex items-center justify-between gap-4 px-4 lg:px-6"
 			> -->
-		<div class="grid gap-4 px-4">
+		<div class="grid grid-rows-[auto_1fr] gap-4 px-4 border-0 border-red-500">
 			<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
-				<h1 class="text-gray-700 text-xl font-semibold">Dashboard</h1>
-				<div class="flex gap-2 items-center">
-					<h1 class="text-fgray-900 font-medium">Region:</h1>
+				<div class="flex items-center gap-4">
+					<!-- <h1 class="text-gray-700 text-xl font-semibold">Home</h1> -->
+					<ButtonGroup.Root class="shadow-sm rounded-sm">
+						<Button variant="outline" size="sm" onclick={() => dashView = 'dash'}
+							class="border rounded-sm bg-{dashView === 'dash' ? 'accent' : 'transparent'} hover:bg-accent/30">
+							<List />
+						</Button>
+						<Button variant="outline" size="sm" onclick={() => dashView = 'task'}
+							class="border rounded-sm bg-{dashView === 'task' ? 'accent' : 'transparent'} hover:bg-accent/30">
+							<ChartNoAxesCombined />
+						</Button>
+					</ButtonGroup.Root>
+				</div>
+				<div class="flex gap-2 items-center text-sm">
+					{#if dashView === 'dash'}
+					<span class="text-sm text-gray-900 font-medium">Region:</span>
 					<Select.Root type="single" bind:value={selectedRegion}>
 						<Select.Trigger class="w-[160px]">{triggerRegion}</Select.Trigger>
 						<Select.Content>
@@ -41,13 +68,20 @@
 							{/each}
 						</Select.Content>
 					</Select.Root>
+					{/if}
 				</div>
 			</div>
-			<SectionCards />
-			<!-- <div class="px-4 lg:px-6"> -->
-				<ChartAreaInteractive />
-			<!-- </div> -->
-			<DataTable {data} />
+
+			<div class="grid gap-4">
+				{#if dashView === 'dash'}
+					<SectionCards />
+					<ChartAreaInteractive />
+					<DataTable {data} />
+				{:else}
+					<!-- Task list goes here... -->
+					<TaskList />
+				{/if}
+			</div>
 		</div>
 	</div>
 </div>

@@ -7,7 +7,7 @@
 	} from "@lucide/svelte";
     
     const TABS = [
-        { id: 'regions', label: 'Regions' },
+        { id: 'services', label: 'Services' },
         { id: 'items', label: 'Items' },
         { id: 'vehicles', label: 'Vehicles' },
     ];
@@ -21,7 +21,7 @@
 
 <div class="grid gap-4 px-4">
 	<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
-		<h1 class="text-gray-700 text-xl font-semibold">Global Lists</h1>
+		<h1 class="text-gray-700 text-xl font-semibold">Inventory</h1>
 		<div class="flex items-center gap-3">
 			<Button variant="default" size="sm" onclick={() => window.location = `/app/inventory?type=service&new=T`}>
 				<Plus />
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 
-    <Tabs.Root value="regions" class="w-full flex-col justify-start gap-4">
+    <Tabs.Root value="services" class="w-full flex-col justify-start gap-4">
         <div class="flex items-center justify-between">
             <Tabs.List
                 class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-4"
@@ -51,8 +51,8 @@
             </Tabs.List>
         </div>
 
-        <Tabs.Content value="regions" class="grid items-start gap-6">
-			Regions
+        <Tabs.Content value="services" class="grid items-start gap-6">
+			Services
         </Tabs.Content>
 
         <Tabs.Content value="items" class="grid items-start gap-6">

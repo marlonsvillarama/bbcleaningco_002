@@ -1,4 +1,5 @@
 <script>
+	import { getContext } from "svelte";
 	import * as Collapsible from "$lib/components/ui/collapsible/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
@@ -6,6 +7,9 @@
 	let {
 		items,
 	} = $props();
+
+	const USER_CONTEXT = getContext('USER_CONTEXT');
+	const USER_ROLE = getContext('USER_ROLE') || USER_CONTEXT.defaultRole;
 
 	const navigateTo = (link) => {
 		window.location = link;
@@ -21,7 +25,7 @@
 					<Sidebar.MenuItem>
 						<!-- <Collapsible.Trigger> -->
 							<!-- {#snippet child({ props })} -->
-								<Sidebar.MenuButton tooltipContent={item.title} onclick={() => navigateTo(item.url)}>
+								<Sidebar.MenuButton class="text-sm" tooltipContent={item.title} onclick={() => navigateTo(item.url)}>
 									{#if item.icon}
 										<item.icon />
 									{/if}
