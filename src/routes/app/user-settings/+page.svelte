@@ -16,15 +16,29 @@
     ];
 
     const DASHBOARD_VIEWS = [
-        { value: 'dash', label: 'Role dashboard' },
+        { value: 'dash', label: 'Dashboard' },
         { value: 'task', label: 'Task List' },
+    ];
+
+    const WEEK_START = [
+        { value: '1', label: 'Monday' },
+        { value: '0', label: 'Sunday' },
     ];
 
     const USER_CONTEXT = getContext('USER_CONTEXT');
     const USER_ROLE = getContext('USER_ROLE');
-    let formValues = $state({});
-    formValues.dashView = USER_ROLE.dash_view;
-    const selectedDashView = $derived(DASHBOARD_VIEWS.find(v => v.value === formValues.dashView)?.label || '-');
+    console.log('+USER_SETTINGS USER_ROLE', USER_ROLE);
+    let formValues = $state({
+        dashView: USER_ROLE.dash_view,
+        weekStart: USER_ROLE.week_start.toString()
+    });
+    // formValues.dashView = USER_ROLE.dash_view;
+
+    let formTexts = $derived({
+        dashView: DASHBOARD_VIEWS.find(v => v.value === formValues.dashView)?.label || '-',
+        weekStart: WEEK_START.find(v => v.value === formValues.weekStart)?.label || '-',
+    });
+    // const selectedDashView = $derived(DASHBOARD_VIEWS.find(v => v.value === formValues.dashView)?.label || '-');
 
     // const updateDashView = (value) => {
     //     if (value === selectedDashView) { return; }
@@ -59,17 +73,31 @@
         </div>
 
         <Tabs.Content value="defaults" class="grid items-start gap-6">
-                <Field.Field class="w-[300px] gap-1">
-                    <Field.Label>Home Page View</Field.Label>
-                    <Field.Description>This is the default view in your Dashboard page</Field.Description>
-                    <Select.Root type="single" bind:value={formValues.dashView}>
-                        <Select.Trigger>{selectedDashView}</Select.Trigger>
-                        <Select.Content class="">
-                            <Select.Item value="dash">Dashboard</Select.Item>
-                            <Select.Item value="task">Task List</Select.Item>
-                        </Select.Content>
-                    </Select.Root>
-                </Field.Field>
+            <!-- Home Page View -->
+            <Field.Field class="w-[300px] gap-1">
+                <Field.Label>Home Page View</Field.Label>
+                <Field.Description>This is the default view in your Home page.</Field.Description>
+                <Select.Root type="single" bind:value={formValues.dashView}>
+                    <Select.Trigger>{formTexts.dashView}</Select.Trigger>
+                    <Select.Content class="">
+                        <Select.Item value="dash">Dashboard</Select.Item>
+                        <Select.Item value="task">Task List</Select.Item>
+                    </Select.Content>
+                </Select.Root>
+            </Field.Field>
+
+            <!-- Week Start -->
+            <Field.Field class="w-[300px] gap-1">
+                <Field.Label>Week Start</Field.Label>
+                <Field.Description>Choose the start date of your week</Field.Description>
+                <Select.Root type="single" bind:value={formValues.weekStart}>
+                    <Select.Trigger>{formTexts.weekStart}</Select.Trigger>
+                    <Select.Content class="">
+                        <Select.Item value="0">Sunday</Select.Item>
+                        <Select.Item value="6">Monday</Select.Item>
+                    </Select.Content>
+                </Select.Root>
+            </Field.Field>
         </Tabs.Content>
 
         <Tabs.Content value="defaults2" class="grid items-start gap-6">

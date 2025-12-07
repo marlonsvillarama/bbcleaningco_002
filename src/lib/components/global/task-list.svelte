@@ -26,8 +26,9 @@
 	let dashView = $state(USER_CONTEXT.dash_view || 'dash');
 </script>
 
-<div class="absolute top-[40%] left-[50%] transform-[translateX(-50%)_translateY(-50%)] gap-4 text-center grid w-[60%] max-w-[500px]">
-    <h2 class="text-3xl font-semibold mb-4">What would you like to do?</h2>
+<!-- <div class="absolute top-[40%] left-[50%] transform-[translateX(-50%)_translateY(-50%)] gap-4 text-center grid w-[60%] max-w-[500px] border"> -->
+<div class="grid gap-4 grid w-[60%] max-w-[500px] pt-4">
+    <h2 class="text-2xl font-semibold">What would you like to do?</h2>
     {#each taskList as task}
         <a href="/app/{task.link}" title={task.title}>
             <Card.Root class="border-1 duration-[150ms] border-gray-300/20 hover:border-gray-300 hover:shadow-none hover:bg-gray-300/10 hover:shadow-md rounded-lg">

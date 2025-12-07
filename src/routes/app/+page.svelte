@@ -72,7 +72,7 @@
 				</div>
 			</div>
 
-			<div class="grid gap-4">
+			<div class="grid gap-4 relative">
 				{#if dashView === 'dash'}
 					<SectionCards />
 					<ChartAreaInteractive />

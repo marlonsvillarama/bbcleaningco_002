@@ -39,6 +39,7 @@ const getEmployeeWithRoles = async (employeeId) => {
         use_admin_dash,
         is_default_role,
         dash_view,
+        week_start,
         employee:employees (id, first_name, last_name, phone_mobile, email_1),
         role:roles (
             id,
@@ -53,15 +54,29 @@ const getEmployeeWithRoles = async (employeeId) => {
         )
     `)
     .eq('employee', employeeId);
+    console.log('layout server data', data[0]);
 
     let roles = data.map(d => {
-        return {
-            ...d.role,
-            use_admin_dash: d.use_admin_dash,
-            is_default_role: d.is_default_role,
-            dash_view: d.dash_view
-        };
+        let dataObject = {};
+        for (const [k, v] of Object.entries(d)) {
+            if (['id', 'employee'].indexOf(k) >= 0) continue;
+            if (k === 'role') {
+                dataObject = { ...dataObject, ...v };
+                continue;
+            }
+
+            dataObject[k] = v;
+        }
+        return dataObject;
+        // return {
+        //     ...d.role,
+        //     use_admin_dash: d.use_admin_dash,
+        //     is_default_role: d.is_default_role,
+        //     dash_view: d.dash_view,
+        //     week_start: d.week_start
+        // };
     });
+    // console.log('layout server roles', roles[0]);
     let output = {
         ...data[0].employee,
         roles: roles.sort((a, b) => {
