@@ -95,20 +95,20 @@
 								<!-- border-transparent hover:border-gray-200  -->
 								<Button class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
 									<!-- <div class=""> -->
-									<div>AM</div>
-									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm">20</div>
+									<div class="text-gray-500">AM</div>
+									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
 									<!-- </div> -->
 								</Button>
 								<Button class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
 									<!-- <div class=""> -->
-									<span>PM</span>
-									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm">20</div>
+									<div class="text-gray-500">PM</div>
+									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">1</div>
 									<!-- </div> -->
 								</Button>
 								<Button class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
 									<!-- <div class=""> -->
-									<span>Off-time</span>
-									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm">20</div>
+									<div class="text-gray-500">Off-time</div>
+									<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
 									<!-- </div> -->
 								</Button>
 							</div>

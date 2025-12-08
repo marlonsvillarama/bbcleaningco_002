@@ -30,7 +30,8 @@
 
 	const USER_CONTEXT = getContext('USER_CONTEXT');
 	const USER_ROLE = getContext('USER_ROLE');
-	let dashView = $state(USER_ROLE.dash_view || 'dash');
+	console.log('+PAGE USER settings', USER_CONTEXT.settings);
+	let homeView = $state(USER_CONTEXT.settings.home_view || 'dash');
 	console.log('+PAGE USER_ROLE =>', USER_ROLE);
 </script>
 
@@ -47,18 +48,18 @@
 				<div class="flex items-center gap-4">
 					<!-- <h1 class="text-gray-700 text-xl font-semibold">Home</h1> -->
 					<ButtonGroup.Root class="shadow-sm rounded-sm">
-						<Button variant="outline" size="sm" onclick={() => dashView = 'dash'}
-							class="border rounded-sm bg-{dashView === 'dash' ? 'accent' : 'transparent'} hover:bg-accent/30">
+						<Button variant="outline" size="sm" onclick={() => homeView = 'dash'}
+							class="border rounded-sm bg-{homeView === 'dash' ? 'accent' : 'transparent'} hover:bg-accent/30">
 							<List />
 						</Button>
-						<Button variant="outline" size="sm" onclick={() => dashView = 'task'}
-							class="border rounded-sm bg-{dashView === 'task' ? 'accent' : 'transparent'} hover:bg-accent/30">
+						<Button variant="outline" size="sm" onclick={() => homeView = 'task'}
+							class="border rounded-sm bg-{homeView === 'task' ? 'accent' : 'transparent'} hover:bg-accent/30">
 							<ChartNoAxesCombined />
 						</Button>
 					</ButtonGroup.Root>
 				</div>
 				<div class="flex gap-2 items-center text-sm">
-					{#if dashView === 'dash'}
+					{#if homeView === 'dash'}
 					<span class="text-sm text-gray-900 font-medium">Region:</span>
 					<Select.Root type="single" bind:value={selectedRegion}>
 						<Select.Trigger class="w-[160px]">{triggerRegion}</Select.Trigger>
@@ -73,7 +74,7 @@
 			</div>
 
 			<div class="grid gap-4 relative">
-				{#if dashView === 'dash'}
+				{#if homeView === 'dash'}
 					<SectionCards />
 					<ChartAreaInteractive />
 					<DataTable {data} />

@@ -11,7 +11,7 @@
         {
             title: 'New inquiry',
             help: 'Record an ad-hoc customer inquiry',
-            link: '/book/new',
+            link: '/book',
             icon: Phone
         },
         {
@@ -30,7 +30,7 @@
 <div class="grid gap-4 grid w-[60%] max-w-[500px] pt-4">
     <h2 class="text-2xl font-semibold">What would you like to do?</h2>
     {#each taskList as task}
-        <a href="/app/{task.link}" title={task.title}>
+        <a href="/app{task.link}" title={task.title}>
             <Card.Root class="border-1 duration-[150ms] border-gray-300/20 hover:border-gray-300 hover:shadow-none hover:bg-gray-300/10 hover:shadow-md rounded-lg">
                 <Card.Content class="px-8 py-4 flex gap-6 items-center">
                     <task.icon size={24} class="" />

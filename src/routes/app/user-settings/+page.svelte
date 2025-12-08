@@ -75,6 +75,19 @@
         <Tabs.Content value="defaults" class="grid items-start gap-6">
             <!-- Home Page View -->
             <Field.Field class="w-[300px] gap-1">
+                <Field.Label>Default Role</Field.Label>
+                <Field.Description>Select a default role when logging in to the system.</Field.Description>
+                <Select.Root type="single" bind:value={formValues.dashView}>
+                    <Select.Trigger>{formTexts.dashView}</Select.Trigger>
+                    <Select.Content class="">
+                        <Select.Item value="dash">Dashboard</Select.Item>
+                        <Select.Item value="task">Task List</Select.Item>
+                    </Select.Content>
+                </Select.Root>
+            </Field.Field>
+
+            <!-- Home Page View -->
+            <Field.Field class="w-[300px] gap-1">
                 <Field.Label>Home Page View</Field.Label>
                 <Field.Description>This is the default view in your Home page.</Field.Description>
                 <Select.Root type="single" bind:value={formValues.dashView}>

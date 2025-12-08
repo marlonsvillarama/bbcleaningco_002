@@ -12,7 +12,7 @@
     } = $props();
     let calendarDate = $state(date);
     let monthText = $derived(calendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }));
-    let prevDisabled = $state(true);
+    let prevDisabled = $derived(calendarDate.getMonth() === (new Date()).getMonth() && calendarDate.getFullYear() === (new Date()).getFullYear());
 
 	const updateMonth = (value) => {
         let now = new Date();
@@ -24,6 +24,7 @@
 			calendarDate.setDate(0);
 		}
 
+        calendarDate = calendarDate;
 		date = calendarDate;
         console.log('calendarDate', date);
         monthText = calendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
@@ -36,6 +37,7 @@
     const gotoCurrent = () => {
         calendarDate = new Date();
         console.log('gotoCurrent > calendarDate ==>', calendarDate);
+        calendarDate = calendarDate;
         date = calendarDate;
 
         onnavigate();

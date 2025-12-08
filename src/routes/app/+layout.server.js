@@ -1,7 +1,7 @@
 import { supabase } from "$lib/supabaseClient";
 import { error } from '@sveltejs/kit';
 
-const getRoles = async () => {
+/* const getRoles = async () => {
     let { data } = await supabase.from("roles").select(`
             id,
             client,
@@ -18,7 +18,7 @@ const getRoles = async () => {
     // console.log(`server getCities id = "${id}"; count = ${(data || []).length}`, (data || ['error'])[0]);
 
     return data || [];
-};
+}; */
 
 const getEmployeeWithRoles = async (employeeId) => {
 
@@ -35,12 +35,18 @@ const getEmployeeWithRoles = async (employeeId) => {
         // )
 
     let { data } = await supabase.from("employee_roles").select(`
-        id,
-        use_admin_dash,
-        is_default_role,
-        dash_view,
-        week_start,
-        employee:employees (id, first_name, last_name, phone_mobile, email_1),
+        employee:employees (
+            id,
+            first_name,
+            last_name,
+            phone_mobile,
+            email_1,
+            settings:user_settings (
+                default_role,
+                home_view,
+                week_start
+            )
+        ),
         role:roles (
             id,
             name,
@@ -54,7 +60,7 @@ const getEmployeeWithRoles = async (employeeId) => {
         )
     `)
     .eq('employee', employeeId);
-    console.log('layout server data', data[0]);
+    // console.log('layout server data', data[0]);
 
     let roles = data.map(d => {
         let dataObject = {};
@@ -67,23 +73,34 @@ const getEmployeeWithRoles = async (employeeId) => {
 
             dataObject[k] = v;
         }
+
         return dataObject;
-        // return {
-        //     ...d.role,
-        //     use_admin_dash: d.use_admin_dash,
-        //     is_default_role: d.is_default_role,
-        //     dash_view: d.dash_view,
-        //     week_start: d.week_start
-        // };
     });
     // console.log('layout server roles', roles[0]);
+
+    // let userSettingsResponse = await supabase.from("user_settings").select(`
+    //     default_role,
+    //     home_view,
+    //     week_start
+    // `)
+    // .eq('employee', employeeId);
+
+    roles.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+    });
+    let settings = data[0].employee.settings.length > 0 ?
+        data[0].employee.settings[0] :
+        {
+            home_view: 'dash',
+            week_start: 0,
+            default_role: roles[0].id
+        };
     let output = {
         ...data[0].employee,
-        roles: roles.sort((a, b) => {
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-            return 0;
-        })
+        settings,
+        roles
     };
 
     return output;
@@ -97,7 +114,7 @@ export async function load({ params, url }) {
     // console.log('+LAYOUT allRoles', allRoles);
 
     let employeeRoles = await getEmployeeWithRoles(employeeId);
-    employeeRoles.defaultRole = employeeRoles.roles.find(r => r.is_default_role);
+    // employeeRoles.defaultRole = employeeRoles.roles.find(r => r.is_default_role);
     // console.log('+LAYOUT employeeRoles', employeeRoles);
     // let slug = params.slug;
     // console.log('+load slug', slug);

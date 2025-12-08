@@ -163,11 +163,11 @@
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={getMenuItemsForRole(data.navMain)} />
-		<Separator />
-		<NavQuickLinks items={getMenuItemsForRole(data.quickLinks)} />
-		<Separator />
-		<NavSecondary items={getMenuItemsForRole(data.navSecondary)} class="mt-auto" />
+		<!-- <Separator /> -->
+		<!-- <NavQuickLinks items={getMenuItemsForRole(data.quickLinks)} />
+		<Separator /> -->
 		<NavRecents />
+		<NavSecondary items={getMenuItemsForRole(data.navSecondary)} class="mt-auto" />
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser user={data.user} />

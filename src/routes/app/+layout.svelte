@@ -6,8 +6,9 @@
 
     let { children, data } = $props();
 	let { user } = data;
+	// console.log('+LAYOUT user', user);
 	setContext('USER_CONTEXT', user);
-	setContext('USER_ROLE', user.defaultRole);
+	setContext('USER_ROLE', user.roles.find(r => r.id === user.settings.default_role));
 	// console.log(`+LAYOUT USER_ROLES, type = ${Object.prototype.toString.call(user)} ==>`, user);
 
 	// let useAdminDashboard = (user.defaultRole || {}).use_admin_dash === true;

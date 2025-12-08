@@ -1,14 +1,16 @@
 <script>
-	import data from "./data.js";
+	// import data from "./data.js";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
 	import PlusIcon from "@tabler/icons-svelte/icons/plus";
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
-	import DataTable from "$lib/components/data-table/clients/data-table.svelte";
+	// import DataTable from "@/components/data-table/clients-old/data-table.svelte";
+	import DataTable from "@/components/data-table/clients-old/data-table.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
 	// import DataTable from "$lib/components/layouts/dashboard-01/data-table.svelte";
 
+	let { data } = $props();
 	let crumbs = [
 		{
 			text: 'Clients',
