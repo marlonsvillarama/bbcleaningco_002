@@ -3,95 +3,128 @@
     import { getContext, onMount } from "svelte";
     import Button from "@/components/ui/button/button.svelte";
     import * as Dialog from "@/components/ui/dialog/index";
+    import * as Select from "@/components/ui/select/index";
     // import DateNavigator from "@/components/global/date-navigator.svelte";
     import DispatchCalendar from "@/components/dispatch/dispatch-calendar.svelte";
 
+    import {
+        RotateCcw,
+        Save
+    } from "@lucide/svelte";
+
+    let { data } = $props();
+    let {
+        lists,
+        cities,
+        provinces,
+        regions
+    } = data;
+
+    const FORM_KEYS = [ 'city', 'date', 'province', 'region', 'slot' ];
     let selectedDate = $state(new Date());
     let selectedSlot = $state('AM');
     let openCalendar = $state(false);
     let hasSelectedDateSlot = $state(false);
     let selectedDateSlotText = $derived.by(() => {
-        return `${selectedDate.toLocaleDateString('en-US', {
+        return selectedDate ?
+        `${selectedDate.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
-        })} (${selectedSlot})`
+        })} (${selectedSlot})` : 'Open calendar'
     });
 
-    const USER_CONTEXT = getContext('USER_CONTEXT');
-	let calendarDate = $state(new Date());
-	let weeks = $state([]);
-	let weekDays = $state([]);
+    let formValues = $state({});
+    let selectedRegion = $state('');
+    let selectedProvince = $state('');
+    let selectedCity = $state('');
+    let provinceCities = $state([]);
+    let isValidForm = $state(false);
 
-    const onSelectSlot = () => {
-        hasSelectedDateSlot = true;
-        openCalendar = false;
+    const onSelectCity = () => {
+        selectedCity = cities.find(c => c.id === formValues.city);
+        console.log('+onSelectCity formValues', formValues);
+        validateForm();
     };
 
-	const updateMonth = () => {
-		calendarDate = calendarDate;
+    const onSelectProvince = () => {
+        console.log(`onSelectProvince formValues`, formValues);
+        selectedProvince = provinces.find(p => p.id === formValues.province) || '';
+        console.log(`onSelectProvince selectedProvince`, selectedProvince);
 
-		let currentDate = $state(new Date(calendarDate));
-		let startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-		let endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        selectedRegion = regions.find(r => r.id === selectedProvince.region) || '';
+        formValues.region = selectedProvince?.region || '';
+        console.log(`onSelectProvince selectedRegion`, selectedRegion);
 
-		weeks = [];
-		let monthDates = [];
-		let dayValue = startOfMonth.getDate();
-		do {
-			currentDate.setDate(dayValue);
+        provinceCities = cities.filter(c => c.province === selectedProvince.id) || [];
+        provinceCities.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+        });
+        console.log(`onSelectProvince provinceCities`, provinceCities);
 
-			let dateOfMonth = new Date(currentDate);
-			monthDates.push(dateOfMonth);
-			if (dateOfMonth.getDate() === 1 ||
-				(dateOfMonth.getDay().toString() === USER_CONTEXT.settings.week_start.toString())
-			) {
-				weeks.push([]);
-			}
-			
-			weeks[weeks.length - 1].push(dateOfMonth);
-			dayValue++;
-		} while (dayValue <= endOfMonth.getDate());
+        formValues.city = '';
+        selectedCity = '';
+        validateForm();
+    };
 
-		if (weeks[0].length < 7) {
-			for (let i = 0, count = 7 - (weeks[0].length); i < count; i++) {
-				weeks[0].unshift('');
-			}
-		}
+    const onSelectSlot = () => {
+        formValues.date = selectedDate;
+        formValues.slot = selectedSlot;
+        hasSelectedDateSlot = true;
+        openCalendar = false;
+        validateForm();
+    };
 
-		if (weeks[weeks.length - 1].length < 7) {
-			for (let i = 0, count = 7 - (weeks[weeks.length - 1].length); i < count; i++) {
-				weeks[weeks.length - 1].push('');
-			}
-		}
-		
-		weeks = weeks;
-		weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
-	};
+    const resetForm = () => {
+        if (confirm('Are you sure you want to clear all form fields?') === false) return;
 
-	onMount(() => {
-		updateMonth();
-	});
+        let fields = [ 'city', 'date', 'province', 'region', 'slot' ];
+        FORM_KEYS.forEach(key => formValues[key] = '');
+
+        selectedDate = '';
+        selectedSlot = '';
+        selectedRegion = '';
+        selectedProvince = '';
+        selectedCity = '';
+    };
+
+    const submitForm = () => {
+        if (validateForm() === false) { return; }
+
+        alert('implement submitForm');
+    };
+
+    const validateForm = () => {
+        let count = 0;
+        FORM_KEYS.forEach(key => {
+            if (formValues[key]) count++;
+        });
+
+        console.log(`count = ${count}; fields = ${FORM_KEYS.length}; formValues ==>`, formValues);
+        isValidForm = FORM_KEYS.length.toString() === count.toString();
+        return isValidForm;
+    };
 </script>
 
 <div class="grid gap-4 px-4">
 	<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
 		<h1 class="text-gray-700 text-xl font-semibold">New Inquiry</h1>
 		<Button variant="default" size="sm" class="disabled bg-transparent shadow-none hover:bg-transparent cursor-arrow">
-			<!-- <Save /> -->
 			<span class="hidden lg:inline">&nbsp;</span>
 		</Button>
 	</div>
 
-	<div class="grid items-start px-4 py-3">
+	<div class="grid gap-6 items-start px-4 py-3">
 
         <!-- Select the date -->
         <div class="grid grid-cols-[150px_1fr] items-center w-full">
-            <span class="text-sm text-foreground font-semibold">Select Date</span>
+            <span class="text-sm text-foreground font-semibold">Proposed Date</span>
             <div class="flex items-center gap-2">
 				<!-- Dispatch calendar dialog -->
 				<Dialog.Root bind:open={openCalendar}>
-					<Dialog.Trigger class="text-sm font-normal bg-white border py-1 w-[240px]">
+					<Dialog.Trigger class="text-sm font-normal bg-white border py-1 w-[300px]">
                         {#if hasSelectedDateSlot}
                             {selectedDateSlotText}
                         {:else}
@@ -100,63 +133,72 @@
 					</Dialog.Trigger>
 					<Dialog.Content class="w-[90%] min-w-[1024px] max-w-[1280px] max-h-[90%] overflow-scroll">
                         <DispatchCalendar bind:value={selectedDate} bind:slot={selectedSlot} onselect={onSelectSlot} />
-						<!-- <DateNavigator bind:date={calendarDate} onnavigate={updateMonth} /> -->
-
-						<!-- <div class="grid mb-8"> -->
-						<!-- Calendar Header -->
-							<!-- <div class="flex items-center justify-between">
-								<h1>{calendarDate}</h1>
-							</div> -->
-
-							<!-- <div class="grid border-1 border-gray-300 rounded-sm grid-cols-7">
-								{#each weekDays as weekDay, i}
-									<div class="bg-accent/20 text-xs font-bold px-3 py-2 {i < weekDays.length - 1 ? 'border-r': ''} border-b border-gray-300">{weekDay}</div>
-								{/each}
-								{#each weeks as week, i}
-									{#each week as day, j}
-										<div
-											class={cn(
-												"grid items-center gap-2 cell font-normal min-h-[120px] px-3 py-2 border-gray-300",
-												j < week.length - 1 ? 'border-r': '',
-												i < weeks.length - 1 ? 'border-b' : '',
-												!!day === true ? '' : 'bg-gray-50',
-												// !!day === false ? 'bg-[linear-gradient(135deg,#98cd8d_4.17%,#f6f0cf_4.17%,#f6f0cf_50%,#98cd8d_50%,#98cd8d_54.17%,#f6f0cf_54.17%,#f6f0cf_100%)]' : '',
-												// 'bg-size-[16.97px_16.97px]'
-												)}>
-											<span class="text-md font-bold">{day ? day.getDate() : ''}</span>
-											{#if day}
-												<div class="grid gap-2 pb-2">
-													<-- border-transparent hover:border-gray-200  --
-													<Button onclick={() => selectDateAndSlot(day.getFullYear(), day.getMonth(), day.getDate(), 'AM')}
-														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<-- <div class=""> --
-														<div class="text-gray-500">AM</div>
-														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
-														<-- </div> --
-													</Button>
-													<Button
-														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<-- <div class=""> --
-														<div class="text-gray-500">PM</div>
-														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">1</div>
-														<-- </div> --
-													</Button>
-													<Button
-														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<-- <div class=""> --
-														<div class="text-gray-500">Off-time</div>
-														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
-														<-- </div> --
-													</Button>
-												</div>
-											{/if}
-										</div>
-									{/each}
-								{/each}
-							</div> -->
-						<!-- </div> -->
 					</Dialog.Content>
 				</Dialog.Root>
+            </div>
+        </div>
+
+        <!-- Region (dynamic from Province) -->
+        <div class="grid grid-cols-[150px_1fr] items-center w-full">
+            <span class="text-sm text-foreground font-semibold">Region</span>
+            <div class="flex items-center gap-2">
+                <span class="text-sm pl-2">
+                    {selectedRegion ? `${selectedRegion.name} (${selectedRegion.official})` : '-- Select a province --'}
+                </span>
+            </div>
+        </div>
+
+        <!-- Select the province -->
+        <div class="grid grid-cols-[150px_1fr] items-center w-full">
+            <span class="text-sm text-foreground font-semibold">Province</span>
+            <div class="flex items-center gap-2">
+				<Select.Root type="single" bind:value={formValues.province} onValueChange={onSelectProvince}>
+					<Select.Trigger class="text-sm font-normal bg-white border py-1 w-[300px]">
+                        {selectedProvince?.name || '--'}
+					</Select.Trigger>
+                    <Select.Content>
+                        {#each provinces as province}
+                            <Select.Item class="px-3 py-1 text-sm" value={province.id}>
+                                {province.name}
+                            </Select.Item>
+                        {/each}
+                    </Select.Content>
+				</Select.Root>
+            </div>
+        </div>
+
+        <!-- Select the city -->
+        <div class="grid grid-cols-[150px_1fr] items-center w-full">
+            <span class="text-sm text-foreground font-semibold">City</span>
+            <div class="flex items-center gap-2">
+				<Select.Root type="single" bind:value={formValues.city} onValueChange={onSelectCity}
+                    disabled={!!selectedProvince === false}>
+					<Select.Trigger class="text-sm font-normal bg-white border py-1 w-[300px]">
+                        {selectedCity?.name || '--'}
+					</Select.Trigger>
+                    <Select.Content>
+                        {#each provinceCities as city}
+                            <Select.Item class="px-3 py-1 text-sm" value={city.id}>
+                                {city.name}
+                            </Select.Item>
+                        {/each}
+                    </Select.Content>
+				</Select.Root>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="grid grid-cols-[150px_1fr] items-center w-full">
+            <span class="text-sm text-foreground font-semibold"></span>
+            <div class="flex items-center gap-3">
+                <Button size="sm" disabled={isValidForm === false} onclick={submitForm}>
+                    <Save size={16} />
+                    Create inquiry
+                </Button>
+                <Button variant="secondary" size="sm" onclick={resetForm}>
+                    <RotateCcw size={16} />
+                    Reset form
+                </Button>
             </div>
         </div>
 

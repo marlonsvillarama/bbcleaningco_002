@@ -11,7 +11,7 @@
         {
             title: 'New inquiry',
             help: 'Record an ad-hoc customer inquiry',
-            link: '/book',
+            link: '/book-v2',
             icon: Phone
         },
         {

@@ -11,6 +11,16 @@
         onselect
     } = $props();
 
+    const DAYS_OF_WEEK = [
+        'SUN',
+        'MON',
+        'TUE',
+        'WED',
+        'THU',
+        'FRI',
+        'SAT',
+        'SUN'
+    ];
     const USER_CONTEXT = getContext('USER_CONTEXT');
 
     const parseValue = () => {
@@ -36,6 +46,10 @@
         onselect();
     };
 
+    const normalizeDate = (date) => {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
+
 	const updateMonth = () => {
 		calendarDate = calendarDate;
 
@@ -46,18 +60,19 @@
 		weeks = [];
 		let monthDates = [];
 		let dayValue = startOfMonth.getDate();
+        const NOW = normalizeDate(new Date());
 		do {
 			currentDate.setDate(dayValue);
 
-			let dateOfMonth = new Date(currentDate);
+			let dateOfMonth = normalizeDate(new Date(currentDate));
 			monthDates.push(dateOfMonth);
 			if (dateOfMonth.getDate() === 1 ||
 				(dateOfMonth.getDay().toString() === USER_CONTEXT.settings.week_start.toString())
 			) {
 				weeks.push([]);
 			}
-			
-			weeks[weeks.length - 1].push(dateOfMonth);
+
+			weeks[weeks.length - 1].push(dateOfMonth.getTime() >= NOW.getTime() ? dateOfMonth : '');
 			dayValue++;
 		} while (dayValue <= endOfMonth.getDate());
 
@@ -74,7 +89,8 @@
 		}
 		
 		weeks = weeks;
-		weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
+		// weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
+		weekDays = DAYS_OF_WEEK.slice(USER_CONTEXT.settings.week_start, 7 + USER_CONTEXT.settings.week_start);
 	};
 
 	let calendarDate = $state(parseValue(value) || new Date());
