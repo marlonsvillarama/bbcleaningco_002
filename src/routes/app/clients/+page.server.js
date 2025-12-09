@@ -6,6 +6,11 @@ const getClients = async () => {
         id,
         first_name,
         last_name,
+        phone_1,
+        phone_2,
+        email_1,
+        email_2,
+        notes,
         contacts:client_contacts (
             id,
             name,

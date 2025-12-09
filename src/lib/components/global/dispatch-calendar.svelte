@@ -1,16 +1,15 @@
 <script>
-	import { getContext, onMount, setContext } from "svelte";
-	import { cn } from "@/utils";
+    import { cn } from "@/utils";
+    import { getContext, setContext } from "svelte";
 	import Button from "@/components/ui/button/button.svelte";
 	import DateNavigator from "@/components/global/date-navigator.svelte";
-	// import DispatchCalendar from "@/components/dispatch/dispatch-calendar.svelte";
 	import {
 		ChevronLeft,
 		ChevronRight,
 		Plus
 	} from "@lucide/svelte";
 
-    const USER_CONTEXT = getContext('USER_CONTEXT');
+    const USER_ROLE = getContext('USER_ROLE');
 	let calendarDate = $state(new Date());
 
 	let weeks = $state([]);
@@ -31,7 +30,7 @@
 			let dateOfMonth = new Date(currentDate);
 			monthDates.push(dateOfMonth);
 			if (dateOfMonth.getDate() === 1 ||
-				(dateOfMonth.getDay().toString() === USER_CONTEXT.settings.week_start.toString())
+				(dateOfMonth.getDay().toString() === USER_ROLE.week_start.toString())
 			) {
 				weeks.push([]);
 			}
@@ -58,6 +57,7 @@
 
 	onMount(() => updateMonth());
 </script>
+
 
 <div class="flex-1 grid gap-4 px-4 h-full">
 	<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">

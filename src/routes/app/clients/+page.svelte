@@ -11,12 +11,13 @@
 	// import DataTable from "$lib/components/layouts/dashboard-01/data-table.svelte";
 
 	let { data } = $props();
-	let crumbs = [
-		{
-			text: 'Clients',
-			url: '/app/clients'
-		}
-	];
+	console.log('+PAGE data', data);
+	// let crumbs = [
+	// 	{
+	// 		text: 'Clients',
+	// 		url: '/app/clients'
+	// 	}
+	// ];
 </script>
 
 <div class="grid gap-4 px-4">
@@ -28,5 +29,7 @@
 		</Button>
 	</div>
 
-	<DataTable {data} />
+	{#if data.length > 0}
+		<DataTable {data} />
+	{/if}
 </div>

@@ -66,11 +66,11 @@ export async function load({ params, url }) {
     
     // let urlParams = url.searchParams.has('json');
     // console.log('+load urlParams', urlParams);
-    let { data } = await getListValues();
+    let data = await getListValues();
     // obj.edit = url.searchParams.has('edit');
 
     console.log('+PAGE listValues', data);
-    return data;
+    return { data };
 
     // if (params.slug === 'hello-world') {
     // 	return {

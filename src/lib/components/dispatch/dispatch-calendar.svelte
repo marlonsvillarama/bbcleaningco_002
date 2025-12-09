@@ -1,77 +1,128 @@
 <script>
     import { cn } from "@/utils";
-    import { getContext } from "svelte";
-    import { appState } from "@/data/state.svelte";
-    
-    let { date } = $props();
-    const USER_ROLE = getContext('USER_ROLE');
-    // const CALENDAR_DATE = getContext('CALENDAR_DATE')() || new Date();
-    // console.log('+CALENDAR CALENDAR_DATE', CALENDAR_DATE());
+    import { getContext, onMount } from "svelte";
+    import Button from "@/components/ui/button/button.svelte";
+    import DateNavigator from "@/components/global/date-navigator.svelte";
 
-    // $effect(() => console.log('+CALENDAR calendarDate', appState.calendarDate));
+    let {
+        value = $bindable(),
+        slot = $bindable(),
+        open = $bindable(),
+        onselect
+    } = $props();
 
-    // let now = new Date();
-    // console.log('+CALENDAR appState.calendarDate', appState.calendarDate);
-    let currentDate = $state(new Date(date));
-    let startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    let endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    const USER_CONTEXT = getContext('USER_CONTEXT');
 
-    let weeks = [];
-    let monthDates = [];
-    let dayValue = startOfMonth.getDate();
-    do {
-        currentDate.setDate(dayValue);
+    const parseValue = () => {
+        if (!value) return '';
 
-        let dateOfMonth = new Date(currentDate);
-        monthDates.push(dateOfMonth);
-        if (dateOfMonth.getDate() === 1 ||
-            (dateOfMonth.getDay().toString() === USER_ROLE.week_start.toString())
-        ) {
-            weeks.push([]);
+        if (Object.prototype.toString.call(value) === '[object Date]') {
+            return value;
         }
-        
-        weeks[weeks.length - 1].push(dateOfMonth);
-        dayValue++;
-    } while (dayValue <= endOfMonth.getDate());
 
-    if (weeks[0].length < 7) {
-        for (let i = 0, count = 7 - (weeks[0].length); i < count; i++) {
-            weeks[0].unshift('');
-        }
-    }
+        if (value.length < 8) return '';
 
-    if (weeks[weeks.length - 1].length < 7) {
-        for (let i = 0, count = 7 - (weeks[weeks.length - 1].length); i < count; i++) {
-            weeks[weeks.length - 1].push('');
-        }
-    }
-    
-    let weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
-    console.log('weekDays', weekDays);
+        let year = value.slice(0, 4);
+        let month = value.slice(4, 6);
+        let day = value.slice(6);
+        return new Date(year, parseInt(month) - 1, parseInt(day));
+    };
+
+    const selectDateAndSlot = (d, s) => {
+        value = d;
+        slot = s;
+        open = false;
+        console.log(`slot = ${s}; value ==> ${value}; open = ${open}`);
+        onselect();
+    };
+
+	const updateMonth = () => {
+		calendarDate = calendarDate;
+
+		let currentDate = $state(new Date(calendarDate));
+		let startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+		let endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+		weeks = [];
+		let monthDates = [];
+		let dayValue = startOfMonth.getDate();
+		do {
+			currentDate.setDate(dayValue);
+
+			let dateOfMonth = new Date(currentDate);
+			monthDates.push(dateOfMonth);
+			if (dateOfMonth.getDate() === 1 ||
+				(dateOfMonth.getDay().toString() === USER_CONTEXT.settings.week_start.toString())
+			) {
+				weeks.push([]);
+			}
+			
+			weeks[weeks.length - 1].push(dateOfMonth);
+			dayValue++;
+		} while (dayValue <= endOfMonth.getDate());
+
+		if (weeks[0].length < 7) {
+			for (let i = 0, count = 7 - (weeks[0].length); i < count; i++) {
+				weeks[0].unshift('');
+			}
+		}
+
+		if (weeks[weeks.length - 1].length < 7) {
+			for (let i = 0, count = 7 - (weeks[weeks.length - 1].length); i < count; i++) {
+				weeks[weeks.length - 1].push('');
+			}
+		}
+		
+		weeks = weeks;
+		weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
+	};
+
+	let calendarDate = $state(parseValue(value) || new Date());
+    let calendarSlot = $state(slot || 'AM');
+	let weeks = $state([]);
+	let weekDays = $state([]);
+
+	onMount(() => {
+		updateMonth();
+	});
 </script>
 
-<div class="w-full grid mb-8">
-    <!-- Calendar Header -->
-        <div class="flex items-center justify-between">
-            <h1>{appState.calendarDate}</h1>
-        </div>
+<div class="w-full grid gap-4">
+    <DateNavigator bind:date={calendarDate} onnavigate={updateMonth} />
 
-    <div class="grid border-1 border-gray-200 rounded-sm grid-cols-7">
+    <div class="grid border-1 border-gray-300 rounded-sm grid-cols-7">
         {#each weekDays as weekDay, i}
-            <div class="cell text-xs font-bold px-3 py-2 {i < weekDays.length - 1 ? 'border-r': ''} border-b border-gray-200">{weekDay}</div>
+            <div class="bg-accent/20 text-xs font-bold px-3 py-2 {i < weekDays.length - 1 ? 'border-r': ''} border-b border-gray-300">{weekDay}</div>
         {/each}
         {#each weeks as week, i}
-            {#each week as day, j}
+            {#each week as d, j}
                 <div
                     class={cn(
-                        "cell text-xs font-normal min-h-[120px] px-3 py-2 border-gray-200",
+                        "grid items-center gap-2 cell font-normal min-h-[120px] px-3 py-2 border-gray-300",
                         j < week.length - 1 ? 'border-r': '',
                         i < weeks.length - 1 ? 'border-b' : '',
-                        !!day === false ? 'bg-gray-50' : 'bg-transparent',
-                        // !!day === false ? 'bg-[linear-gradient(135deg,#98cd8d_4.17%,#f6f0cf_4.17%,#f6f0cf_50%,#98cd8d_50%,#98cd8d_54.17%,#f6f0cf_54.17%,#f6f0cf_100%)]' : '',
-                        'bg-size-[16.97px_16.97px]'
-                        )}>
-                    {day ? day.getDate() : ''}
+                        !!d === true ? '' : 'bg-gray-50',
+                    )}>
+                    <span class="text-md font-bold">{d ? d.getDate() : ''}</span>
+                    {#if d}
+                        <div class="grid gap-2 pb-2">
+                            <Button onclick={() => selectDateAndSlot(d, 'AM')}
+                                class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
+                                <div class="text-gray-500">AM</div>
+                                <div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
+                            </Button>
+                            <Button onclick={() => selectDateAndSlot(d, 'PM')}
+                                class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
+                                <div class="text-gray-500">PM</div>
+                                <div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">1</div>
+                            </Button>
+                            <Button onclick={() => selectDateAndSlot(d, 'Off')}
+                                class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
+                                <div class="text-gray-500">Off-time</div>
+                                <div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
+                            </Button>
+                        </div>
+                    {/if}
                 </div>
             {/each}
         {/each}

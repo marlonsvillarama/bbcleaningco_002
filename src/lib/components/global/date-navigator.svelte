@@ -44,16 +44,18 @@
     };
 </script>
 
-<div class="flex items-center gap-2">
-    <Button variant="outline" size="sm" class="shadow-sm" onclick={() => updateMonth(-1)} disabled={prevDisabled}>
-        <ChevronLeft />
-    </Button>
-    <div class="text-sm font-semibold bg-accent/40 rounded-xs px-4 py-1.5 w-[200px] text-center">
-        {monthText}
+<div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+        <Button variant="outline" size="sm" class="shadow-sm" onclick={() => updateMonth(-1)} disabled={prevDisabled}>
+            <ChevronLeft />
+        </Button>
+        <div class="text-sm font-semibold bg-accent/40 rounded-xs px-4 py-1.5 w-[200px] text-center">
+            {monthText}
+        </div>
+        <Button variant="outline" size="sm" class="shadow-sm" onclick={() => updateMonth(1)}>
+            <ChevronRight />
+        </Button>
     </div>
-    <Button variant="outline" size="sm" class="shadow-sm" onclick={() => updateMonth(1)}>
-        <ChevronRight />
-    </Button>
 
     <Button variant="secondary" class="ml-8" onclick={gotoCurrent}>
         Go to current month

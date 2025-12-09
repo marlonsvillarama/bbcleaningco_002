@@ -1,33 +1,33 @@
 <script>
-	import { cn } from "@/utils.js";
-	import { getContext, onMount } from "svelte";
-	import Button from "@/components/ui/button/button.svelte";
-	import * as Dialog from "@/components/ui/dialog/index.js";
-	import * as Popover from "@/components/ui/popover/index.js";
-	import * as Sidebar from "@/components/ui/sidebar/index.js";
-	import DateNavigator from "@/components/global/date-navigator.svelte";
-	import {
-		Check,
-		ChevronRight,
-		Plus,
-		Save
-	} from "@lucide/svelte";
-    import { Provider } from "@/components/ui/tooltip/index.js";
+    import { cn } from "@/utils";
+    import { getContext, onMount } from "svelte";
+    import Button from "@/components/ui/button/button.svelte";
+    import * as Dialog from "@/components/ui/dialog/index";
+    // import DateNavigator from "@/components/global/date-navigator.svelte";
+    import DispatchCalendar from "@/components/dispatch/dispatch-calendar.svelte";
 
-	let { data } = $props();
+    let selectedDate = $state(new Date());
+    let selectedSlot = $state('AM');
+    let openCalendar = $state(false);
+    let hasSelectedDateSlot = $state(false);
+    let selectedDateSlotText = $derived.by(() => {
+        return `${selectedDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })} (${selectedSlot})`
+    });
 
     const USER_CONTEXT = getContext('USER_CONTEXT');
-	const STEPS = [
-		{ id: 1, name: 'Reserve the date' },
-		{ id: 2, name: 'Get the location' },
-		{ id: 3, name: 'Select the date' },
-		{ id: 4, name: 'Select the date' },
-	];
-
-	let currentStep = $state(1);
 	let calendarDate = $state(new Date());
 	let weeks = $state([]);
 	let weekDays = $state([]);
+
+    const onSelectSlot = () => {
+        hasSelectedDateSlot = true;
+        openCalendar = false;
+    };
+
 	const updateMonth = () => {
 		calendarDate = calendarDate;
 
@@ -69,59 +69,8 @@
 		weekDays = weeks[1].map(d => d.toLocaleDateString(undefined, { weekday: 'short'}).toUpperCase());
 	};
 
-	const showStep = (step) => {
-		if (step > currentStep) {
-			console.log(`showStep step = ${step}; currentStep = ${currentStep}`);
-			return;
-		}
-
-		currentStep = step;
-		console.log(`showStep (${step}); currentStep ==> ${currentStep}`)
-
-		let steps = document.getElementById('stepper-content').querySelectorAll('.step');
-		console.log('steps', steps);
-		for (let i = 0, count = steps.length; i < count; i++) {
-			let st = steps[i];
-			if (
-				st.dataset.step.toString() === currentStep.toString() &&
-				st.classList.contains('hidden')
-			) {
-				st.classList.remove('hidden');
-				continue;
-			}
-
-			if (st.classList.contains('hidden') === false) {
-				st.classList.add('hidden');
-			}
-		}
-	};
-
-	const initStepper = () => {
-		currentStep = 1;
-		showStep(currentStep);
-	};
-
-	const moveToNext = () => {
-		if (validateStep(currentStep) === false) {
-			console.log('invalid step');
-			return;
-		}
-
-		currentStep = currentStep + 1;
-	};
-
-	const selectDateAndSlot = (year, month, day, slot) => {
-		let dt = new Date(year, month, day);
-
-	};
-
-	const validateStep = (step) => {
-		return true;
-	};
-
 	onMount(() => {
 		updateMonth();
-		initStepper();
 	});
 </script>
 
@@ -134,61 +83,32 @@
 		</Button>
 	</div>
 
-	<div class="grid grid-cols-[320px_1fr] items-start px-4 py-3">
-		<!-- <Sidebar.Provider>
-			<Sidebar.Root>
-				<Sidebar.Content>
-					<Sidebar.Group>
-						<Sidebar.Menu></Sidebar.Menu>
-					</Sidebar.Group>
-				</Sidebar.Content>
-			</Sidebar.Root>
-		</Sidebar.Provider> -->
-		<div class="border-none border-red-500 grid gap-6">
-			{#each STEPS as step}
-				<div class="flex items-center gap-4">
-					<div
-						class={cn(
-							"flex items-center justify-center text-md font-semibold w-[32px] h-[32px] rounded-[50%]",
-							step.id > currentStep ?
-								'bg-gray-100' :
-								(step.id === currentStep ? 'bg-gray-400' : 'bg-accent')
-						)}>
-						{#if step.id < currentStep}
-							<Check size={16} />
-						{:else}
-							<span></span>
-						{/if}
-					</div>
-					<button class="flex-1 text-start  px-2 py-1 w-[90%] grid gap-1 cursor-pointer hover:underline" onclick={() => showStep(step.id)}>
-						<div class="flex items-center justify-between text-sm font-semibold pr-4">
-							<span>{step.name}</span>
-							{#if currentStep === step.id}
-								<ChevronRight />
-							{/if}
-						</div>
-					</button>
-				</div>
-			{/each}
-		</div>
+	<div class="grid items-start px-4 py-3">
 
-		<div class="border border-blue-500" id="stepper-content">
-			<div class="step hidden" data-step="1">
+        <!-- Select the date -->
+        <div class="grid grid-cols-[150px_1fr] items-center w-full">
+            <span class="text-sm text-foreground font-semibold">Select Date</span>
+            <div class="flex items-center gap-2">
 				<!-- Dispatch calendar dialog -->
-				<Dialog.Root>
-					<Dialog.Trigger>
-						Check calendar
+				<Dialog.Root bind:open={openCalendar}>
+					<Dialog.Trigger class="text-sm font-normal bg-white border py-1 w-[240px]">
+                        {#if hasSelectedDateSlot}
+                            {selectedDateSlotText}
+                        {:else}
+                            Open calendar
+                        {/if}
 					</Dialog.Trigger>
-					<Dialog.Content class="w-[90%] max-w-[1128px] max-h-[90%] overflow-scroll">
-						<DateNavigator bind:date={calendarDate} onnavigate={updateMonth} />
+					<Dialog.Content class="w-[90%] min-w-[1024px] max-w-[1280px] max-h-[90%] overflow-scroll">
+                        <DispatchCalendar bind:value={selectedDate} bind:slot={selectedSlot} onselect={onSelectSlot} />
+						<!-- <DateNavigator bind:date={calendarDate} onnavigate={updateMonth} /> -->
 
-						<div class="grid mb-8">
+						<!-- <div class="grid mb-8"> -->
 						<!-- Calendar Header -->
 							<!-- <div class="flex items-center justify-between">
 								<h1>{calendarDate}</h1>
 							</div> -->
 
-							<div class="grid border-1 border-gray-300 rounded-sm grid-cols-7">
+							<!-- <div class="grid border-1 border-gray-300 rounded-sm grid-cols-7">
 								{#each weekDays as weekDay, i}
 									<div class="bg-accent/20 text-xs font-bold px-3 py-2 {i < weekDays.length - 1 ? 'border-r': ''} border-b border-gray-300">{weekDay}</div>
 								{/each}
@@ -206,46 +126,39 @@
 											<span class="text-md font-bold">{day ? day.getDate() : ''}</span>
 											{#if day}
 												<div class="grid gap-2 pb-2">
-													<!-- border-transparent hover:border-gray-200  -->
+													<-- border-transparent hover:border-gray-200  --
 													<Button onclick={() => selectDateAndSlot(day.getFullYear(), day.getMonth(), day.getDate(), 'AM')}
 														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<!-- <div class=""> -->
+														<-- <div class=""> --
 														<div class="text-gray-500">AM</div>
 														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
-														<!-- </div> -->
+														<-- </div> --
 													</Button>
 													<Button
 														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<!-- <div class=""> -->
+														<-- <div class=""> --
 														<div class="text-gray-500">PM</div>
 														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">1</div>
-														<!-- </div> -->
+														<-- </div> --
 													</Button>
 													<Button
 														class="shadow-none flex items-center justify-between text-xs bg-gray-50 border-none hover:bg-gray-100 pl-2 pr-0.5 py-3 rounded-sm">
-														<!-- <div class=""> -->
+														<-- <div class=""> --
 														<div class="text-gray-500">Off-time</div>
 														<div class="px-1 py-1 font-semibold bg-accent/50 rounded-sm min-w-[30px]">20</div>
-														<!-- </div> -->
+														<-- </div> --
 													</Button>
 												</div>
 											{/if}
 										</div>
 									{/each}
 								{/each}
-							</div>
-						</div>
+							</div> -->
+						<!-- </div> -->
 					</Dialog.Content>
 				</Dialog.Root>
-			</div>
-			<div class="step hidden" data-step="2">step 2</div>
-			<div class="step hidden" data-step="3">step 3</div>
-			<div class="step hidden" data-step="4">step 4</div>
-			
-			<div class="flex items-center gap-3 mt-8">
-				<Button variant="secondary">Back</Button>
-				<Button>Next</Button>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+
+    </div>
 </div>
