@@ -10,6 +10,8 @@
     import QuotationNotes from "@/components/slugs/quotations/quotation-notes.svelte";
     import QuotationTotals from "@/components/slugs/quotations/quotation-totals.svelte";
 
+	import RecordNotFound from "@/components/global/record-not-found.svelte";
+
 	import {
 		ArrowLeft,
 		BanknoteX,
@@ -34,16 +36,9 @@
 
 	const PREFIX = '/app/quotations/';
     let { data } = $props();
-	// console.log('page data', data);
+	console.log('page data', data);
 
-	let { record, statusList } = data;
-	// console.log('page quotation', record);
-
-	record.status_text = statusList.find(d => d.id === record.status)?.name || '';
-	record.payment_status_text = statusList.find(d => d.id === record.payment_status)?.name || '';
-	// console.log('*** page quotation ***', record);
-
-	let views = [
+	const VIEWS = [
 		{
 			id: "history",
 			label: "Service History",
@@ -58,11 +53,21 @@
 		},
 	];
 
-	let view = $state("history");
-	let viewLabel = $derived(views.find((v) => view === v.id)?.label ?? "Select a view");
+	let { record, statusList } = data;
+	// console.log('page quotation', record);
+
+	if (record) {
+		record.status_text = statusList.find(d => d.id === record.status)?.name || '';
+		record.payment_status_text = statusList.find(d => d.id === record.payment_status)?.name || '';
+		// console.log('*** page quotation ***', record);
+
+		let view = $state("history");
+		let viewLabel = $derived(VIEWS.find((v) => view === v.id)?.label ?? "Select a view");
+	}
 </script>
 
 <div class="grid gap-8 px-4">
+	{#if record}
 	<QuotationHeader { data } />
 
 	<div class="grid grid-cols-[1fr_320px] pb-8 gap-12 items-start">
@@ -70,4 +75,7 @@
 
 		<QuotationSidebar { data } />
 	</div>
+	{:else}
+		<RecordNotFound backLink="/app/quotations" />
+	{/if}
 </div>

@@ -1,5 +1,5 @@
 <script>
-	import BBLogo from '$lib/images/Last_logo2.svg';
+	import BBLogo from '$lib/images/busy-bee.svg';
 	import LoginImage from '$lib/images/about-us-banner-image.jpg';
 	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import LoginForm from "@/components/layouts/login-02/login-form.svelte";

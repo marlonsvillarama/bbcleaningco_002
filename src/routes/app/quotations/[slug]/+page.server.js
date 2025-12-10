@@ -29,7 +29,7 @@ export async function load({ params, url }) {
 
 	let statusResponse = await supabase.from("global_list_values").select('id, name');
 	let obj = {
-		record: quotationResponse.data[0],
+		record: quotationResponse.data ? quotationResponse.data[0] : null,
 		statusList: statusResponse.data
 	};
 	// console.log('*** quotation server obj', obj);

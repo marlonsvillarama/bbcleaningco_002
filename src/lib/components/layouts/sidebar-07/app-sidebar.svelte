@@ -32,7 +32,7 @@
 	import NavUser from "./nav-user.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import Separator from "@/components/ui/separator/separator.svelte";
-	import Logo from "$lib/images/Last_logo2.svg";
+	import Logo from "$lib/images/busy-bee.svg";
 	
 	const data = {
 		navMain: [

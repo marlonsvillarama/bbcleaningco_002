@@ -39,6 +39,16 @@ const getRegions = async () => {
     return data;
 };
 
+const getServices = async () => {
+    let { data } = await supabase.from("services").select(`
+        id,
+        name
+    `)
+    .eq('is_active', true);
+
+    return data;
+};
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ params, url }) {
     // let slug = params.slug;
@@ -50,6 +60,7 @@ export async function load({ params, url }) {
     // console.log('+load urlParams', urlParams);
     let lists = await getListValues();
     let regions = await getRegions();
+    let services = await getServices();
     let cities = [];
     let provinces = regions.reduce((sum, next) => {
         next.provinces = next.provinces.map(p => {
@@ -75,7 +86,8 @@ export async function load({ params, url }) {
         lists,
         cities,
         provinces,
-        regions
+        regions,
+        services
     };
 
     // if (params.slug === 'hello-world') {
