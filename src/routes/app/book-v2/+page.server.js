@@ -70,11 +70,10 @@ export async function load({ params, url }) {
             cities = cities.concat(p.cities);
             return { ...p, region: next.id }
         });
-        console.log('+PAGE next.provinces', next.provinces);
+        // console.log('+PAGE next.provinces', next.provinces);
 
         return sum.concat(next.provinces);
     }, []);
-    // obj.edit = url.searchParams.has('edit');
 
     provinces.sort((a, b) => {
         if (a.name < b.name) return -1;
@@ -89,12 +88,4 @@ export async function load({ params, url }) {
         regions,
         services
     };
-
-    // if (params.slug === 'hello-world') {
-    // 	return {
-    // 		title: 'Hello world!',
-    // 		content: 'Welcome to our blog. Lorem ipsum dolor sit amet...'
-    // 	};
-    // }
-    // error(404, 'Not found');
 }
