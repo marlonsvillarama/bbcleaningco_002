@@ -1,9 +1,11 @@
 <script>
     import { cn } from "@/utils";
+    import { supabase } from "@/supabaseClient.js";
     import { getContext, onMount } from "svelte";
     import Button from "@/components/ui/button/button.svelte";
     import Input from "@/components/ui/input/input.svelte";
     import Separator from "@/components/ui/separator/separator.svelte";
+    import Spinner from "@/components/ui/spinner/spinner.svelte";
     import * as Dialog from "@/components/ui/dialog/index";
     import * as Select from "@/components/ui/select/index";
     import ClientSelector from "@/components/global/client-selector.svelte";
@@ -71,6 +73,9 @@
     let selectedBookingType = $state('');
     let selectedService = $state('');
     let isValidForm = $state(true);
+    let isSubmitting = $state(false);
+    let isSubmitted = $state(false);
+    let errorMessage = $state('');
 
     const moveStep = (value) => {
         if (value > 0 && validateForm() === false) return;
@@ -143,7 +148,7 @@
         console.log(`populateClientDetails formValues.client`, formValues.client);
         if (!formValues.client) return;
 
-        formValues.last_name = formValues.client.last_name;
+        formValues.last_name = formValues.client?.last_name || formValues.client;
         formValues.first_name = formValues.client.first_name;
         formValues.phone = formValues.client.phone_1;
         console.log(`populateClientDetails last_name = ${formValues.last_name}; first_name = ${formValues.first_name}; phone = ${formValues.phone}`);
@@ -182,14 +187,73 @@
         // validateForm();
     };
 
-    const submitForm = () => {
-        if (validateForm() === false) { return; }
+    const submitForm = async () => {
+        // if (validateForm() === false) { return; }
 
+        // formValues.service_date = `${formValues.date.getFullYear()}${formValues.date.getMonth().toString().padStart(2, '0')}${formValues.date.getDate().toString().padStart(2, '0')}`;
         alert('implement submitForm');
+
+        isSubmitting = true;
+        isSubmitted = false;
+
+        let clientData = {
+            first_name: formValues.first_name,
+            last_name: formValues.last_name,
+            phone_1: formValues.phone_1
+        };
+        let response = !!formValues.client === true ?
+            await supabase.from('clients').update(clientData).eq('id', formValues.client.id).select('id') :
+            await supabase.from('clients').insert(clientData).select('id');
+        if (response.error) {
+            errorMessage = response.error;
+            console.error(response.error);
+            isSubmitting = true;
+            // isSubmitted = false;
+            return;
+        }
+        console.log(`*** clients response.data`, response.data[0]?.id);
+        let clientId = formValues.client?.id || response.data[0]?.id;
+
+        let quotationData = {
+            client: clientId,
+            service_date: `${formValues.date.getFullYear()}${formValues.date.getMonth().toString().padStart(2, '0')}${formValues.date.getDate().toString().padStart(2, '0')}`,
+            slot: formValues.slot
+        };
+        response = await supabase.from('quotations').insert(quotationData).select('id');
+        if (response.error) {
+            errorMessage = response.error;
+            console.error(response.error);
+            isSubmitting = true;
+            // isSubmitted = true;
+            return;
+        }
+        let quotationId = response.data[0]?.id;
+        console.log(`*** quotations response.data`, quotationId);
+
+        // PENDING FIX: PATCH request for number not working.
+        quotationData = {
+            number: `${(formValues.date).getFullYear()}-${selectedProvince.name}-${(formValues.date.getMonth()+1).toString().padStart(2, '0')}${formValues.date.getDate().toString().padStart(2, '0')}-${quotationId.toString().padStart(6, '0')}`
+        };
+        console.log('>>> quotationData', quotationData);
+        response = await supabase.from('quotations').update(quotationData).eq('id', quotationId);
+        if (response.error) {
+            errorMessage = response.error;
+            console.error(response.error);
+            isSubmitting = true;
+            // isSubmitted = true;
+            return;
+        }
+
+        // Enable only if all three requests are working.
+        // window.location = `/app/quotations/${quotationId}`;
+        // alert('submitted');
     };
 
     const validateForm = () => {
         let count = 0;
+
+        if (currentStep === FORM_KEYS.length - 1) return true;
+
         // FORM_KEYS.forEach(key => {
         FORM_KEYS[currentStep].forEach(key => {
             validateValues[key] = !!formValues[key] === true;
@@ -201,6 +265,33 @@
         console.log(`count = ${count}; fields = ${FORM_KEYS[currentStep].length}; isValidForm = ${isValidForm}; formValues ==>`, formValues);
         return isValidForm;
     };
+
+    const updateClient = () => {
+        if (!formValues.client) {
+            console.log('*** formValues.client is BLANK');
+            return;
+        }
+
+        if (formValues.client.first_name === formValues.first_name &&
+            formValues.client.last_name === formValues.last_name
+        ) {
+            console.log('*** first_name or last_name did not change');
+            return;
+        }
+
+        if (confirm("You are changing the client's details. Do you want to create a new client record instead?")) {
+            formValues.client = '';
+        }
+
+        validateForm();
+    };
+
+    // const updatePhone = () => {
+    //     if (!formValues.client) return;
+    //     if (formValues.client.phone === formValues.phone) return;
+
+    //     if (confirm('Is this a new phone number for the same client?'))
+    // };
 
     onMount(() => {
         FORM_KEYS.forEach(form => {
@@ -348,7 +439,7 @@
                         </div>
                     </div>
 
-                    <!-- Select the city -->
+                    <!-- Enter the address -->
                     <div class="grid gap-1 items-center w-full">
                         <span class="text-sm text-foreground font-semibold">Street Address</span>
                         <span class="text-xs text-foreground/60 font-normal">Kumpletong address ng lugar</span>
@@ -383,7 +474,8 @@
                         <span class="text-xs text-foreground/60 font-normal">Apelyido</span>
                         <div class="flex items-center gap-2">
                             <div class="grid gap-0">
-                                <ClientSelector bind:value={formValues.client} display="last_name" onvaluechange={populateClientDetails} />
+                                <ClientSelector bind:client={formValues.client} bind:value={formValues.last_name}
+                                    display="last_name" onvaluechange={populateClientDetails} />
                                 <div data-error-field="last_name" class={cn(
                                     "text-sm text-red-600",
                                     validateValues.last_name === false ? "block" : "hidden"
@@ -399,7 +491,7 @@
                         <span class="text-xs text-foreground/60 font-normal">Pangalan</span>
                         <div class="flex items-center gap-2">
                             <div class="grid gap-0">
-                                <Input bind:value={formValues.first_name}
+                                <Input bind:value={formValues.first_name} onchange={updateClient}
                                     class="text-sm font-normal bg-white border py-1 w-[300px]" />
                                 <div data-error-field="first_name" class={cn(
                                     "text-sm text-red-600",
@@ -416,7 +508,8 @@
                         <span class="text-xs text-foreground/60 font-normal">Telepono</span>
                         <div class="flex items-center gap-2">
                             <div class="grid gap-0">
-                                <Input bind:value={formValues.phone} class="text-sm font-normal bg-white border py-1 w-[150px]" />
+                                <Input bind:value={formValues.phone} onchange={validateForm}
+                                    class="text-sm font-normal bg-white border py-1 w-[150px]" />
                                 <div data-error-field="phone" class={cn(
                                     "text-sm text-red-600",
                                     validateValues.phone === false ? "block" : "hidden"
@@ -449,11 +542,11 @@
                                     <Select.Trigger class="text-sm font-normal bg-white border py-1 w-[300px]">
                                         {selectedBookingType?.name || '--'}
                                     </Select.Trigger>
-                                    <div data-error-field="phone" class={cn(
+                                    <div data-error-field="bookingType" class={cn(
                                         "text-sm text-red-600",
-                                        validateValues.phone === false ? "block" : "hidden"
+                                        validateValues.bookingType === false ? "block" : "hidden"
                                     )}>
-                                        Please enter the client's mobile phone.
+                                        Please choose a booking type.
                                     </div>
                                 </div>
                                 <Select.Content>
@@ -499,7 +592,7 @@
                         <span class="text-xs text-foreground/60 font-normal">Gaano kalaki ang lugar?</span>
                         <div class="flex items-center gap-2">
                             <div class="grid gap-0">
-                                <Input bind:value={formValues.area} maxlength="8"
+                                <Input bind:value={formValues.area} maxlength="8" onchange={validateForm}
                                     class="text-sm text-right font-normal bg-white border py-1 w-[80px] pr-2" />
                                 <div data-error-field="area" class={cn(
                                     "text-sm text-red-600",
@@ -574,40 +667,47 @@
 
             <!-- Buttons -->
             <div class="flex items-center justify-between gap-3 mt-12 w-[400px]">
-                <div class="flex items-center gap-2">
-                    {#if currentStep > 0}
-                    <Button variant="secondary" size="sm" onclick={() => moveStep(-1)}>
-                        <ChevronLeft size={16} />
-                        Back
+                {#if isSubmitting === true}
+                    <Button variant="secondary" disabled size="sm">
+                        Submitting form...
+                        <Spinner />
                     </Button>
-                    {/if}
-
-                    {#if currentStep < STEP_ITEMS.length - 1}
-                        <Button size="sm" onclick={() => moveStep(1)}>
-                            Next
-                            <ChevronRight size={16} />
+                {:else}
+                    <div class="flex items-center gap-2">
+                        {#if currentStep > 0}
+                        <Button variant="secondary" size="sm" onclick={() => moveStep(-1)}>
+                            <ChevronLeft size={16} />
+                            Back
                         </Button>
-                    {:else}
-                        <Button size="sm" onclick={submitForm}>
-                            Finish
-                            <Check size={16} />
-                        </Button>
-                    {/if}
-                </div>
+                        {/if}
 
-                <div class="flex items-center gap-2">
-                {#if currentStep > 0}
-                    <Button variant="secondary" size="sm" onclick={submitForm}>
-                        <Save size={16} />
-                        Save
-                    </Button>
+                        {#if currentStep < STEP_ITEMS.length - 1}
+                            <Button size="sm" onclick={() => moveStep(1)}>
+                                Next
+                                <ChevronRight size={16} />
+                            </Button>
+                        {:else}
+                            <Button size="sm" onclick={submitForm}>
+                                Finish
+                                <Check size={16} />
+                            </Button>
+                        {/if}
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        {#if currentStep > 0}
+                            <Button variant="secondary" size="sm" onclick={submitForm}>
+                                <Save size={16} />
+                                Save
+                            </Button>
+                        {/if}
+
+                        <Button variant="ghost_secondary" size="sm" onclick={resetForm}>
+                            <RotateCcw size={16} />
+                            Reset
+                        </Button>
+                    </div>
                 {/if}
-
-                <Button variant="ghost_secondary" size="sm" onclick={resetForm}>
-                    <RotateCcw size={16} />
-                    Reset
-                </Button>
-            </div>
             </div>
         </div>
     </div>

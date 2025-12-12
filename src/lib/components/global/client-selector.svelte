@@ -8,6 +8,7 @@
 
     let {
         class: className,
+        client = $bindable(),
         display,
         value = $bindable(),
         onvaluechange
@@ -139,6 +140,11 @@
         `)
         .ilike('last_name', `%${inputValue}%`);
         results = response.data;
+
+        if (results.length <= 0) {
+            value = inputValue;
+            client = '';
+        }
         // results = [ ...response.data, ...CLIENTS ];
 
         // console.log('+SELECTOR clients', results);
@@ -155,7 +161,8 @@
     const selectItem = (id) => {
         selectedItem = results.find(r => r.id === id);
         // console.log('+SELECTOR selectIem ==>', selectedItem);
-        value = selectedItem;
+        client = selectedItem;
+        value = client.last_name;
         results = [];
 
         if (!selectedItem) return;

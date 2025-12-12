@@ -17,13 +17,15 @@ export async function load({ params, url }) {
 			id,
 			first_name,
 			last_name,
-			phone,
-			email,
+			phone_1,
+			phone_2,
+			email_1,
+			email_2,
 			notes
 		)
 	`)
 	.eq('id', slug);
-	// console.log('quotationResponse', quotationResponse);
+	console.log('quotationResponse', quotationResponse);
 	// let obj = statusResponse.data.length > 0 ? data[0] : {};
 	// obj.edit = url.searchParams.has('edit');
 

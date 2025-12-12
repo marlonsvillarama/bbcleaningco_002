@@ -36,7 +36,7 @@
 
 	const PREFIX = '/app/quotations/';
     let { data } = $props();
-	console.log('page data', data);
+	// console.log('page data', data);
 
 	const VIEWS = [
 		{
