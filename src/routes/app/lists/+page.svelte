@@ -1,6 +1,7 @@
 <script>
 	import Button from "@/components/ui/button/button.svelte";
     import * as Tabs from "@/components/ui/tabs/index";
+	import DataTable from "@/components/data-table/data-table.svelte";
 
 	import {
 		Plus
@@ -8,9 +9,36 @@
     
     const TABS = [
         { id: 'regions', label: 'Regions' },
-        { id: 'items', label: 'Items' },
-        { id: 'vehicles', label: 'Vehicles' },
+        { id: 'booking-types', label: 'Booking Types' },
+        { id: 'sales-channels', label: 'Sales Channels' },
+        { id: 'payment-status', label: 'Payment Status' },
     ];
+
+	let columns = {
+		bookingTypes: [
+			{ id: 'name', name: 'Name' },
+		],
+		paymentStatus: [
+			{ id: 'name', name: 'Name' },
+		],
+		regions: [
+			{ id: 'name', name: 'Name' },
+		],
+		salesChannels: [
+			{ id: 'name', name: 'Name' },
+		],
+	};
+	let data = {
+		bookingTypes: [],
+		paymentStatus: [],
+		regions: [
+			{ id: 1, name: 'Region 1 (sss)' },
+			{ id: 2, name: 'Region 2 (sss)' },
+			{ id: 3, name: 'Region 3 (sss)' },
+			{ id: 4, name: 'Region 4 (sss)' }
+		],
+		salesChannels: []
+	};
 
 	// import data from "./data.js";
 	// import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
@@ -51,16 +79,21 @@
             </Tabs.List>
         </div>
 
+		<!-- Regions -->
         <Tabs.Content value="regions" class="grid items-start gap-6">
-			Regions
+			<DataTable type="region" columns={columns.regions} data={data.regions} />
         </Tabs.Content>
 
-        <Tabs.Content value="items" class="grid items-start gap-6">
-			Items
+        <Tabs.Content value="booking-types" class="grid items-start gap-6">
+			<DataTable type="booking type" columns={columns.bookingTypes} data={data.bookingTypes} />
         </Tabs.Content>
 
-        <Tabs.Content value="vehicles" class="grid items-start gap-6">
-			Vehicles
+        <Tabs.Content value="sales-channels" class="grid items-start gap-6">
+			<DataTable type="sales channel" columns={columns.salesChannels} data={data.salesChannels} />
+        </Tabs.Content>
+
+        <Tabs.Content value="payment-status" class="grid items-start gap-6">
+			<DataTable type="payment status" columns={columns.paymentStatus} data={data.paymentStatus} />
         </Tabs.Content>
     </Tabs.Root>
 </div>

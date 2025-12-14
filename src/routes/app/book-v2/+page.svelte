@@ -316,7 +316,7 @@
 	</div>
 
     <div class="flex items-start gap-6 px-4 py-3">
-        <Stepper step={currentStep} items={STEP_ITEMS} />
+        <Stepper step={currentStep} items={STEP_ITEMS} class="mt-1" />
 
         <!-- Forms -->
         <div class="flex-1" >
@@ -610,13 +610,14 @@
             <div data-step={4}
                 class={cn(
                     currentStep === 4 ? 'grid' : 'hidden',
-                    "gap-6 items-start step-form"
+                    "gap-9 items-start step-form"
                 )}
             >
                 <!-- <div class="grid gap-6"> -->
-                    <div class="grid gap-4">
-                        <div class="font-semibold">Service Details</div>
+                    <div class="grid gap-0 border-none border-gray-300 rounded-md">
+                        <div class="font-semibold px-0 pb-3">Service Details</div>
                         <Separator class="w-[450px]" />
+                        <div class="grid gap-4 px-0 py-4">
                         <div class="grid grid-cols-[180px_auto] items-center w-full">
                             <span class="text-sm text-foreground font-semibold">Service Date</span>
                             <span class="text-sm pl-2">{selectedDateSlotText}</span>
@@ -631,34 +632,37 @@
                             <span class="text-sm text-foreground font-semibold">Total Area (sqm)</span>
                             <span class="text-sm pl-2">{formValues.area}</span>
                         </div>
+                        </div>
                     </div>
 
-                    <div class="grid gap-4">
-                        <div class="font-semibold">Client Details</div>
+                    <div class="grid gap-0 border-none border-gray-300 rounded-md">
+                        <div class="font-semibold px-0 pb-3">Client Details</div>
                         <Separator class="w-[450px]" />
-                        <div class="grid grid-cols-[180px_auto] items-center w-full">
-                            <span class="text-sm text-foreground font-semibold">Address</span>
-                            <span class="text-sm pl-2">{formValues.street_1}</span>
-                        </div>
+                        <div class="grid gap-4 px-0 py-4">
+                            <div class="grid grid-cols-[180px_auto] items-center w-full">
+                                <span class="text-sm text-foreground font-semibold">Name</span>
+                                <span class="text-sm pl-2">{formValues.last_name}, {formValues.first_name}</span>
+                            </div>
 
-                        <div class="grid grid-cols-[180px_auto] items-center w-full">
-                            <span class="text-sm text-foreground font-semibold">City/Province</span>
-                            <span class="text-sm pl-2">{selectedCity.name}, {selectedProvince.name}</span>
-                        </div>
+                            <div class="grid grid-cols-[180px_auto] items-center w-full">
+                                <span class="text-sm text-foreground font-semibold">Mobile Phone</span>
+                                <span class="text-sm pl-2">{parsePhone(formValues.phone)}</span>
+                            </div>
 
-                        <div class="grid grid-cols-[180px_auto] items-center w-full">
-                            <span class="text-sm text-foreground font-semibold">Region</span>
-                            <span class="text-sm pl-2">{selectedRegion.name} ({selectedRegion.official})</span>
-                        </div>
+                            <div class="grid grid-cols-[180px_auto] items-center w-full">
+                                <span class="text-sm text-foreground font-semibold">Address</span>
+                                <span class="text-sm pl-2">{formValues.street_1}</span>
+                            </div>
 
-                        <div class="grid grid-cols-[180px_auto] items-center w-full">
-                            <span class="text-sm text-foreground font-semibold">Client</span>
-                            <span class="text-sm pl-2">{formValues.last_name}, {formValues.first_name}</span>
-                        </div>
+                            <div class="grid grid-cols-[180px_auto] items-center w-full">
+                                <span class="text-sm text-foreground font-semibold">City/Province</span>
+                                <span class="text-sm pl-2">{selectedCity.name}, {selectedProvince.name}</span>
+                            </div>
 
-                        <div class="grid grid-cols-[180px_auto] items-center w-full">
-                            <span class="text-sm text-foreground font-semibold">Mobile Phone</span>
-                            <span class="text-sm pl-2">{parsePhone(formValues.phone)}</span>
+                            <div class="grid grid-cols-[180px_auto] items-center w-full">
+                                <span class="text-sm text-foreground font-semibold">Region</span>
+                                <span class="text-sm pl-2">{selectedRegion.name} ({selectedRegion.official})</span>
+                            </div>
                         </div>
                     </div>
                 <!-- </div> -->

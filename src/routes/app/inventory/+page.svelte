@@ -52,7 +52,7 @@
         </div>
 
         <Tabs.Content value="services" class="grid items-start gap-6">
-			Services
+			
         </Tabs.Content>
 
         <Tabs.Content value="items" class="grid items-start gap-6">

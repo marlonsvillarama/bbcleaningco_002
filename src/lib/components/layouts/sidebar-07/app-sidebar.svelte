@@ -95,14 +95,11 @@
 				url: "/app/reports",
 				icon: ChartNoAxesCombined,
 			},
-			// {
-			// 	title: "Global Lists",
-			// 	url: "/app/lists",
-			// 	icon: List,
-			// 	allow: {
-			// 		regions: 3
-			// 	},
-			// },
+			{
+				title: "Global Lists",
+				url: "/app/lists",
+				icon: List,
+			},
 		],
 		navSecondary: [
 			{

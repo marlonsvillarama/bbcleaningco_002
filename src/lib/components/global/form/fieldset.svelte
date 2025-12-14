@@ -3,11 +3,16 @@
 
     let {
         label = 'Field',
+        orientation = 'horizontal',
         children
     } = $props();
+
+    let mainClasses = orientation === 'horizontal' ?
+        'flex flex-col gap-2' :
+        'grid gap-0'
 </script>
 
-<div class="flex flex-col gap-2 text-xs">
-    <Label class="font-semibold">{label}</Label>
+<div class="text-xs {mainClasses}">
+    <Label class="font-semibold">{label}ss</Label>
     {@render children()}
 </div>

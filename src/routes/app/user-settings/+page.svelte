@@ -29,8 +29,8 @@
     const USER_ROLE = getContext('USER_ROLE');
     console.log('+USER_SETTINGS USER_ROLE', USER_ROLE);
     let formValues = $state({
-        dashView: USER_ROLE.dash_view,
-        weekStart: USER_ROLE.week_start.toString()
+        dashView: USER_CONTEXT.settings.dash_view,
+        weekStart: USER_CONTEXT.settings.week_start.toString()
     });
     // formValues.dashView = USER_ROLE.dash_view;
 

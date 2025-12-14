@@ -3,7 +3,7 @@
 	import { tv } from "tailwind-variants";
 
 	export const buttonVariants = tv({
-		base: "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xs text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+		base: "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 		variants: {
 			variant: {
 				/* default: "bg-linear-to-b from-accent/10 to-accent/50 text-accent-foreground hover:bg-accent/50 border-accent border-1", */
@@ -21,8 +21,8 @@
 			},
 			size: {
 				default: "h-7 px-4 py-2 has-[>svg]:px-3",
-				sm: "h-8 gap-1.5 rounded-xs px-3 has-[>svg]:px-2.5",
-				lg: "h-10 rounded-xs px-6 has-[>svg]:px-4",
+				sm: "h-8 gap-1.5 rounded-sm px-3 has-[>svg]:px-2.5",
+				lg: "h-10 rounded-sm px-6 has-[>svg]:px-4",
 				icon: "size-7",
 			},
 		},
