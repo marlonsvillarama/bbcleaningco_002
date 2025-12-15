@@ -89,12 +89,15 @@
 
 <script>
     import { cn } from '@/utils';
+    import { supabase } from '@/supabaseClient';
+    import * as AlertDialog from "@/components/ui/alert-dialog/index";
     import Button from '../ui/button/button.svelte';
+    import Input from '../ui/input/input.svelte';
     import { buttonVariants } from '../ui/button/button.svelte';
     import * as Popover from "@/components/ui/popover/index";
-    import DataTableCellViewer from './data-table-cell-viewer.svelte';
-    import DataTableCheckbox from './data-table-checkbox.svelte';
-    import DataTableSwitch from './data-table-switch.svelte';
+    import DataTableCellViewer from './list-table-cell-viewer.svelte';
+    import DataTableCheckbox from './list-table-checkbox.svelte';
+    import DataTableSwitch from './list-table-switch.svelte';
 
     import {
         ChevronDown,
@@ -104,6 +107,7 @@
     } from '@lucide/svelte';
 
     let {
+        id = '',
         columns = [],
         data = [],
         type
@@ -112,9 +116,14 @@
     let enableActive = true;
     let headers = $state(columns);
     let rows = $state(data);
+    let newValue = $state('');
 
     const addNew = () => {
-        console.log(`adding new ${type}`);
+        console.log(`adding new ${type} = ${newValue}`);
+        if (!id) {
+        }
+        // let { data, error } = await supabase.from('global_values')
+        //     .insert('')
     };
 
     const changeSort = (id) => {
@@ -158,8 +167,10 @@
                 <Popover.Trigger class={buttonVariants({ variant: "secondary", size: "sm" })}>
                     <Plus size={16} /> Add {type}
                 </Popover.Trigger>
-                <Popover.Content align="end">
-                    <div class="grid gap-4">{type}</div>
+                <Popover.Content align="end" class="flex flex-col gap-1 text-sm">
+                    <span class="font-medium">Name</span>
+                    <Input onkeyup={addNew} />
+                    <Button class="w-[80px]" onclick={addNew}>Add</Button>
                 </Popover.Content>
             </Popover.Root>
         </div>
@@ -174,13 +185,17 @@
             "hover:bg-accent/10 hover:cursor-pointer"
         )}>
             {#each headers as col}
+            <button class="col-action border-1 border-transparent py-1 hover:cursor-pointer" variant="link" size="icon"
+                onclick={() => console.log(`clicked id = ${d.id}`)}
+            >
                 {d[col.id]}
+            </button>
             {/each}
-            <button class="col-action border-1 border-transparent px-1 py-1" variant="link" size="icon"
+            <!-- <button class="col-action border-1 border-transparent px-1 py-1" variant="link" size="icon"
                 onclick={() => console.log(`clicked id = ${d.id}`)}
             >
                 <X size={16} class=" stroke-transparent group-hover:stroke-gray-500 group-hover:cursor-pointer" />
-            </button>
+            </button> -->
         </div>
         {/each}
     </div>

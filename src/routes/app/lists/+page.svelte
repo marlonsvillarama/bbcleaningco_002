@@ -1,17 +1,19 @@
 <script>
 	import Button from "@/components/ui/button/button.svelte";
     import * as Tabs from "@/components/ui/tabs/index";
-	import DataTable from "@/components/data-table/data-table.svelte";
+	import DataTable from "@/components/list-table/list-table.svelte";
 
 	import {
 		Plus
 	} from "@lucide/svelte";
     
     const TABS = [
-        { id: 'regions', label: 'Regions' },
-        { id: 'booking-types', label: 'Booking Types' },
-        { id: 'sales-channels', label: 'Sales Channels' },
-        { id: 'payment-status', label: 'Payment Status' },
+        // { id: '1', slug: 'regions', label: 'Regions' },
+        { id: '4', slug: 'booking-types', label: 'Booking Types' },
+        { id: '1', slug: 'client-status', label: 'Client Status' },
+        { id: '3', slug: 'payment-status', label: 'Payment Status' },
+        { id: '2', slug: 'quotation-status', label: 'Payment Status' },
+        // { id: '5', slug: 'sales-channels', label: 'Sales Channels' },
     ];
 
 	let columns = {
@@ -51,18 +53,7 @@
 	<div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
 		<h1 class="text-gray-700 text-xl font-semibold">Global Lists</h1>
 		<div class="flex items-center gap-3">
-			<Button variant="default" size="sm" onclick={() => window.location = `/app/inventory?type=service&new=T`}>
-				<Plus />
-				<span class="hidden lg:inline">New Service</span>
-			</Button>
-			<Button variant="default" size="sm" onclick={() => window.location = `/app/inventory?type=item&new=T`}>
-				<Plus />
-				<span class="hidden lg:inline">New Item</span>
-			</Button>
-			<Button variant="default" size="sm" onclick={() => window.location = `/app/inventory?type=item&new=T`}>
-				<Plus />
-				<span class="hidden lg:inline">New Vehicle</span>
-			</Button>
+			<Button variant="ghost" size="sm" disabled onclick={() => window.location = `/app/inventory?type=service&new=T`}>&nbsp;</Button>
 		</div>
 	</div>
 
@@ -72,7 +63,7 @@
                 class="**:data-[slot=badge]:bg-muted-foreground/30 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-4"
             >
                 {#each TABS as tab (tab.id)}
-                    <Tabs.Trigger value={tab.id}>
+                    <Tabs.Trigger value={tab.slug}>
                         {tab.label}
                     </Tabs.Trigger>
                 {/each}
@@ -81,7 +72,7 @@
 
 		<!-- Regions -->
         <Tabs.Content value="regions" class="grid items-start gap-6">
-			<DataTable type="region" columns={columns.regions} data={data.regions} />
+			<DataTable id="1" type="region" columns={columns.regions} data={data.regions} />
         </Tabs.Content>
 
         <Tabs.Content value="booking-types" class="grid items-start gap-6">
