@@ -18,13 +18,18 @@
     } = $props();
 
     let pageIndex = $state(0);
-    let pageSize = $state(20);
+    let pageSize = $state(2);
     let pageCount = $derived(Math.ceil(data.length / pageSize));
 
     const moveFirst = () => {};
     const moveLast = () => {};
     const moveNext = () => {};
     const movePrev = () => {};
+    const updatePage = () => {
+        console.log(`updatePage pageSize = ${pageSize}`);
+        pageIndex = 0;
+        onpagechange();
+    };
 </script>
 
 <div class="flex w-full items-center gap-8 lg:w-fit">
@@ -33,12 +38,13 @@
         <Select.Root
             type="single"
             bind:value={pageSize}
+            onValueChange={updatePage}
         >
             <Select.Trigger size="sm" class="w-20" id="rows-per-page">
                 {pageSize}
             </Select.Trigger>
             <Select.Content side="top">
-                {#each [1, 20, 50] as pageSize (pageSize)}
+                {#each [1, 2, 5] as pageSize (pageSize)}
                     <Select.Item value={pageSize.toString()}>
                         {pageSize}
                     </Select.Item>
