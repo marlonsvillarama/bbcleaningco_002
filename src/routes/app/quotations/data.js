@@ -5,8 +5,10 @@ export default [
 		client: "Jinggoy Estrada",
 		status: "Draft",
 		billing: "Pending Downpayment",
+		service: "Deep Cleaning",
 		serviceDate: "20251201",
 		team: "",
+		area: 320
 	},
 	{
 		id: 2,
@@ -14,8 +16,10 @@ export default [
 		client: "Joel Villanueva",
 		status: "Pending Service",
 		billing: "Pending Balance",
+		service: "Partner Pro",
 		serviceDate: "20251202",
 		team: "ALPHA",
+		area: 485
 	},
 	{
 		id: 3,
@@ -23,6 +27,7 @@ export default [
 		client: "Curlee Discaya",
 		status: "Pending Service",
 		billing: "Pending Balance",
+		service: "Partner Pro Plus",
 		serviceDate: "20251202",
 		team: "BRAVO",
 	},
@@ -32,6 +37,7 @@ export default [
 		client: "Sarah Discaya",
 		status: "Draft",
 		billing: "Pending Downpayment",
+		service: "Rework",
 		serviceDate: "20251201",
 		team: "",
 	},
@@ -41,6 +47,7 @@ export default [
 		client: "Brice Hernandez",
 		status: "Completed",
 		billing: "Pending Balance",
+		service: "Deep Cleaning",
 		serviceDate: "20251201",
 		team: "ALPHA",
 	},
@@ -61,6 +68,7 @@ export default [
 		billing: "Fully Paid",
 		serviceDate: "20251201",
 		team: "ALPHA",
+		area: 350
 	},
 	{
 		id: 8,
@@ -70,6 +78,7 @@ export default [
 		billing: "Pending Balance",
 		serviceDate: "20251201",
 		team: "ALPHA",
+		area: 120
 	},
 	{
 		id: 9,
@@ -79,6 +88,7 @@ export default [
 		billing: "Fully Paid",
 		serviceDate: "20251201",
 		team: "ALPHA",
+		area: 90
 	},
 	{
 		id: 10,
@@ -88,6 +98,7 @@ export default [
 		billing: "Pending Balance",
 		serviceDate: "20251201",
 		team: "ALPHA",
+		area: 1200
 	},
 	{
 		id: 11,
@@ -97,6 +108,7 @@ export default [
 		billing: "Fully Paid",
 		serviceDate: "20251201",
 		team: "ALPHA",
+		area: 350
 	},
 	{
 		id: 12,

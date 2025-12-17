@@ -1,5 +1,6 @@
 <script>
     let { data } = $props();
+	let { record, statusList } = data;
 </script>
 
 <div class="flex items-center gap-2">

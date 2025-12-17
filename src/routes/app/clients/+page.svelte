@@ -6,7 +6,7 @@
 	import SiteHeader from "$lib/components/layouts/sidebar-07/site-header.svelte";
 	// import DataTable from "@/components/data-table/clients-old/data-table.svelte";
 	import DataTableOld from "@/components/data-table/clients-old/data-table.svelte";
-	import DataTable from "@/components/data-table/v2/data-table.svelte";
+	import DataTable from "@/components/data-table/v2/clients-table.svelte";
 	// import SectionCards from "$lib/components/layouts/dashboard-01/section-cards.svelte";
 	// import ChartAreaInteractive from "$lib/components/layouts/dashboard-01/chart-area-interactive.svelte";
 	// import DataTable from "$lib/components/layouts/dashboard-01/data-table.svelte";

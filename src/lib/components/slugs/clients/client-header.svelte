@@ -15,11 +15,12 @@
 	} from "@lucide/svelte";
 
     let { data } = $props();
+	let { record, statusList } = data;
 </script>
 
 <div class="grid gap-2">
     <div class="border-b border-gray-200 flex flex-row items-center justify-between pt-2 pb-2">
-        <span class="text-xl font-semibold">{data.last_name}, {data.first_name}</span>
+        <span class="text-xl font-semibold">{record.last_name.toUpperCase()}, {record.first_name}</span>
         <ClientActions { data } />
     </div>
     <ClientStatus { data } />

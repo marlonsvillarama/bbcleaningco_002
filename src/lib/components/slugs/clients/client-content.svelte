@@ -6,10 +6,14 @@
     import ClientNotes from "./client-notes.svelte";
     import ClientPrimaryDetails from "./client-primary-details.svelte";
     import ClientQuotations from "./client-quotations.svelte";
+    import CollapseSection from "@/components/global/collapse-section.svelte";
+    import FieldsetInput from "@/components/global/form/fieldset-input.svelte";
+    import FieldsetReadonly from "@/components/global/form/fieldset-readonly.svelte";
 
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";
     import Separator from "@/components/ui/separator/separator.svelte";
+    import * as Collapsible from "@/components/ui/collapsible/index";
     import * as Tabs from "@/components/ui/tabs/index";
 
     import {
@@ -66,8 +70,28 @@
 </script>
 
 <div class="grid gap-12 items-start">
-    <div class="flex gap-12 items-start">
+    <CollapseSection title="Primary Details">
+        {#snippet children()}
+        <div class="grid gap-3 text-sm">
+            <FieldsetInput id="first_name" label="First Name" value="" placeholder="Juan" />
+
+            <FieldsetInput id="last_name" label="Last Name" value="" placeholder="Dela Cruz" />
+
+            <FieldsetInput required={false} id="company" label="Company" value="" placeholder="..." />
+
+            <FieldsetInput id="email" label="Email" value="" placeholder="..." />
+
+            <FieldsetInput id="phone_mobile" label="Mobile #" value="" placeholder="09xx-xxx-xxxx..." class="w-[180px]" />
+
+            <FieldsetInput id="phone_home" required={false} label="Home #" value="" placeholder="09xx-xxx-xxxx..." class="w-[180px]" />
+
+            <FieldsetReadonly id="client_since" label="Client Since" value="19 August, 2025" />
+        </div>
+        {/snippet}
+    </CollapseSection>
+    <!-- <div class="flex gap-12 items-start"> -->
         <div class="grid gap-12 w-1/2">
+            
             <ClientPrimaryDetails { data } />
         </div>
 
@@ -76,7 +100,7 @@
 
             <ClientNotes { data } />
         </div>
-    </div>
+    <!-- </div> -->
 
     <Tabs.Root value="address" class="w-full flex-col justify-start gap-4">
 

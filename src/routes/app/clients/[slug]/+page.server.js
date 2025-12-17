@@ -11,14 +11,17 @@ export async function load({ params, url }) {
     let urlParams = url.searchParams.has('json');
     console.log('+load urlParams', urlParams);
     let { data } = await supabase.from("clients").select(`
-        *,
-        client_status (id, name)
+        *
     `)
     .eq('id', slug);
-    let obj = data.length > 0 ? data[0] : {};
-    console.log('server obj', obj);
+        // client_status (id, name)
+	let statusResponse = await supabase.from("global_list_values").select('id, name');
+    // console.log('server obj', obj);
     // obj.edit = url.searchParams.has('edit');
-    return obj;
+    return {
+        record: data.length > 0 ? data[0] : null,
+		statusList: statusResponse.data
+    };
 
     // if (params.slug === 'hello-world') {
     // 	return {

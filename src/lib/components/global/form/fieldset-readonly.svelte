@@ -11,7 +11,7 @@
 	} = $props();
 </script>
 
-<div class="grid grid-cols-[120px_1fr] items-center">
+<div class="grid grid-cols-[200px_1fr] items-center">
     <span class="font-medium">{label}</span>
     <!-- <Input id="last_name" class="text-sm font-light border-transparent px-2 py-1 hover:border-foreground/30" value="" placeholder="Last name..." /> -->
     <!-- <span class="text-sm font-light px-2 py-1 hover:bg-accent/20">{quotation.clients.phone}</span> -->
