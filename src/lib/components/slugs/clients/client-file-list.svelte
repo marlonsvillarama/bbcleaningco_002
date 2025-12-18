@@ -2,12 +2,10 @@
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";
     import Switch from "@/components/ui/switch/switch.svelte";
-    import ClientAddressListItem from "./client-address-list-item.svelte";
+    import ClientFileListItem from "./client-file-list-item.svelte";
 
     import {
         CircleX,
-        House,
-        Pen,
         Plus,
         Trash
     } from "@lucide/svelte";
@@ -15,22 +13,15 @@
     let list = [
         {
             id: 1,
-            street_1: '123 Mercedes Avenue',
-            city: { name: 'Pasig' },
-            region: { name: 'NCR' }
+            name: 'Scanned_proof_of_payment.jpg'
         },
         {
             id: 2,
-            default: true,
-            street_1: '30A Kennon Road',
-            city: { name: 'Baguio' },
-            region: { name: 'North Luzon' }
+            name: 'Contract.pdf'
         },
         {
             id: 3,
-            street_1: '32B McKinley Road',
-            city: { name: 'Taguig' },
-            region: { name: 'NCR' }
+            name: 'Contract (2).pdf'
         },
     ];
 </script>
@@ -40,13 +31,13 @@
         <Button variant="default" class="px-3 py-[2px] text-xs font-normal"
             onclick={() => window.alert('implement add client address...')}
         >
-            <Plus size={16} />New address
+            <Plus size={16} />Upload file
         </Button>
     </div>
 
     <div class="grid gap-2 text-sm text-foreground font-normal border-0 border rounded-sm">
         {#each list as data}
-            <ClientAddressListItem {data} />
+            <ClientFileListItem {data} />
         {/each}
         <!-- item -->
         <!-- <div class="grid grid-cols-[auto_1fr] items-center gap-3 px-3 py-1 rounded-sm hover:bg-gray-50 group cursor-pointer relative">

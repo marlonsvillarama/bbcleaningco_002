@@ -4,6 +4,7 @@
     let {
         label = 'Input',
         required = true,
+		resize = false,
 		disabled = false,
 		ref = $bindable(null),
 		value = $bindable(),
@@ -20,7 +21,7 @@
 </script>
 
 <div class="grid gap-1 items-center">
-    <!-- <span class={requiredClasses}> -->
+    <!-- <span class={requiredClasses}>{label}</span> -->
     <span class="text-foreground/80">
 		{label}
 		{#if required}
@@ -29,20 +30,22 @@
 	</span>
     <!-- <Input id="last_name" class="text-sm font-light border-transparent px-2 py-1 hover:border-foreground/30" value="" placeholder="Last name..." /> -->
     <!-- <span class="text-sm font-light px-2 py-1 hover:bg-accent/20">{quotation.clients.phone}</span> -->
-	<input
+	<textarea
+		type="tel"
 		bind:this={ref}
 		data-slot={dataSlot}
         {required}
 		{disabled}
 		class={cn(
-		    "border-foreground/30 bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground/40 flex h-8 w-full md:max-w-[75%] min-w-0 rounded-xs border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 text-sm",
+		    "border-foreground/30 bg-background selection:bg-primary dark:bg-input/30 selection:text-primary-foreground ring-offset-background placeholder:text-muted-foreground/40 flex h-[120px] w-full md:max-w-[75%] rounded-xs border px-3 py-1 text-base outline-none transition-[color,box-shadow] disabled:cursor-not-allowed disabled:opacity-50 text-sm",
 			"focus-visible:border-accent focus-visible:ring-accent/50 focus-visible:ring-[3px]",
 			"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
             // "text-sm font-light border-transparent px-2 py-1",
+			resize === true ? 'resize' : 'resize-none',
 			className,
 			disabledClasses
 		)}
 		bind:value
 		{...restProps}
-	/>
+	></textarea>
 </div>

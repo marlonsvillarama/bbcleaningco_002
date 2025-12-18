@@ -7,6 +7,7 @@
     } from "lucide-svelte";
     let {
         children,
+        collapse = true,
         title = 'Section...'
     } = $props();
 
@@ -15,21 +16,27 @@
 
 <div class="root grid gap-2">
     <div class="grid grid-cols-[auto_1fr] items-center gap-1">
-        <Button variant="icon" size="icon" onclick={() => isOpen = !isOpen}
-            class="hover:bg-accent hover:cursor-pointer"
-        >
-            {#if isOpen}
-                <ChevronDown size={16} />
-            {:else}
-                <ChevronRight size={16} />
-            {/if}
-        </Button>
+        {#if collapse === true}
+            <Button variant="icon" size="icon" onclick={() => isOpen = !isOpen}
+                class="hover:bg-accent hover:cursor-pointer"
+            >
+                {#if isOpen}
+                    <ChevronDown size={16} />
+                {:else}
+                    <ChevronRight size={16} />
+                {/if}
+            </Button>
+        {/if}
         <div class={cn(
-            "text-md font-bold"
+            "text-sm font-semibold tracking-[0.2px]"
         )}>{title}</div>
+        {#if collapse === false}
+            <Button variant="icon" size="icon" disabled></Button>
+        {/if}
     </div>
     <div class={cn(
-        "ml-8 mt-1 pt-1 border-l-1 border-transparent border-2 border-t-gray-200",
+        collapse === true ? 'ml-8' : '',
+        "mt-1 pt-4 border-l-1 border-transparent border-1 border-t-gray-200 text-sm",
         isOpen ? 'block' : 'hidden'
     )}>
         {@render children()}

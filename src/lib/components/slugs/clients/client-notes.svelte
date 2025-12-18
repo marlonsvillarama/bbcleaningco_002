@@ -9,8 +9,8 @@
     } = $props();
 </script>
 
-<div class="bg-white rounded-md border-none font-medium grid gap-2 w-full">
-    <span class="text-sm text-foreground font-semibold">Client Notes</span>
+<div class="bg-white rounded-md border-none font-medium grid gap-1 w-full">
+    <span class="text-foreground font-light">Notes</span>
 
     <!-- <Separator /> -->
     

@@ -2,7 +2,8 @@
     import Badge from "@/components/ui/badge/badge.svelte";
     import Button from "@/components/ui/button/button.svelte";
     import Switch from "@/components/ui/switch/switch.svelte";
-    import ClientAddressListItem from "./client-address-list-item.svelte";
+    import ClientQuotationListItem from "./client-quotation-list-item.svelte";
+    // import ClientAddressListItem from "./client-address-list-item.svelte";
 
     import {
         CircleX,
@@ -15,19 +16,24 @@
     let list = [
         {
             id: 1,
+            name: 'Q2025-0001',
+            date: '20250722',
             street_1: '123 Mercedes Avenue',
             city: { name: 'Pasig' },
             region: { name: 'NCR' }
         },
         {
             id: 2,
-            default: true,
-            street_1: '30A Kennon Road',
-            city: { name: 'Baguio' },
-            region: { name: 'North Luzon' }
+            name: 'Q2025-0002',
+            date: '20250711',
+            street_1: '32B McKinley Road',
+            city: { name: 'Taguig' },
+            region: { name: 'NCR' }
         },
         {
             id: 3,
+            name: 'Q2025-0003',
+            date: '20250821',
             street_1: '32B McKinley Road',
             city: { name: 'Taguig' },
             region: { name: 'NCR' }
@@ -36,17 +42,17 @@
 </script>
 
 <div class="grid gap-3">
-    <div class="flex">
+    <!-- <div class="flex">
         <Button variant="default" class="px-3 py-[2px] text-xs font-normal"
             onclick={() => window.alert('implement add client address...')}
         >
             <Plus size={16} />New address
         </Button>
-    </div>
+    </div> -->
 
     <div class="grid gap-2 text-sm text-foreground font-normal border-0 border rounded-sm">
         {#each list as data}
-            <ClientAddressListItem {data} />
+            <ClientQuotationListItem {data} />
         {/each}
         <!-- item -->
         <!-- <div class="grid grid-cols-[auto_1fr] items-center gap-3 px-3 py-1 rounded-sm hover:bg-gray-50 group cursor-pointer relative">
